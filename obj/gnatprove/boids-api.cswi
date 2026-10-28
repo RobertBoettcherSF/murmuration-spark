@@ -1,0 +1,11 @@
+20261028191815
+-c
+-x
+ada
+-gnatA
+-gnat2012
+-gnata
+-gnatwa
+-O2
+-gnatc
+-gnates=/workspace/murmuration-spark/obj/gnatprove/b598e180.tmp

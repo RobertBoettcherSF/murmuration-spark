@@ -1,0 +1,10 @@
+project Murmuration is
+   for Source_Dirs use ("src");
+   for Object_Dir use "obj";
+   package Compiler is
+      for Default_Switches ("Ada") use ("-gnat2012", "-gnata", "-gnatwa", "-O2");
+   end Compiler;
+   package Prove is
+      for Proof_Switches ("Ada") use ("--level=2", "--timeout=60");
+   end Prove;
+end Murmuration;

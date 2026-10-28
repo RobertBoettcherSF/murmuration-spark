@@ -1,0 +1,3595 @@
+{
+  "assumptions": [
+    {
+      "assumptions": [
+      ],
+      "claim": {
+        "arg": 8,
+        "predicate": "CLAIM_AORTE"
+      }
+    },
+    {
+      "assumptions": [
+      ],
+      "claim": {
+        "arg": 2,
+        "predicate": "CLAIM_POST"
+      }
+    },
+    {
+      "assumptions": [
+      ],
+      "claim": {
+        "arg": 2,
+        "predicate": "CLAIM_EFFECTS"
+      }
+    },
+    {
+      "assumptions": [
+      ],
+      "claim": {
+        "arg": 2,
+        "predicate": "CLAIM_AORTE"
+      }
+    },
+    {
+      "assumptions": [
+        {
+          "arg": 8,
+          "predicate": "CLAIM_EFFECTS"
+        }
+      ],
+      "claim": {
+        "arg": 3,
+        "predicate": "CLAIM_EFFECTS"
+      }
+    },
+    {
+      "assumptions": [
+        {
+          "arg": 8,
+          "predicate": "CLAIM_EFFECTS"
+        },
+        {
+          "arg": 8,
+          "predicate": "CLAIM_AORTE"
+        }
+      ],
+      "claim": {
+        "arg": 3,
+        "predicate": "CLAIM_AORTE"
+      }
+    },
+    {
+      "assumptions": [
+      ],
+      "claim": {
+        "arg": 6,
+        "predicate": "CLAIM_EFFECTS"
+      }
+    },
+    {
+      "assumptions": [
+      ],
+      "claim": {
+        "arg": 6,
+        "predicate": "CLAIM_AORTE"
+      }
+    },
+    {
+      "assumptions": [
+      ],
+      "claim": {
+        "arg": 4,
+        "predicate": "CLAIM_POST"
+      }
+    },
+    {
+      "assumptions": [
+      ],
+      "claim": {
+        "arg": 4,
+        "predicate": "CLAIM_EFFECTS"
+      }
+    },
+    {
+      "assumptions": [
+      ],
+      "claim": {
+        "arg": 4,
+        "predicate": "CLAIM_AORTE"
+      }
+    },
+    {
+      "assumptions": [
+      ],
+      "claim": {
+        "arg": 5,
+        "predicate": "CLAIM_POST"
+      }
+    },
+    {
+      "assumptions": [
+      ],
+      "claim": {
+        "arg": 5,
+        "predicate": "CLAIM_EFFECTS"
+      }
+    },
+    {
+      "assumptions": [
+      ],
+      "claim": {
+        "arg": 5,
+        "predicate": "CLAIM_AORTE"
+      }
+    },
+    {
+      "assumptions": [
+        {
+          "arg": 4,
+          "predicate": "CLAIM_POST"
+        },
+        {
+          "arg": 4,
+          "predicate": "CLAIM_EFFECTS"
+        },
+        {
+          "arg": 6,
+          "predicate": "CLAIM_EFFECTS"
+        },
+        {
+          "arg": 3,
+          "predicate": "CLAIM_EFFECTS"
+        },
+        {
+          "arg": 4,
+          "predicate": "CLAIM_AORTE"
+        },
+        {
+          "arg": 6,
+          "predicate": "CLAIM_AORTE"
+        },
+        {
+          "arg": 3,
+          "predicate": "CLAIM_AORTE"
+        }
+      ],
+      "claim": {
+        "arg": 7,
+        "predicate": "CLAIM_POST"
+      }
+    },
+    {
+      "assumptions": [
+        {
+          "arg": 4,
+          "predicate": "CLAIM_EFFECTS"
+        },
+        {
+          "arg": 6,
+          "predicate": "CLAIM_EFFECTS"
+        },
+        {
+          "arg": 3,
+          "predicate": "CLAIM_EFFECTS"
+        }
+      ],
+      "claim": {
+        "arg": 7,
+        "predicate": "CLAIM_EFFECTS"
+      }
+    },
+    {
+      "assumptions": [
+        {
+          "arg": 4,
+          "predicate": "CLAIM_POST"
+        },
+        {
+          "arg": 4,
+          "predicate": "CLAIM_EFFECTS"
+        },
+        {
+          "arg": 6,
+          "predicate": "CLAIM_EFFECTS"
+        },
+        {
+          "arg": 3,
+          "predicate": "CLAIM_EFFECTS"
+        },
+        {
+          "arg": 4,
+          "predicate": "CLAIM_AORTE"
+        },
+        {
+          "arg": 6,
+          "predicate": "CLAIM_AORTE"
+        },
+        {
+          "arg": 3,
+          "predicate": "CLAIM_AORTE"
+        }
+      ],
+      "claim": {
+        "arg": 7,
+        "predicate": "CLAIM_AORTE"
+      }
+    },
+    {
+      "assumptions": [
+      ],
+      "claim": {
+        "arg": 9,
+        "predicate": "CLAIM_AORTE"
+      }
+    },
+    {
+      "assumptions": [
+        {
+          "arg": 4,
+          "predicate": "CLAIM_POST"
+        },
+        {
+          "arg": 4,
+          "predicate": "CLAIM_EFFECTS"
+        },
+        {
+          "arg": 6,
+          "predicate": "CLAIM_EFFECTS"
+        },
+        {
+          "arg": 3,
+          "predicate": "CLAIM_EFFECTS"
+        },
+        {
+          "arg": 4,
+          "predicate": "CLAIM_AORTE"
+        },
+        {
+          "arg": 6,
+          "predicate": "CLAIM_AORTE"
+        },
+        {
+          "arg": 3,
+          "predicate": "CLAIM_AORTE"
+        }
+      ],
+      "claim": {
+        "arg": 1,
+        "predicate": "CLAIM_POST"
+      }
+    },
+    {
+      "assumptions": [
+        {
+          "arg": 4,
+          "predicate": "CLAIM_EFFECTS"
+        },
+        {
+          "arg": 6,
+          "predicate": "CLAIM_EFFECTS"
+        },
+        {
+          "arg": 3,
+          "predicate": "CLAIM_EFFECTS"
+        }
+      ],
+      "claim": {
+        "arg": 1,
+        "predicate": "CLAIM_EFFECTS"
+      }
+    },
+    {
+      "assumptions": [
+        {
+          "arg": 4,
+          "predicate": "CLAIM_POST"
+        },
+        {
+          "arg": 4,
+          "predicate": "CLAIM_EFFECTS"
+        },
+        {
+          "arg": 6,
+          "predicate": "CLAIM_EFFECTS"
+        },
+        {
+          "arg": 3,
+          "predicate": "CLAIM_EFFECTS"
+        },
+        {
+          "arg": 4,
+          "predicate": "CLAIM_AORTE"
+        },
+        {
+          "arg": 6,
+          "predicate": "CLAIM_AORTE"
+        },
+        {
+          "arg": 3,
+          "predicate": "CLAIM_AORTE"
+        }
+      ],
+      "claim": {
+        "arg": 1,
+        "predicate": "CLAIM_AORTE"
+      }
+    },
+    {
+      "assumptions": [
+      ],
+      "claim": {
+        "arg": 8,
+        "predicate": "CLAIM_EFFECTS"
+      }
+    }
+  ],
+  "entities": {
+    " 1": {
+      "name": "Boids.Limit",
+      "sloc": [
+        {
+          "column": 13,
+          "file": "boids.ads",
+          "line": 44
+        }
+      ]
+    },
+    " 2": {
+      "name": "Boids.Wrap",
+      "sloc": [
+        {
+          "column": 13,
+          "file": "boids.ads",
+          "line": 59
+        }
+      ]
+    },
+    " 3": {
+      "name": "Boids.Scale",
+      "sloc": [
+        {
+          "column": 13,
+          "file": "boids.adb",
+          "line": 21
+        }
+      ]
+    },
+    " 4": {
+      "name": "Boids.Isqrt",
+      "sloc": [
+        {
+          "column": 13,
+          "file": "boids.ads",
+          "line": 36
+        }
+      ]
+    },
+    " 5": {
+      "name": "Boids.Torus_Delta",
+      "sloc": [
+        {
+          "column": 13,
+          "file": "boids.ads",
+          "line": 53
+        }
+      ]
+    },
+    " 6": {
+      "name": "Boids.Norm2",
+      "sloc": [
+        {
+          "column": 13,
+          "file": "boids.ads",
+          "line": 29
+        }
+      ]
+    },
+    " 7": {
+      "name": "Boids.Clamp_Speed",
+      "sloc": [
+        {
+          "column": 13,
+          "file": "boids.ads",
+          "line": 48
+        }
+      ]
+    },
+    " 8": {
+      "name": "Boids.Sat",
+      "sloc": [
+        {
+          "column": 13,
+          "file": "boids.ads",
+          "line": 32
+        }
+      ]
+    },
+    " 9": {
+      "name": "Boids",
+      "sloc": [
+        {
+          "column": 9,
+          "file": "boids.ads",
+          "line": 5
+        }
+      ]
+    }
+  },
+  "flow": [
+    {
+      "check_tree": {
+      },
+      "col": 7,
+      "entity": 1,
+      "file": "boids.adb",
+      "how_proved": "flow",
+      "line": 29,
+      "message": {
+        "text": "initialization of \"R\" proved"
+      },
+      "rule": "UNINITIALIZED",
+      "severity": "info",
+      "unproved_status": {
+        "status": "unknown"
+      }
+    },
+    {
+      "check_tree": {
+      },
+      "col": 13,
+      "entity": 1,
+      "file": "boids.ads",
+      "how_proved": "flow",
+      "line": 44,
+      "message": {
+        "text": "implicit aspect Always_Terminates on \"Limit\" has been proved, subprogram will terminate"
+      },
+      "rule": "SUBPROGRAM_TERMINATION",
+      "severity": "info",
+      "unproved_status": {
+        "status": "unknown"
+      }
+    },
+    {
+      "check_tree": {
+      },
+      "col": 13,
+      "entity": 2,
+      "file": "boids.ads",
+      "how_proved": "flow",
+      "line": 59,
+      "message": {
+        "text": "implicit aspect Always_Terminates on \"Wrap\" has been proved, subprogram will terminate"
+      },
+      "rule": "SUBPROGRAM_TERMINATION",
+      "severity": "info",
+      "unproved_status": {
+        "status": "unknown"
+      }
+    },
+    {
+      "check_tree": {
+      },
+      "col": 13,
+      "entity": 3,
+      "file": "boids.adb",
+      "how_proved": "flow",
+      "line": 21,
+      "message": {
+        "text": "implicit aspect Always_Terminates on \"Scale\" has been proved, subprogram will terminate"
+      },
+      "rule": "SUBPROGRAM_TERMINATION",
+      "severity": "info",
+      "unproved_status": {
+        "status": "unknown"
+      }
+    },
+    {
+      "check_tree": {
+      },
+      "col": 7,
+      "entity": 4,
+      "file": "boids.adb",
+      "how_proved": "flow",
+      "line": 6,
+      "message": {
+        "text": "initialization of \"Mid\" proved"
+      },
+      "rule": "UNINITIALIZED",
+      "severity": "info",
+      "unproved_status": {
+        "status": "unknown"
+      }
+    },
+    {
+      "check_tree": {
+      },
+      "col": 13,
+      "entity": 4,
+      "file": "boids.ads",
+      "how_proved": "flow",
+      "line": 36,
+      "message": {
+        "text": "implicit aspect Always_Terminates on \"Isqrt\" has been proved, subprogram will terminate"
+      },
+      "rule": "SUBPROGRAM_TERMINATION",
+      "severity": "info",
+      "unproved_status": {
+        "status": "unknown"
+      }
+    },
+    {
+      "check_tree": {
+      },
+      "col": 13,
+      "entity": 5,
+      "file": "boids.ads",
+      "how_proved": "flow",
+      "line": 53,
+      "message": {
+        "text": "implicit aspect Always_Terminates on \"Torus_Delta\" has been proved, subprogram will terminate"
+      },
+      "rule": "SUBPROGRAM_TERMINATION",
+      "severity": "info",
+      "unproved_status": {
+        "status": "unknown"
+      }
+    },
+    {
+      "check_tree": {
+      },
+      "col": 13,
+      "entity": 6,
+      "file": "boids.ads",
+      "how_proved": "flow",
+      "line": 29,
+      "message": {
+        "text": "implicit aspect Always_Terminates on \"Norm2\" has been proved, subprogram will terminate"
+      },
+      "rule": "SUBPROGRAM_TERMINATION",
+      "severity": "info",
+      "unproved_status": {
+        "status": "unknown"
+      }
+    },
+    {
+      "check_tree": {
+      },
+      "col": 7,
+      "entity": 7,
+      "file": "boids.adb",
+      "how_proved": "flow",
+      "line": 43,
+      "message": {
+        "text": "initialization of \"R\" proved"
+      },
+      "rule": "UNINITIALIZED",
+      "severity": "info",
+      "unproved_status": {
+        "status": "unknown"
+      }
+    },
+    {
+      "check_tree": {
+      },
+      "col": 13,
+      "entity": 7,
+      "file": "boids.ads",
+      "how_proved": "flow",
+      "line": 48,
+      "message": {
+        "text": "implicit aspect Always_Terminates on \"Clamp_Speed\" has been proved, subprogram will terminate"
+      },
+      "rule": "SUBPROGRAM_TERMINATION",
+      "severity": "info",
+      "unproved_status": {
+        "status": "unknown"
+      }
+    },
+    {
+      "check_tree": {
+      },
+      "col": 13,
+      "entity": 8,
+      "file": "boids.ads",
+      "how_proved": "flow",
+      "line": 32,
+      "message": {
+        "text": "implicit aspect Always_Terminates on \"Sat\" has been proved, subprogram will terminate"
+      },
+      "rule": "SUBPROGRAM_TERMINATION",
+      "severity": "info",
+      "unproved_status": {
+        "status": "unknown"
+      }
+    }
+  ],
+  "pragma_assume": [
+  ],
+  "progress": "PROGRESS_PROOF",
+  "proof": [
+    {
+      "check_col": 77,
+      "check_file": "boids.ads",
+      "check_line": 33,
+      "check_tree": [
+        {
+          "proof_attempts": {
+            "CVC5": {
+              "result": "Valid",
+              "steps": 1,
+              "time": 0
+            },
+            "Z3": {
+              "result": "Valid",
+              "steps": 1,
+              "time": 0
+            },
+            "altergo": {
+              "result": "High failure ()",
+              "steps": 1,
+              "time": 0
+            }
+          },
+          "transformations": {
+          }
+        },
+        {
+          "proof_attempts": {
+            "CVC5": {
+              "result": "High failure ()",
+              "steps": 1,
+              "time": 0
+            },
+            "Z3": {
+              "result": "Valid",
+              "steps": 1,
+              "time": 0
+            },
+            "altergo": {
+              "result": "Valid",
+              "steps": 3,
+              "time": 0
+            }
+          },
+          "transformations": {
+          }
+        }
+      ],
+      "col": 77,
+      "entity": 8,
+      "file": "boids.ads",
+      "how_proved": "prover",
+      "line": 33,
+      "message": {
+        "text": "range check proved"
+      },
+      "rule": "VC_RANGE_CHECK",
+      "severity": "info",
+      "stats": {
+        "CVC5": {
+          "count": 1,
+          "max_steps": 1,
+          "max_time": 0.00000000000000E+00
+        },
+        "Z3": {
+          "count": 1,
+          "max_steps": 1,
+          "max_time": 0.00000000000000E+00
+        }
+      },
+      "unproved_status": {
+        "status": "unknown"
+      }
+    },
+    {
+      "check_col": 26,
+      "check_file": "boids.adb",
+      "check_line": 11,
+      "check_tree": [
+        {
+          "proof_attempts": {
+            "CVC5": {
+              "result": "Valid",
+              "steps": 1,
+              "time": 0
+            },
+            "Z3": {
+              "result": "High failure ()",
+              "steps": 1,
+              "time": 0
+            },
+            "altergo": {
+              "result": "High failure ()",
+              "steps": 1,
+              "time": 0
+            }
+          },
+          "transformations": {
+          }
+        },
+        {
+          "proof_attempts": {
+            "CVC5": {
+              "result": "Valid",
+              "steps": 1,
+              "time": 0
+            },
+            "Z3": {
+              "result": "Valid",
+              "steps": 1,
+              "time": 0
+            },
+            "altergo": {
+              "result": "Valid",
+              "steps": 20,
+              "time": 0
+            }
+          },
+          "transformations": {
+          }
+        }
+      ],
+      "col": 26,
+      "entity": 4,
+      "file": "boids.adb",
+      "how_proved": "prover",
+      "line": 11,
+      "message": {
+        "text": "overflow check proved"
+      },
+      "rule": "VC_OVERFLOW_CHECK",
+      "severity": "info",
+      "stats": {
+        "CVC5": {
+          "count": 2,
+          "max_steps": 1,
+          "max_time": 0.00000000000000E+00
+        }
+      },
+      "unproved_status": {
+        "status": "unknown"
+      }
+    },
+    {
+      "check_col": 32,
+      "check_file": "boids.adb",
+      "check_line": 11,
+      "check_tree": [
+        {
+          "proof_attempts": {
+            "CVC5": {
+              "result": "Valid",
+              "steps": 1,
+              "time": 0
+            },
+            "Z3": {
+              "result": "Valid",
+              "steps": 1,
+              "time": 0
+            },
+            "altergo": {
+              "result": "Valid",
+              "steps": 20,
+              "time": 0
+            }
+          },
+          "transformations": {
+          }
+        }
+      ],
+      "col": 32,
+      "entity": 4,
+      "file": "boids.adb",
+      "how_proved": "prover",
+      "line": 11,
+      "message": {
+        "text": "division check proved"
+      },
+      "rule": "VC_DIVISION_CHECK",
+      "severity": "info",
+      "stats": {
+        "CVC5": {
+          "count": 1,
+          "max_steps": 1,
+          "max_time": 0.00000000000000E+00
+        }
+      },
+      "unproved_status": {
+        "status": "unknown"
+      }
+    },
+    {
+      "check_col": 20,
+      "check_file": "boids.adb",
+      "check_line": 11,
+      "check_tree": [
+        {
+          "proof_attempts": {
+            "CVC5": {
+              "result": "Valid",
+              "steps": 1,
+              "time": 0
+            },
+            "Z3": {
+              "result": "Valid",
+              "steps": 1,
+              "time": 0
+            },
+            "altergo": {
+              "result": "High failure ()",
+              "steps": 1,
+              "time": 0
+            }
+          },
+          "transformations": {
+          }
+        },
+        {
+          "proof_attempts": {
+            "CVC5": {
+              "result": "Valid",
+              "steps": 1,
+              "time": 0
+            },
+            "Z3": {
+              "result": "High failure ()",
+              "steps": 1,
+              "time": 0
+            },
+            "altergo": {
+              "result": "High failure ()",
+              "steps": 1,
+              "time": 0
+            }
+          },
+          "transformations": {
+          }
+        }
+      ],
+      "col": 20,
+      "entity": 4,
+      "file": "boids.adb",
+      "how_proved": "prover",
+      "line": 11,
+      "message": {
+        "text": "range check proved"
+      },
+      "rule": "VC_RANGE_CHECK",
+      "severity": "info",
+      "stats": {
+        "CVC5": {
+          "count": 2,
+          "max_steps": 1,
+          "max_time": 0.00000000000000E+00
+        }
+      },
+      "unproved_status": {
+        "status": "unknown"
+      }
+    },
+    {
+      "check_col": 17,
+      "check_file": "boids.adb",
+      "check_line": 12,
+      "check_tree": [
+        {
+          "proof_attempts": {
+            "CVC5": {
+              "result": "High failure ()",
+              "steps": 1,
+              "time": 0
+            },
+            "Z3": {
+              "result": "Valid",
+              "steps": 1,
+              "time": 0
+            },
+            "altergo": {
+              "result": "High failure ()",
+              "steps": 1,
+              "time": 0
+            }
+          },
+          "transformations": {
+          }
+        },
+        {
+          "proof_attempts": {
+            "CVC5": {
+              "result": "Valid",
+              "steps": 1,
+              "time": 0
+            },
+            "Z3": {
+              "result": "Valid",
+              "steps": 1,
+              "time": 0
+            },
+            "altergo": {
+              "result": "Valid",
+              "steps": 20,
+              "time": 0
+            }
+          },
+          "transformations": {
+          }
+        }
+      ],
+      "col": 17,
+      "entity": 4,
+      "file": "boids.adb",
+      "how_proved": "prover",
+      "line": 12,
+      "message": {
+        "text": "overflow check proved"
+      },
+      "rule": "VC_OVERFLOW_CHECK",
+      "severity": "info",
+      "stats": {
+        "CVC5": {
+          "count": 1,
+          "max_steps": 1,
+          "max_time": 0.00000000000000E+00
+        },
+        "Z3": {
+          "count": 1,
+          "max_steps": 1,
+          "max_time": 0.00000000000000E+00
+        }
+      },
+      "unproved_status": {
+        "status": "unknown"
+      }
+    },
+    {
+      "check_col": 33,
+      "check_file": "boids.adb",
+      "check_line": 9,
+      "check_tree": [
+        {
+          "proof_attempts": {
+            "CVC5": {
+              "result": "Valid",
+              "steps": 1,
+              "time": 0
+            },
+            "Z3": {
+              "result": "Valid",
+              "steps": 1,
+              "time": 0
+            },
+            "altergo": {
+              "result": "Valid",
+              "steps": 3,
+              "time": 0
+            }
+          },
+          "transformations": {
+          }
+        },
+        {
+          "proof_attempts": {
+            "CVC5": {
+              "result": "Valid",
+              "steps": 1,
+              "time": 0
+            },
+            "Z3": {
+              "result": "Valid",
+              "steps": 1,
+              "time": 0
+            },
+            "altergo": {
+              "result": "High failure ()",
+              "steps": 1,
+              "time": 0
+            }
+          },
+          "transformations": {
+          }
+        },
+        {
+          "proof_attempts": {
+            "CVC5": {
+              "result": "Valid",
+              "steps": 1,
+              "time": 0
+            },
+            "Z3": {
+              "result": "Valid",
+              "steps": 1,
+              "time": 0
+            },
+            "altergo": {
+              "result": "Valid",
+              "steps": 3,
+              "time": 0
+            }
+          },
+          "transformations": {
+          }
+        }
+      ],
+      "col": 33,
+      "entity": 4,
+      "file": "boids.adb",
+      "how_proved": "prover",
+      "line": 9,
+      "message": {
+        "text": "loop invariant initialization proved"
+      },
+      "rule": "VC_LOOP_INVARIANT_INIT",
+      "severity": "info",
+      "stats": {
+        "CVC5": {
+          "count": 3,
+          "max_steps": 1,
+          "max_time": 0.00000000000000E+00
+        }
+      },
+      "unproved_status": {
+        "status": "unknown"
+      }
+    },
+    {
+      "check_col": 33,
+      "check_file": "boids.adb",
+      "check_line": 9,
+      "check_tree": [
+        {
+          "proof_attempts": {
+            "CVC5": {
+              "result": "High failure ()",
+              "steps": 1,
+              "time": 0
+            },
+            "Z3": {
+              "result": "Valid",
+              "steps": 1,
+              "time": 0
+            },
+            "altergo": {
+              "result": "High failure ()",
+              "steps": 1,
+              "time": 0
+            }
+          },
+          "transformations": {
+          }
+        },
+        {
+          "proof_attempts": {
+            "CVC5": {
+              "result": "Valid",
+              "steps": 1,
+              "time": 0
+            },
+            "Z3": {
+              "result": "Valid",
+              "steps": 1,
+              "time": 0
+            },
+            "altergo": {
+              "result": "High failure ()",
+              "steps": 1,
+              "time": 0
+            }
+          },
+          "transformations": {
+          }
+        },
+        {
+          "proof_attempts": {
+            "CVC5": {
+              "result": "Valid",
+              "steps": 1,
+              "time": 0
+            },
+            "Z3": {
+              "result": "Valid",
+              "steps": 1,
+              "time": 0
+            },
+            "altergo": {
+              "result": "Valid",
+              "steps": 393,
+              "time": 0
+            }
+          },
+          "transformations": {
+          }
+        }
+      ],
+      "col": 33,
+      "entity": 4,
+      "file": "boids.adb",
+      "how_proved": "prover",
+      "line": 9,
+      "message": {
+        "text": "loop invariant preservation proved"
+      },
+      "rule": "VC_LOOP_INVARIANT_PRESERV",
+      "severity": "info",
+      "stats": {
+        "CVC5": {
+          "count": 2,
+          "max_steps": 1,
+          "max_time": 0.00000000000000E+00
+        },
+        "Z3": {
+          "count": 1,
+          "max_steps": 1,
+          "max_time": 0.00000000000000E+00
+        }
+      },
+      "unproved_status": {
+        "status": "unknown"
+      }
+    },
+    {
+      "check_col": 16,
+      "check_file": "boids.adb",
+      "check_line": 8,
+      "check_tree": [
+        {
+          "proof_attempts": {
+            "CVC5": {
+              "result": "High failure ()",
+              "steps": 1,
+              "time": 0
+            },
+            "Z3": {
+              "result": "Valid",
+              "steps": 1,
+              "time": 0
+            },
+            "altergo": {
+              "result": "High failure ()",
+              "steps": 1,
+              "time": 0
+            }
+          },
+          "transformations": {
+          }
+        },
+        {
+          "proof_attempts": {
+            "CVC5": {
+              "result": "Valid",
+              "steps": 1,
+              "time": 0
+            },
+            "Z3": {
+              "result": "Valid",
+              "steps": 1,
+              "time": 0
+            },
+            "altergo": {
+              "result": "High failure ()",
+              "steps": 1,
+              "time": 0
+            }
+          },
+          "transformations": {
+          }
+        },
+        {
+          "proof_attempts": {
+            "CVC5": {
+              "result": "Valid",
+              "steps": 1,
+              "time": 0
+            },
+            "Z3": {
+              "result": "Valid",
+              "steps": 1,
+              "time": 0
+            },
+            "altergo": {
+              "result": "High failure ()",
+              "steps": 1,
+              "time": 0
+            }
+          },
+          "transformations": {
+          }
+        },
+        {
+          "proof_attempts": {
+            "CVC5": {
+              "result": "Valid",
+              "steps": 1,
+              "time": 0
+            },
+            "Z3": {
+              "result": "Valid",
+              "steps": 1,
+              "time": 0
+            },
+            "altergo": {
+              "result": "Valid",
+              "steps": 3,
+              "time": 0
+            }
+          },
+          "transformations": {
+          }
+        }
+      ],
+      "col": 16,
+      "entity": 4,
+      "file": "boids.adb",
+      "how_proved": "prover",
+      "line": 8,
+      "message": {
+        "text": "overflow check proved"
+      },
+      "rule": "VC_OVERFLOW_CHECK",
+      "severity": "info",
+      "stats": {
+        "CVC5": {
+          "count": 3,
+          "max_steps": 1,
+          "max_time": 0.00000000000000E+00
+        },
+        "Z3": {
+          "count": 1,
+          "max_steps": 1,
+          "max_time": 0.00000000000000E+00
+        }
+      },
+      "unproved_status": {
+        "status": "unknown"
+      }
+    },
+    {
+      "check_col": 47,
+      "check_file": "boids.adb",
+      "check_line": 10,
+      "check_tree": [
+        {
+          "proof_attempts": {
+            "CVC5": {
+              "result": "Valid",
+              "steps": 1,
+              "time": 0
+            },
+            "Z3": {
+              "result": "High failure ()",
+              "steps": 1,
+              "time": 0
+            },
+            "altergo": {
+              "result": "High failure ()",
+              "steps": 1,
+              "time": 0
+            }
+          },
+          "transformations": {
+          }
+        },
+        {
+          "proof_attempts": {
+            "CVC5": {
+              "result": "Valid",
+              "steps": 1,
+              "time": 0
+            },
+            "Z3": {
+              "result": "Valid",
+              "steps": 1,
+              "time": 0
+            },
+            "altergo": {
+              "result": "High failure ()",
+              "steps": 1,
+              "time": 0
+            }
+          },
+          "transformations": {
+          }
+        },
+        {
+          "proof_attempts": {
+            "CVC5": {
+              "result": "Valid",
+              "steps": 1,
+              "time": 0
+            },
+            "Z3": {
+              "result": "Valid",
+              "steps": 1,
+              "time": 0
+            },
+            "altergo": {
+              "result": "High failure ()",
+              "steps": 1,
+              "time": 0
+            }
+          },
+          "transformations": {
+          }
+        },
+        {
+          "proof_attempts": {
+            "CVC5": {
+              "result": "Valid",
+              "steps": 1,
+              "time": 0
+            },
+            "Z3": {
+              "result": "Valid",
+              "steps": 1,
+              "time": 0
+            },
+            "altergo": {
+              "result": "Valid",
+              "steps": 3,
+              "time": 0
+            }
+          },
+          "transformations": {
+          }
+        }
+      ],
+      "col": 47,
+      "entity": 4,
+      "file": "boids.adb",
+      "how_proved": "prover",
+      "line": 10,
+      "message": {
+        "text": "overflow check proved"
+      },
+      "rule": "VC_OVERFLOW_CHECK",
+      "severity": "info",
+      "stats": {
+        "CVC5": {
+          "count": 4,
+          "max_steps": 1,
+          "max_time": 0.00000000000000E+00
+        }
+      },
+      "unproved_status": {
+        "status": "unknown"
+      }
+    },
+    {
+      "check_col": 31,
+      "check_file": "boids.adb",
+      "check_line": 10,
+      "check_tree": [
+        {
+          "proof_attempts": {
+            "CVC5": {
+              "result": "Valid",
+              "steps": 1,
+              "time": 0
+            },
+            "Z3": {
+              "result": "Valid",
+              "steps": 1,
+              "time": 0
+            },
+            "altergo": {
+              "result": "Valid",
+              "steps": 1097,
+              "time": 0
+            }
+          },
+          "transformations": {
+          }
+        }
+      ],
+      "col": 31,
+      "entity": 4,
+      "file": "boids.adb",
+      "how_proved": "prover",
+      "line": 10,
+      "message": {
+        "text": "loop variant proved"
+      },
+      "rule": "VC_LOOP_VARIANT",
+      "severity": "info",
+      "stats": {
+        "CVC5": {
+          "count": 1,
+          "max_steps": 1,
+          "max_time": 0.00000000000000E+00
+        }
+      },
+      "unproved_status": {
+        "status": "unknown"
+      }
+    },
+    {
+      "check_col": 19,
+      "check_file": "boids.ads",
+      "check_line": 38,
+      "check_tree": [
+        {
+          "proof_attempts": {
+            "CVC5": {
+              "result": "High failure ()",
+              "steps": 1,
+              "time": 0
+            },
+            "Z3": {
+              "result": "Valid",
+              "steps": 1,
+              "time": 0
+            },
+            "altergo": {
+              "result": "High failure ()",
+              "steps": 1,
+              "time": 0
+            }
+          },
+          "transformations": {
+          }
+        },
+        {
+          "proof_attempts": {
+            "CVC5": {
+              "result": "Valid",
+              "steps": 1,
+              "time": 0
+            },
+            "Z3": {
+              "result": "Valid",
+              "steps": 1,
+              "time": 0
+            },
+            "altergo": {
+              "result": "Valid",
+              "steps": 371,
+              "time": 0
+            }
+          },
+          "transformations": {
+          }
+        }
+      ],
+      "col": 19,
+      "entity": 4,
+      "file": "boids.ads",
+      "how_proved": "prover",
+      "line": 38,
+      "message": {
+        "text": "postcondition proved"
+      },
+      "rule": "VC_POSTCONDITION",
+      "severity": "info",
+      "stats": {
+        "CVC5": {
+          "count": 1,
+          "max_steps": 1,
+          "max_time": 0.00000000000000E+00
+        },
+        "Z3": {
+          "count": 1,
+          "max_steps": 1,
+          "max_time": 0.00000000000000E+00
+        }
+      },
+      "unproved_status": {
+        "status": "unknown"
+      }
+    },
+    {
+      "check_col": 25,
+      "check_file": "boids.adb",
+      "check_line": 34,
+      "check_tree": [
+        {
+          "proof_attempts": {
+            "CVC5": {
+              "result": "High failure ()",
+              "steps": 1,
+              "time": 0
+            },
+            "Z3": {
+              "result": "Valid",
+              "steps": 1,
+              "time": 0
+            },
+            "altergo": {
+              "result": "High failure ()",
+              "steps": 1,
+              "time": 0
+            }
+          },
+          "transformations": {
+          }
+        },
+        {
+          "proof_attempts": {
+            "CVC5": {
+              "result": "High failure ()",
+              "steps": 1,
+              "time": 0
+            },
+            "Z3": {
+              "result": "High failure ()",
+              "steps": 1,
+              "time": 0
+            },
+            "altergo": {
+              "result": "Valid",
+              "steps": 44,
+              "time": 0
+            }
+          },
+          "transformations": {
+          }
+        }
+      ],
+      "col": 25,
+      "entity": 1,
+      "file": "boids.adb",
+      "how_proved": "prover",
+      "line": 34,
+      "message": {
+        "text": "precondition proved"
+      },
+      "rule": "VC_PRECONDITION",
+      "severity": "info",
+      "stats": {
+        "Z3": {
+          "count": 1,
+          "max_steps": 1,
+          "max_time": 0.00000000000000E+00
+        },
+        "altergo": {
+          "count": 1,
+          "max_steps": 44,
+          "max_time": 0.00000000000000E+00
+        }
+      },
+      "unproved_status": {
+        "status": "unknown"
+      }
+    },
+    {
+      "check_col": 35,
+      "check_file": "boids.adb",
+      "check_line": 34,
+      "check_tree": [
+        {
+          "proof_attempts": {
+            "CVC5": {
+              "result": "Valid",
+              "steps": 1,
+              "time": 0
+            },
+            "Z3": {
+              "result": "Valid",
+              "steps": 1,
+              "time": 0
+            },
+            "altergo": {
+              "result": "Valid",
+              "steps": 44,
+              "time": 0
+            }
+          },
+          "transformations": {
+          }
+        },
+        {
+          "proof_attempts": {
+            "CVC5": {
+              "result": "High failure ()",
+              "steps": 1,
+              "time": 0
+            },
+            "Z3": {
+              "result": "High failure ()",
+              "steps": 1,
+              "time": 0
+            },
+            "altergo": {
+              "result": "Valid",
+              "steps": 45,
+              "time": 0
+            }
+          },
+          "transformations": {
+          }
+        }
+      ],
+      "col": 35,
+      "entity": 1,
+      "file": "boids.adb",
+      "how_proved": "prover",
+      "line": 34,
+      "message": {
+        "text": "range check proved"
+      },
+      "rule": "VC_RANGE_CHECK",
+      "severity": "info",
+      "stats": {
+        "CVC5": {
+          "count": 1,
+          "max_steps": 1,
+          "max_time": 0.00000000000000E+00
+        },
+        "altergo": {
+          "count": 1,
+          "max_steps": 45,
+          "max_time": 0.00000000000000E+00
+        }
+      },
+      "unproved_status": {
+        "status": "unknown"
+      }
+    },
+    {
+      "check_col": 12,
+      "check_file": "boids.adb",
+      "check_line": 34,
+      "check_tree": [
+        {
+          "proof_attempts": {
+            "CVC5": {
+              "result": "Valid",
+              "steps": 1,
+              "time": 0
+            },
+            "Z3": {
+              "result": "Valid",
+              "steps": 1,
+              "time": 0
+            },
+            "altergo": {
+              "result": "High failure ()",
+              "steps": 1,
+              "time": 0
+            }
+          },
+          "transformations": {
+          }
+        },
+        {
+          "proof_attempts": {
+            "CVC5": {
+              "result": "Valid",
+              "steps": 1,
+              "time": 0
+            },
+            "Z3": {
+              "result": "Valid",
+              "steps": 1,
+              "time": 0
+            },
+            "altergo": {
+              "result": "High failure ()",
+              "steps": 1,
+              "time": 0
+            }
+          },
+          "transformations": {
+          }
+        },
+        {
+          "proof_attempts": {
+            "CVC5": {
+              "result": "High failure ()",
+              "steps": 1,
+              "time": 0
+            },
+            "Z3": {
+              "result": "Valid",
+              "steps": 1,
+              "time": 0
+            },
+            "altergo": {
+              "result": "High failure ()",
+              "steps": 1,
+              "time": 0
+            }
+          },
+          "transformations": {
+          }
+        }
+      ],
+      "col": 12,
+      "entity": 1,
+      "file": "boids.adb",
+      "how_proved": "prover",
+      "line": 34,
+      "message": {
+        "text": "precondition proved"
+      },
+      "rule": "VC_PRECONDITION",
+      "severity": "info",
+      "stats": {
+        "CVC5": {
+          "count": 2,
+          "max_steps": 1,
+          "max_time": 0.00000000000000E+00
+        },
+        "Z3": {
+          "count": 1,
+          "max_steps": 1,
+          "max_time": 0.00000000000000E+00
+        }
+      },
+      "unproved_status": {
+        "status": "unknown"
+      }
+    },
+    {
+      "check_col": 19,
+      "check_file": "boids.ads",
+      "check_line": 45,
+      "check_tree": [
+        {
+          "proof_attempts": {
+            "CVC5": {
+              "result": "High failure ()",
+              "steps": 1,
+              "time": 0
+            },
+            "Z3": {
+              "result": "High failure ()",
+              "steps": 1,
+              "time": 0
+            },
+            "altergo": {
+              "result": "Valid",
+              "steps": 6258,
+              "time": 0
+            }
+          },
+          "transformations": {
+          }
+        }
+      ],
+      "col": 19,
+      "entity": 1,
+      "file": "boids.ads",
+      "how_proved": "prover",
+      "line": 45,
+      "message": {
+        "text": "postcondition proved"
+      },
+      "rule": "VC_POSTCONDITION",
+      "severity": "info",
+      "stats": {
+        "altergo": {
+          "count": 1,
+          "max_steps": 6258,
+          "max_time": 0.00000000000000E+00
+        }
+      },
+      "unproved_status": {
+        "status": "unknown"
+      }
+    },
+    {
+      "check_col": 29,
+      "check_file": "boids.adb",
+      "check_line": 61,
+      "check_tree": [
+        {
+          "proof_attempts": {
+            "CVC5": {
+              "result": "Valid",
+              "steps": 1,
+              "time": 0
+            },
+            "Z3": {
+              "result": "Valid",
+              "steps": 1,
+              "time": 0
+            },
+            "altergo": {
+              "result": "High failure ()",
+              "steps": 1,
+              "time": 0
+            }
+          },
+          "transformations": {
+          }
+        },
+        {
+          "proof_attempts": {
+            "CVC5": {
+              "result": "Valid",
+              "steps": 1,
+              "time": 0
+            },
+            "Z3": {
+              "result": "Valid",
+              "steps": 1,
+              "time": 0
+            },
+            "altergo": {
+              "result": "Valid",
+              "steps": 13,
+              "time": 0
+            }
+          },
+          "transformations": {
+          }
+        }
+      ],
+      "col": 29,
+      "entity": 5,
+      "file": "boids.adb",
+      "how_proved": "prover",
+      "line": 61,
+      "message": {
+        "text": "range check proved"
+      },
+      "rule": "VC_RANGE_CHECK",
+      "severity": "info",
+      "stats": {
+        "CVC5": {
+          "count": 2,
+          "max_steps": 1,
+          "max_time": 0.00000000000000E+00
+        }
+      },
+      "unproved_status": {
+        "status": "unknown"
+      }
+    },
+    {
+      "check_col": 19,
+      "check_file": "boids.adb",
+      "check_line": 64,
+      "check_tree": [
+        {
+          "proof_attempts": {
+            "CVC5": {
+              "result": "Valid",
+              "steps": 1,
+              "time": 0
+            },
+            "Z3": {
+              "result": "Valid",
+              "steps": 1,
+              "time": 0
+            },
+            "altergo": {
+              "result": "High failure ()",
+              "steps": 1,
+              "time": 0
+            }
+          },
+          "transformations": {
+          }
+        },
+        {
+          "proof_attempts": {
+            "CVC5": {
+              "result": "Valid",
+              "steps": 1,
+              "time": 0
+            },
+            "Z3": {
+              "result": "Valid",
+              "steps": 1,
+              "time": 0
+            },
+            "altergo": {
+              "result": "High failure ()",
+              "steps": 1,
+              "time": 0
+            }
+          },
+          "transformations": {
+          }
+        }
+      ],
+      "col": 19,
+      "entity": 5,
+      "file": "boids.adb",
+      "how_proved": "prover",
+      "line": 64,
+      "message": {
+        "text": "range check proved"
+      },
+      "rule": "VC_RANGE_CHECK",
+      "severity": "info",
+      "stats": {
+        "CVC5": {
+          "count": 2,
+          "max_steps": 1,
+          "max_time": 0.00000000000000E+00
+        }
+      },
+      "unproved_status": {
+        "status": "unknown"
+      }
+    },
+    {
+      "check_col": 24,
+      "check_file": "boids.adb",
+      "check_line": 65,
+      "check_tree": [
+        {
+          "proof_attempts": {
+            "CVC5": {
+              "result": "Valid",
+              "steps": 1,
+              "time": 0
+            },
+            "Z3": {
+              "result": "Valid",
+              "steps": 1,
+              "time": 0
+            },
+            "altergo": {
+              "result": "Valid",
+              "steps": 3,
+              "time": 0
+            }
+          },
+          "transformations": {
+          }
+        }
+      ],
+      "col": 24,
+      "entity": 5,
+      "file": "boids.adb",
+      "how_proved": "prover",
+      "line": 65,
+      "message": {
+        "text": "division check proved"
+      },
+      "rule": "VC_DIVISION_CHECK",
+      "severity": "info",
+      "stats": {
+        "CVC5": {
+          "count": 1,
+          "max_steps": 1,
+          "max_time": 0.00000000000000E+00
+        }
+      },
+      "unproved_status": {
+        "status": "unknown"
+      }
+    },
+    {
+      "check_col": 19,
+      "check_file": "boids.adb",
+      "check_line": 66,
+      "check_tree": [
+        {
+          "proof_attempts": {
+            "CVC5": {
+              "result": "Valid",
+              "steps": 1,
+              "time": 0
+            },
+            "Z3": {
+              "result": "Valid",
+              "steps": 1,
+              "time": 0
+            },
+            "altergo": {
+              "result": "High failure ()",
+              "steps": 1,
+              "time": 0
+            }
+          },
+          "transformations": {
+          }
+        },
+        {
+          "proof_attempts": {
+            "CVC5": {
+              "result": "Valid",
+              "steps": 1,
+              "time": 0
+            },
+            "Z3": {
+              "result": "Valid",
+              "steps": 1,
+              "time": 0
+            },
+            "altergo": {
+              "result": "Valid",
+              "steps": 26,
+              "time": 0
+            }
+          },
+          "transformations": {
+          }
+        }
+      ],
+      "col": 19,
+      "entity": 5,
+      "file": "boids.adb",
+      "how_proved": "prover",
+      "line": 66,
+      "message": {
+        "text": "range check proved"
+      },
+      "rule": "VC_RANGE_CHECK",
+      "severity": "info",
+      "stats": {
+        "CVC5": {
+          "count": 2,
+          "max_steps": 1,
+          "max_time": 0.00000000000000E+00
+        }
+      },
+      "unproved_status": {
+        "status": "unknown"
+      }
+    },
+    {
+      "check_col": 17,
+      "check_file": "boids.adb",
+      "check_line": 68,
+      "check_tree": [
+        {
+          "proof_attempts": {
+            "CVC5": {
+              "result": "Valid",
+              "steps": 1,
+              "time": 0
+            },
+            "Z3": {
+              "result": "Valid",
+              "steps": 1,
+              "time": 0
+            },
+            "altergo": {
+              "result": "High failure ()",
+              "steps": 1,
+              "time": 0
+            }
+          },
+          "transformations": {
+          }
+        },
+        {
+          "proof_attempts": {
+            "CVC5": {
+              "result": "Valid",
+              "steps": 1,
+              "time": 0
+            },
+            "Z3": {
+              "result": "Valid",
+              "steps": 1,
+              "time": 0
+            },
+            "altergo": {
+              "result": "Valid",
+              "steps": 51,
+              "time": 0
+            }
+          },
+          "transformations": {
+          }
+        }
+      ],
+      "col": 17,
+      "entity": 5,
+      "file": "boids.adb",
+      "how_proved": "prover",
+      "line": 68,
+      "message": {
+        "text": "range check proved"
+      },
+      "rule": "VC_RANGE_CHECK",
+      "severity": "info",
+      "stats": {
+        "CVC5": {
+          "count": 2,
+          "max_steps": 1,
+          "max_time": 0.00000000000000E+00
+        }
+      },
+      "unproved_status": {
+        "status": "unknown"
+      }
+    },
+    {
+      "check_col": 19,
+      "check_file": "boids.adb",
+      "check_line": 63,
+      "check_tree": [
+        {
+          "proof_attempts": {
+            "CVC5": {
+              "result": "Valid",
+              "steps": 1,
+              "time": 0
+            },
+            "Z3": {
+              "result": "Valid",
+              "steps": 1,
+              "time": 0
+            },
+            "altergo": {
+              "result": "Valid",
+              "steps": 3,
+              "time": 0
+            }
+          },
+          "transformations": {
+          }
+        }
+      ],
+      "col": 19,
+      "entity": 5,
+      "file": "boids.adb",
+      "how_proved": "prover",
+      "line": 63,
+      "message": {
+        "text": "division check proved"
+      },
+      "rule": "VC_DIVISION_CHECK",
+      "severity": "info",
+      "stats": {
+        "CVC5": {
+          "count": 1,
+          "max_steps": 1,
+          "max_time": 0.00000000000000E+00
+        }
+      },
+      "unproved_status": {
+        "status": "unknown"
+      }
+    },
+    {
+      "check_col": 50,
+      "check_file": "boids.ads",
+      "check_line": 55,
+      "check_tree": [
+        {
+          "proof_attempts": {
+            "CVC5": {
+              "result": "Valid",
+              "steps": 1,
+              "time": 0
+            },
+            "Z3": {
+              "result": "Valid",
+              "steps": 1,
+              "time": 0
+            },
+            "altergo": {
+              "result": "Valid",
+              "steps": 13,
+              "time": 0
+            }
+          },
+          "transformations": {
+          }
+        }
+      ],
+      "col": 50,
+      "entity": 5,
+      "file": "boids.ads",
+      "how_proved": "prover",
+      "line": 55,
+      "message": {
+        "text": "division check proved"
+      },
+      "rule": "VC_DIVISION_CHECK",
+      "severity": "info",
+      "stats": {
+        "CVC5": {
+          "count": 1,
+          "max_steps": 1,
+          "max_time": 0.00000000000000E+00
+        }
+      },
+      "unproved_status": {
+        "status": "unknown"
+      }
+    },
+    {
+      "check_col": 19,
+      "check_file": "boids.ads",
+      "check_line": 55,
+      "check_tree": [
+        {
+          "proof_attempts": {
+            "CVC5": {
+              "result": "Valid",
+              "steps": 1,
+              "time": 0
+            },
+            "Z3": {
+              "result": "Valid",
+              "steps": 1,
+              "time": 0
+            },
+            "altergo": {
+              "result": "High failure ()",
+              "steps": 1,
+              "time": 0
+            }
+          },
+          "transformations": {
+          }
+        },
+        {
+          "proof_attempts": {
+            "CVC5": {
+              "result": "Valid",
+              "steps": 1,
+              "time": 0
+            },
+            "Z3": {
+              "result": "Valid",
+              "steps": 1,
+              "time": 0
+            },
+            "altergo": {
+              "result": "Valid",
+              "steps": 167,
+              "time": 0
+            }
+          },
+          "transformations": {
+          }
+        }
+      ],
+      "col": 19,
+      "entity": 5,
+      "file": "boids.ads",
+      "how_proved": "prover",
+      "line": 55,
+      "message": {
+        "text": "postcondition proved"
+      },
+      "rule": "VC_POSTCONDITION",
+      "severity": "info",
+      "stats": {
+        "CVC5": {
+          "count": 2,
+          "max_steps": 1,
+          "max_time": 0.00000000000000E+00
+        }
+      },
+      "unproved_status": {
+        "status": "unknown"
+      }
+    },
+    {
+      "check_col": 29,
+      "check_file": "boids.adb",
+      "check_line": 50,
+      "check_tree": [
+        {
+          "proof_attempts": {
+            "CVC5": {
+              "result": "High failure (signaled)",
+              "steps": 1,
+              "time": 1.26290000000000E-02
+            },
+            "Z3": {
+              "result": "Valid",
+              "steps": 1,
+              "time": 0
+            },
+            "altergo": {
+              "result": "High failure (signaled)",
+              "steps": 1,
+              "time": 1.79060000000000E-02
+            }
+          },
+          "transformations": {
+          }
+        },
+        {
+          "proof_attempts": {
+            "CVC5": {
+              "result": "Valid",
+              "steps": 1,
+              "time": 0
+            },
+            "Z3": {
+              "result": "Valid",
+              "steps": 1,
+              "time": 3.60400000000000E-03
+            },
+            "altergo": {
+              "result": "Valid",
+              "steps": 48,
+              "time": 1.16500000000000E-02
+            }
+          },
+          "transformations": {
+          }
+        }
+      ],
+      "col": 29,
+      "entity": 7,
+      "file": "boids.adb",
+      "how_proved": "prover",
+      "line": 50,
+      "message": {
+        "text": "precondition proved"
+      },
+      "rule": "VC_PRECONDITION",
+      "severity": "info",
+      "stats": {
+        "CVC5": {
+          "count": 1,
+          "max_steps": 1,
+          "max_time": 0.00000000000000E+00
+        },
+        "Z3": {
+          "count": 1,
+          "max_steps": 1,
+          "max_time": 0.00000000000000E+00
+        }
+      },
+      "unproved_status": {
+        "status": "unknown"
+      }
+    },
+    {
+      "check_col": 39,
+      "check_file": "boids.adb",
+      "check_line": 50,
+      "check_tree": [
+        {
+          "proof_attempts": {
+            "CVC5": {
+              "result": "Valid",
+              "steps": 1,
+              "time": 0
+            },
+            "Z3": {
+              "result": "Valid",
+              "steps": 1,
+              "time": 0
+            },
+            "altergo": {
+              "result": "Valid",
+              "steps": 50,
+              "time": 1.18130000000000E-02
+            }
+          },
+          "transformations": {
+          }
+        },
+        {
+          "proof_attempts": {
+            "CVC5": {
+              "result": "Valid",
+              "steps": 1,
+              "time": 0
+            },
+            "Z3": {
+              "result": "Valid",
+              "steps": 1,
+              "time": 0
+            },
+            "altergo": {
+              "result": "Valid",
+              "steps": 52,
+              "time": 1.89820000000000E-02
+            }
+          },
+          "transformations": {
+          }
+        }
+      ],
+      "col": 39,
+      "entity": 7,
+      "file": "boids.adb",
+      "how_proved": "prover",
+      "line": 50,
+      "message": {
+        "text": "range check proved"
+      },
+      "rule": "VC_RANGE_CHECK",
+      "severity": "info",
+      "stats": {
+        "CVC5": {
+          "count": 2,
+          "max_steps": 1,
+          "max_time": 0.00000000000000E+00
+        }
+      },
+      "unproved_status": {
+        "status": "unknown"
+      }
+    },
+    {
+      "check_col": 15,
+      "check_file": "boids.adb",
+      "check_line": 50,
+      "check_tree": [
+        {
+          "proof_attempts": {
+            "CVC5": {
+              "result": "Valid",
+              "steps": 1,
+              "time": 0
+            },
+            "Z3": {
+              "result": "Valid",
+              "steps": 1,
+              "time": 0
+            },
+            "altergo": {
+              "result": "High failure (signaled)",
+              "steps": 1,
+              "time": 9.40200000000000E-03
+            }
+          },
+          "transformations": {
+          }
+        },
+        {
+          "proof_attempts": {
+            "CVC5": {
+              "result": "Valid",
+              "steps": 1,
+              "time": 0
+            },
+            "Z3": {
+              "result": "Valid",
+              "steps": 1,
+              "time": 0
+            },
+            "altergo": {
+              "result": "High failure (signaled)",
+              "steps": 1,
+              "time": 6.18600000000000E-03
+            }
+          },
+          "transformations": {
+          }
+        },
+        {
+          "proof_attempts": {
+            "CVC5": {
+              "result": "Valid",
+              "steps": 1,
+              "time": 0
+            },
+            "Z3": {
+              "result": "Valid",
+              "steps": 1,
+              "time": 1.00000000000000E-06
+            },
+            "altergo": {
+              "result": "High failure (signaled)",
+              "steps": 1,
+              "time": 9.92400000000000E-03
+            }
+          },
+          "transformations": {
+          }
+        }
+      ],
+      "col": 15,
+      "entity": 7,
+      "file": "boids.adb",
+      "how_proved": "prover",
+      "line": 50,
+      "message": {
+        "text": "precondition proved"
+      },
+      "rule": "VC_PRECONDITION",
+      "severity": "info",
+      "stats": {
+        "CVC5": {
+          "count": 3,
+          "max_steps": 1,
+          "max_time": 0.00000000000000E+00
+        }
+      },
+      "unproved_status": {
+        "status": "unknown"
+      }
+    },
+    {
+      "check_col": 45,
+      "check_file": "boids.adb",
+      "check_line": 52,
+      "check_tree": [
+        {
+          "proof_attempts": {
+            "CVC5": {
+              "result": "High failure (signaled)",
+              "steps": 1,
+              "time": 2.20930000000000E-02
+            },
+            "Z3": {
+              "result": "Valid",
+              "steps": 1,
+              "time": 0
+            },
+            "altergo": {
+              "result": "High failure (signaled)",
+              "steps": 1,
+              "time": 1.17990000000000E-02
+            }
+          },
+          "transformations": {
+          }
+        },
+        {
+          "proof_attempts": {
+            "CVC5": {
+              "result": "Valid",
+              "steps": 1,
+              "time": 0
+            },
+            "Z3": {
+              "result": "Valid",
+              "steps": 1,
+              "time": 0
+            },
+            "altergo": {
+              "result": "Valid",
+              "steps": 49,
+              "time": 0
+            }
+          },
+          "transformations": {
+          }
+        }
+      ],
+      "col": 45,
+      "entity": 7,
+      "file": "boids.adb",
+      "how_proved": "prover",
+      "line": 52,
+      "message": {
+        "text": "precondition proved"
+      },
+      "rule": "VC_PRECONDITION",
+      "severity": "info",
+      "stats": {
+        "CVC5": {
+          "count": 1,
+          "max_steps": 1,
+          "max_time": 0.00000000000000E+00
+        },
+        "Z3": {
+          "count": 1,
+          "max_steps": 1,
+          "max_time": 0.00000000000000E+00
+        }
+      },
+      "unproved_status": {
+        "status": "unknown"
+      }
+    },
+    {
+      "check_col": 15,
+      "check_file": "boids.adb",
+      "check_line": 52,
+      "check_tree": [
+        {
+          "proof_attempts": {
+            "CVC5": {
+              "result": "Valid",
+              "steps": 1,
+              "time": 1.58020000000000E-02
+            },
+            "Z3": {
+              "result": "Valid",
+              "steps": 1,
+              "time": 4.37900000000000E-03
+            },
+            "altergo": {
+              "result": "High failure (signaled)",
+              "steps": 1,
+              "time": 6.99900000000000E-03
+            }
+          },
+          "transformations": {
+            "introduce_premises": [
+              {
+                "proof_attempts": {
+                },
+                "transformations": {
+                }
+              }
+            ]
+          }
+        },
+        {
+          "proof_attempts": {
+            "CVC5": {
+              "result": "Valid",
+              "steps": 1,
+              "time": 0
+            },
+            "Z3": {
+              "result": "Valid",
+              "steps": 1,
+              "time": 0
+            },
+            "altergo": {
+              "result": "High failure (signaled)",
+              "steps": 1,
+              "time": 1.00000000000000E-06
+            }
+          },
+          "transformations": {
+          }
+        },
+        {
+          "proof_attempts": {
+            "CVC5": {
+              "result": "Valid",
+              "steps": 1,
+              "time": 0
+            },
+            "Z3": {
+              "result": "Valid",
+              "steps": 1,
+              "time": 0
+            },
+            "altergo": {
+              "result": "Valid",
+              "steps": 49,
+              "time": 0
+            }
+          },
+          "transformations": {
+          }
+        }
+      ],
+      "col": 15,
+      "entity": 7,
+      "file": "boids.adb",
+      "how_proved": "prover",
+      "line": 52,
+      "message": {
+        "text": "precondition proved"
+      },
+      "rule": "VC_PRECONDITION",
+      "severity": "info",
+      "stats": {
+        "CVC5": {
+          "count": 2,
+          "max_steps": 1,
+          "max_time": 0.00000000000000E+00
+        },
+        "Z3": {
+          "count": 1,
+          "max_steps": 1,
+          "max_time": 4.37900004908442E-03
+        }
+      },
+      "unproved_status": {
+        "status": "unknown"
+      }
+    },
+    {
+      "check_col": 19,
+      "check_file": "boids.ads",
+      "check_line": 50,
+      "check_tree": [
+        {
+          "proof_attempts": {
+            "CVC5": {
+              "result": "Valid",
+              "steps": 1618,
+              "time": 2.96262000000000E-01
+            },
+            "Z3": {
+              "result": "High failure (signaled)",
+              "steps": 1,
+              "time": 3.22403000000000E-01
+            },
+            "altergo": {
+              "result": "High failure (signaled)",
+              "steps": 1,
+              "time": 3.06493000000000E-01
+            }
+          },
+          "transformations": {
+          }
+        },
+        {
+          "proof_attempts": {
+            "CVC5": {
+              "result": "High failure (signaled)",
+              "steps": 1,
+              "time": 7.49610000000000E-02
+            },
+            "Z3": {
+              "result": "Valid",
+              "steps": 1033,
+              "time": 0
+            },
+            "altergo": {
+              "result": "High failure (signaled)",
+              "steps": 1,
+              "time": 6.75130000000000E-02
+            }
+          },
+          "transformations": {
+          }
+        }
+      ],
+      "col": 19,
+      "entity": 7,
+      "file": "boids.ads",
+      "how_proved": "prover",
+      "line": 50,
+      "message": {
+        "text": "postcondition proved"
+      },
+      "rule": "VC_POSTCONDITION",
+      "severity": "info",
+      "stats": {
+        "CVC5": {
+          "count": 1,
+          "max_steps": 1618,
+          "max_time": 2.96261996030807E-01
+        },
+        "Z3": {
+          "count": 1,
+          "max_steps": 1033,
+          "max_time": 0.00000000000000E+00
+        }
+      },
+      "unproved_status": {
+        "status": "unknown"
+      }
+    },
+    {
+      "check_col": 9,
+      "check_file": "boids.adb",
+      "check_line": 73,
+      "check_tree": [
+        {
+          "proof_attempts": {
+            "CVC5": {
+              "result": "Valid",
+              "steps": 1,
+              "time": 0
+            },
+            "Z3": {
+              "result": "Valid",
+              "steps": 1,
+              "time": 0
+            },
+            "altergo": {
+              "result": "High failure ()",
+              "steps": 1,
+              "time": 0
+            }
+          },
+          "transformations": {
+          }
+        }
+      ],
+      "col": 9,
+      "entity": 2,
+      "file": "boids.adb",
+      "how_proved": "prover",
+      "line": 73,
+      "message": {
+        "text": "division check proved"
+      },
+      "rule": "VC_DIVISION_CHECK",
+      "severity": "info",
+      "stats": {
+        "CVC5": {
+          "count": 1,
+          "max_steps": 1,
+          "max_time": 0.00000000000000E+00
+        }
+      },
+      "unproved_status": {
+        "status": "unknown"
+      }
+    },
+    {
+      "check_col": 65,
+      "check_file": "boids.ads",
+      "check_line": 61,
+      "check_tree": [
+        {
+          "proof_attempts": {
+            "CVC5": {
+              "result": "Valid",
+              "steps": 1,
+              "time": 0
+            },
+            "Z3": {
+              "result": "Valid",
+              "steps": 1,
+              "time": 0
+            },
+            "altergo": {
+              "result": "High failure ()",
+              "steps": 1,
+              "time": 0
+            }
+          },
+          "transformations": {
+          }
+        }
+      ],
+      "col": 65,
+      "entity": 2,
+      "file": "boids.ads",
+      "how_proved": "prover",
+      "line": 61,
+      "message": {
+        "text": "division check proved"
+      },
+      "rule": "VC_DIVISION_CHECK",
+      "severity": "info",
+      "stats": {
+        "CVC5": {
+          "count": 1,
+          "max_steps": 1,
+          "max_time": 0.00000000000000E+00
+        }
+      },
+      "unproved_status": {
+        "status": "unknown"
+      }
+    },
+    {
+      "check_col": 19,
+      "check_file": "boids.ads",
+      "check_line": 61,
+      "check_tree": [
+        {
+          "proof_attempts": {
+            "CVC5": {
+              "result": "Valid",
+              "steps": 488,
+              "time": 0
+            },
+            "Z3": {
+              "result": "High failure ()",
+              "steps": 1,
+              "time": 0
+            },
+            "altergo": {
+              "result": "High failure ()",
+              "steps": 1,
+              "time": 0
+            }
+          },
+          "transformations": {
+          }
+        },
+        {
+          "proof_attempts": {
+            "CVC5": {
+              "result": "Valid",
+              "steps": 1,
+              "time": 0
+            },
+            "Z3": {
+              "result": "Valid",
+              "steps": 1,
+              "time": 0
+            },
+            "altergo": {
+              "result": "High failure ()",
+              "steps": 1,
+              "time": 0
+            }
+          },
+          "transformations": {
+          }
+        }
+      ],
+      "col": 19,
+      "entity": 2,
+      "file": "boids.ads",
+      "how_proved": "prover",
+      "line": 61,
+      "message": {
+        "text": "postcondition proved"
+      },
+      "rule": "VC_POSTCONDITION",
+      "severity": "info",
+      "stats": {
+        "CVC5": {
+          "count": 2,
+          "max_steps": 488,
+          "max_time": 0.00000000000000E+00
+        }
+      },
+      "unproved_status": {
+        "status": "unknown"
+      }
+    },
+    {
+      "check_col": 21,
+      "check_file": "boids.adb",
+      "check_line": 25,
+      "check_tree": [
+        {
+          "proof_attempts": {
+            "CVC5": {
+              "result": "High failure ()",
+              "steps": 1,
+              "time": 0
+            },
+            "Z3": {
+              "result": "Valid",
+              "steps": 1,
+              "time": 0
+            },
+            "altergo": {
+              "result": "High failure ()",
+              "steps": 1,
+              "time": 0
+            }
+          },
+          "transformations": {
+          }
+        },
+        {
+          "proof_attempts": {
+            "CVC5": {
+              "result": "Valid",
+              "steps": 1,
+              "time": 0
+            },
+            "Z3": {
+              "result": "Valid",
+              "steps": 1,
+              "time": 0
+            },
+            "altergo": {
+              "result": "Valid",
+              "steps": 513,
+              "time": 0
+            }
+          },
+          "transformations": {
+          }
+        }
+      ],
+      "col": 21,
+      "entity": 3,
+      "file": "boids.adb",
+      "how_proved": "prover",
+      "line": 25,
+      "message": {
+        "text": "overflow check proved"
+      },
+      "rule": "VC_OVERFLOW_CHECK",
+      "severity": "info",
+      "stats": {
+        "CVC5": {
+          "count": 1,
+          "max_steps": 1,
+          "max_time": 0.00000000000000E+00
+        },
+        "Z3": {
+          "count": 1,
+          "max_steps": 1,
+          "max_time": 0.00000000000000E+00
+        }
+      },
+      "unproved_status": {
+        "status": "unknown"
+      }
+    },
+    {
+      "check_col": 27,
+      "check_file": "boids.adb",
+      "check_line": 25,
+      "check_tree": [
+        {
+          "proof_attempts": {
+            "CVC5": {
+              "result": "Valid",
+              "steps": 1,
+              "time": 0
+            },
+            "Z3": {
+              "result": "Valid",
+              "steps": 1,
+              "time": 0
+            },
+            "altergo": {
+              "result": "Valid",
+              "steps": 87,
+              "time": 0
+            }
+          },
+          "transformations": {
+          }
+        }
+      ],
+      "col": 27,
+      "entity": 3,
+      "file": "boids.adb",
+      "how_proved": "prover",
+      "line": 25,
+      "message": {
+        "text": "division check proved"
+      },
+      "rule": "VC_DIVISION_CHECK",
+      "severity": "info",
+      "stats": {
+        "CVC5": {
+          "count": 1,
+          "max_steps": 1,
+          "max_time": 0.00000000000000E+00
+        }
+      },
+      "unproved_status": {
+        "status": "unknown"
+      }
+    },
+    {
+      "check_col": 27,
+      "check_file": "boids.adb",
+      "check_line": 25,
+      "check_tree": [
+        {
+          "proof_attempts": {
+            "CVC5": {
+              "result": "High failure ()",
+              "steps": 1,
+              "time": 0
+            },
+            "Z3": {
+              "result": "Valid",
+              "steps": 1,
+              "time": 0
+            },
+            "altergo": {
+              "result": "High failure ()",
+              "steps": 1,
+              "time": 0
+            }
+          },
+          "transformations": {
+          }
+        },
+        {
+          "proof_attempts": {
+            "CVC5": {
+              "result": "Valid",
+              "steps": 1,
+              "time": 0
+            },
+            "Z3": {
+              "result": "Valid",
+              "steps": 1,
+              "time": 0
+            },
+            "altergo": {
+              "result": "Valid",
+              "steps": 2053,
+              "time": 0
+            }
+          },
+          "transformations": {
+          }
+        }
+      ],
+      "col": 27,
+      "entity": 3,
+      "file": "boids.adb",
+      "how_proved": "prover",
+      "line": 25,
+      "message": {
+        "text": "overflow check proved"
+      },
+      "rule": "VC_OVERFLOW_CHECK",
+      "severity": "info",
+      "stats": {
+        "CVC5": {
+          "count": 1,
+          "max_steps": 1,
+          "max_time": 0.00000000000000E+00
+        },
+        "Z3": {
+          "count": 1,
+          "max_steps": 1,
+          "max_time": 0.00000000000000E+00
+        }
+      },
+      "unproved_status": {
+        "status": "unknown"
+      }
+    },
+    {
+      "check_col": 27,
+      "check_file": "boids.adb",
+      "check_line": 25,
+      "check_tree": [
+        {
+          "proof_attempts": {
+            "CVC5": {
+              "result": "High failure ()",
+              "steps": 1,
+              "time": 0
+            },
+            "Z3": {
+              "result": "Valid",
+              "steps": 1,
+              "time": 0
+            },
+            "altergo": {
+              "result": "High failure ()",
+              "steps": 1,
+              "time": 0
+            }
+          },
+          "transformations": {
+          }
+        },
+        {
+          "proof_attempts": {
+            "CVC5": {
+              "result": "Valid",
+              "steps": 25,
+              "time": 0
+            },
+            "Z3": {
+              "result": "Valid",
+              "steps": 1,
+              "time": 0
+            },
+            "altergo": {
+              "result": "Valid",
+              "steps": 2109,
+              "time": 0
+            }
+          },
+          "transformations": {
+          }
+        }
+      ],
+      "col": 27,
+      "entity": 3,
+      "file": "boids.adb",
+      "how_proved": "prover",
+      "line": 25,
+      "message": {
+        "text": "range check proved"
+      },
+      "rule": "VC_RANGE_CHECK",
+      "severity": "info",
+      "stats": {
+        "CVC5": {
+          "count": 1,
+          "max_steps": 25,
+          "max_time": 0.00000000000000E+00
+        },
+        "Z3": {
+          "count": 1,
+          "max_steps": 1,
+          "max_time": 0.00000000000000E+00
+        }
+      },
+      "unproved_status": {
+        "status": "unknown"
+      }
+    },
+    {
+      "check_col": 49,
+      "check_file": "boids.adb",
+      "check_line": 25,
+      "check_tree": [
+        {
+          "proof_attempts": {
+            "CVC5": {
+              "result": "Valid",
+              "steps": 1,
+              "time": 0
+            },
+            "Z3": {
+              "result": "Valid",
+              "steps": 1,
+              "time": 0
+            },
+            "altergo": {
+              "result": "Valid",
+              "steps": 28,
+              "time": 0
+            }
+          },
+          "transformations": {
+          }
+        },
+        {
+          "proof_attempts": {
+            "CVC5": {
+              "result": "Valid",
+              "steps": 1,
+              "time": 0
+            },
+            "Z3": {
+              "result": "Valid",
+              "steps": 1,
+              "time": 0
+            },
+            "altergo": {
+              "result": "Valid",
+              "steps": 28,
+              "time": 0
+            }
+          },
+          "transformations": {
+          }
+        }
+      ],
+      "col": 49,
+      "entity": 3,
+      "file": "boids.adb",
+      "how_proved": "prover",
+      "line": 25,
+      "message": {
+        "text": "overflow check proved"
+      },
+      "rule": "VC_OVERFLOW_CHECK",
+      "severity": "info",
+      "stats": {
+        "CVC5": {
+          "count": 2,
+          "max_steps": 1,
+          "max_time": 0.00000000000000E+00
+        }
+      },
+      "unproved_status": {
+        "status": "unknown"
+      }
+    },
+    {
+      "check_col": 55,
+      "check_file": "boids.adb",
+      "check_line": 25,
+      "check_tree": [
+        {
+          "proof_attempts": {
+            "CVC5": {
+              "result": "Valid",
+              "steps": 1,
+              "time": 0
+            },
+            "Z3": {
+              "result": "Valid",
+              "steps": 1,
+              "time": 0
+            },
+            "altergo": {
+              "result": "Valid",
+              "steps": 8,
+              "time": 0
+            }
+          },
+          "transformations": {
+          }
+        }
+      ],
+      "col": 55,
+      "entity": 3,
+      "file": "boids.adb",
+      "how_proved": "prover",
+      "line": 25,
+      "message": {
+        "text": "division check proved"
+      },
+      "rule": "VC_DIVISION_CHECK",
+      "severity": "info",
+      "stats": {
+        "CVC5": {
+          "count": 1,
+          "max_steps": 1,
+          "max_time": 0.00000000000000E+00
+        }
+      },
+      "unproved_status": {
+        "status": "unknown"
+      }
+    },
+    {
+      "check_col": 55,
+      "check_file": "boids.adb",
+      "check_line": 25,
+      "check_tree": [
+        {
+          "proof_attempts": {
+            "CVC5": {
+              "result": "High failure ()",
+              "steps": 1,
+              "time": 0
+            },
+            "Z3": {
+              "result": "Valid",
+              "steps": 1,
+              "time": 0
+            },
+            "altergo": {
+              "result": "High failure ()",
+              "steps": 1,
+              "time": 0
+            }
+          },
+          "transformations": {
+          }
+        },
+        {
+          "proof_attempts": {
+            "CVC5": {
+              "result": "Valid",
+              "steps": 1,
+              "time": 0
+            },
+            "Z3": {
+              "result": "Valid",
+              "steps": 1,
+              "time": 0
+            },
+            "altergo": {
+              "result": "Valid",
+              "steps": 278,
+              "time": 0
+            }
+          },
+          "transformations": {
+          }
+        }
+      ],
+      "col": 55,
+      "entity": 3,
+      "file": "boids.adb",
+      "how_proved": "prover",
+      "line": 25,
+      "message": {
+        "text": "overflow check proved"
+      },
+      "rule": "VC_OVERFLOW_CHECK",
+      "severity": "info",
+      "stats": {
+        "CVC5": {
+          "count": 1,
+          "max_steps": 1,
+          "max_time": 0.00000000000000E+00
+        },
+        "Z3": {
+          "count": 1,
+          "max_steps": 1,
+          "max_time": 0.00000000000000E+00
+        }
+      },
+      "unproved_status": {
+        "status": "unknown"
+      }
+    },
+    {
+      "check_col": 55,
+      "check_file": "boids.adb",
+      "check_line": 25,
+      "check_tree": [
+        {
+          "proof_attempts": {
+            "CVC5": {
+              "result": "High failure ()",
+              "steps": 1,
+              "time": 0
+            },
+            "Z3": {
+              "result": "Valid",
+              "steps": 1,
+              "time": 0
+            },
+            "altergo": {
+              "result": "High failure ()",
+              "steps": 1,
+              "time": 0
+            }
+          },
+          "transformations": {
+          }
+        },
+        {
+          "proof_attempts": {
+            "CVC5": {
+              "result": "Valid",
+              "steps": 1,
+              "time": 0
+            },
+            "Z3": {
+              "result": "Valid",
+              "steps": 1,
+              "time": 0
+            },
+            "altergo": {
+              "result": "Valid",
+              "steps": 306,
+              "time": 0
+            }
+          },
+          "transformations": {
+          }
+        }
+      ],
+      "col": 55,
+      "entity": 3,
+      "file": "boids.adb",
+      "how_proved": "prover",
+      "line": 25,
+      "message": {
+        "text": "range check proved"
+      },
+      "rule": "VC_RANGE_CHECK",
+      "severity": "info",
+      "stats": {
+        "CVC5": {
+          "count": 1,
+          "max_steps": 1,
+          "max_time": 0.00000000000000E+00
+        },
+        "Z3": {
+          "count": 1,
+          "max_steps": 1,
+          "max_time": 0.00000000000000E+00
+        }
+      },
+      "unproved_status": {
+        "status": "unknown"
+      }
+    }
+  ],
+  "skip_flow_proof": [
+  ],
+  "skip_proof": [
+  ],
+  "spark": {
+    " 1": "all",
+    " 2": "all",
+    " 3": "all",
+    " 4": "all",
+    " 5": "all",
+    " 6": "all",
+    " 7": "all",
+    " 8": "all",
+    " 9": "all"
+  },
+  "stop_reason": "STOP_REASON_NONE",
+  "timings": {
+    " 1": {
+      "gnat2why.vc_generation": 1.19800004176795E-03,
+      "gnatwhy3.init": 2.99122005701065E-01,
+      "gnatwhy3.register_vcs": 3.60000005457550E-04,
+      "gnatwhy3.run_vcs": 3.99900000047637E-06,
+      "gnatwhy3.save_session": 2.04699905589223E-03,
+      "gnatwhy3.schedule_vcs": 3.00000010611257E-06,
+      "gnatwhy3.transformations.split_goal_wp_conj": 3.78099898807704E-03
+    },
+    " 2": {
+      "gnat2why.vc_generation": 9.67999978456646E-04,
+      "gnatwhy3.init": 2.72688001394272E-01,
+      "gnatwhy3.register_vcs": 2.70000000455184E-05,
+      "gnatwhy3.run_vcs": 1.99900000552589E-06,
+      "gnatwhy3.save_session": 1.46399904042482E-03,
+      "gnatwhy3.schedule_vcs": 9.99000008050643E-07,
+      "gnatwhy3.transformations.split_goal_wp_conj": 1.68200000189245E-03
+    },
+    " 3": {
+      "gnat2why.vc_generation": 8.92999989446253E-04,
+      "gnatwhy3.init": 2.78557986021042E-01,
+      "gnatwhy3.register_vcs": 5.07000018842518E-04,
+      "gnatwhy3.run_vcs": 9.00000031833770E-06,
+      "gnatwhy3.save_session": 2.80799902975559E-03,
+      "gnatwhy3.schedule_vcs": 4.99899988426478E-06,
+      "gnatwhy3.transformations.split_goal_wp_conj": 3.33800003863871E-03
+    },
+    " 4": {
+      "gnat2why.vc_generation": 1.14599999506027E-03,
+      "gnatwhy3.init": 2.96541988849640E-01,
+      "gnatwhy3.register_vcs": 1.10800005495548E-03,
+      "gnatwhy3.run_vcs": 1.29990003188141E-05,
+      "gnatwhy3.save_session": 6.01600017398596E-03,
+      "gnatwhy3.schedule_vcs": 7.00000009601354E-06,
+      "gnatwhy3.transformations.split_goal_wp_conj": 1.02390004321933E-02
+    },
+    " 5": {
+      "gnat2why.vc_generation": 1.72699999529868E-03,
+      "gnatwhy3.init": 2.83143013715744E-01,
+      "gnatwhy3.register_vcs": 8.90000010258518E-05,
+      "gnatwhy3.run_vcs": 3.99900000047637E-06,
+      "gnatwhy3.save_session": 2.78600002638996E-03,
+      "gnatwhy3.schedule_vcs": 3.00000010611257E-06,
+      "gnatwhy3.transformations.split_goal_wp_conj": 2.89399898611009E-03
+    },
+    " 6": {
+      "gnat2why.vc_generation": 2.38499999977648E-03
+    },
+    " 7": {
+      "gnat2why.vc_generation": 1.93599995691329E-03,
+      "gnatwhy3.init": 2.85616993904114E-01,
+      "gnatwhy3.register_vcs": 7.09999003447592E-04,
+      "gnatwhy3.run_vcs": 3.09989991365001E-05,
+      "gnatwhy3.save_session": 5.10299904271960E-03,
+      "gnatwhy3.schedule_vcs": 8.15929993987083E-02,
+      "gnatwhy3.transformations.counterexamples_dependent_intros": 5.19700022414327E-03,
+      "gnatwhy3.transformations.detect_polymorphism": 2.37399898469448E-03,
+      "gnatwhy3.transformations.discriminate_if_poly": 3.40000005962793E-05,
+      "gnatwhy3.transformations.eliminate_algebraic": 6.14900002256036E-03,
+      "gnatwhy3.transformations.eliminate_algebraic_if_poly": 4.30899905040860E-03,
+      "gnatwhy3.transformations.eliminate_builtin": 3.78599902614951E-03,
+      "gnatwhy3.transformations.eliminate_definition_conditionally": 1.10500003211200E-03,
+      "gnatwhy3.transformations.eliminate_epsilon": 3.37800011038780E-03,
+      "gnatwhy3.transformations.eliminate_gnatprove_guard_epsilon": 2.59899906814098E-03,
+      "gnatwhy3.transformations.eliminate_inductive": 2.43899901397526E-03,
+      "gnatwhy3.transformations.eliminate_literal": 4.47400007396936E-03,
+      "gnatwhy3.transformations.eliminate_projections_sums": 9.28000023122877E-04,
+      "gnatwhy3.transformations.eliminate_recursion": 4.61999006802216E-04,
+      "gnatwhy3.transformations.encoding_smt_if_poly": 1.10000000859145E-05,
+      "gnatwhy3.transformations.inline_trivial": 5.58839999139309E-02,
+      "gnatwhy3.transformations.introduce_premises": 4.88300016149879E-03,
+      "gnatwhy3.transformations.monomorphise_goal": 6.23000029008836E-04,
+      "gnatwhy3.transformations.remove_unused": 2.04920005053282E-02,
+      "gnatwhy3.transformations.simplify_formula": 7.50399893149734E-03,
+      "gnatwhy3.transformations.split_goal_wp_conj": 6.30400003865361E-03,
+      "gnatwhy3.transformations.split_premise_right": 3.44499899074435E-03
+    },
+    " 8": {
+      "gnat2why.vc_generation": 7.40000032237731E-05,
+      "gnatwhy3.init": 2.75391995906830E-01,
+      "gnatwhy3.register_vcs": 1.20000004244503E-05,
+      "gnatwhy3.run_vcs": 1.99900000552589E-06,
+      "gnatwhy3.save_session": 2.93999008135870E-04,
+      "gnatwhy3.schedule_vcs": 9.99000008050643E-07,
+      "gnatwhy3.transformations.split_goal_wp_conj": 4.52000007499009E-04
+    },
+    "global": {
+      "flow analysis": 6.07099989429116E-03,
+      "globals (advanced)": 3.35999997332692E-04,
+      "globals (basic)": 2.55999999353662E-04,
+      "init_why_sections": 8.46999988425523E-04,
+      "marking": 3.25000000884756E-04,
+      "properties (advanced)": 8.90000010258518E-05,
+      "translation of standard": 1.24300003517419E-03
+    }
+  },
+  "warn_error": [
+    {
+      "check_tree": {
+      },
+      "col": 21,
+      "file": "boids.adb",
+      "how_proved": "trivial",
+      "line": 25,
+      "message": {
+        "text": "possible reassociation due to missing parentheses [operator-reassociation]"
+      },
+      "rule": "operator-reassociation",
+      "severity": "warning",
+      "suppressed": "",
+      "unproved_status": {
+        "status": "unknown"
+      }
+    },
+    {
+      "check_tree": {
+      },
+      "col": 49,
+      "file": "boids.adb",
+      "how_proved": "trivial",
+      "line": 25,
+      "message": {
+        "text": "possible reassociation due to missing parentheses [operator-reassociation]"
+      },
+      "rule": "operator-reassociation",
+      "severity": "warning",
+      "suppressed": "",
+      "unproved_status": {
+        "status": "unknown"
+      }
+    }
+  ]
+}

@@ -1,0 +1,77 @@
+[
+{
+  "name": "Boids.Big",
+  "location": "boids.ads:10:9",
+  "Object_Size": 64,
+  "Value_Size": 63,
+  "Alignment": 8
+}
+,
+{
+  "name": "Boids.World_Size",
+  "location": "boids.ads:14:12",
+  "Object_Size": 64,
+  "Value_Size": 21,
+  "Alignment": 8
+}
+,
+{
+  "name": "Boids.Coord",
+  "location": "boids.ads:15:12",
+  "Object_Size": 64,
+  "Value_Size": 20,
+  "Alignment": 8
+}
+,
+{
+  "name": "Boids.Delta_T",
+  "location": "boids.ads:18:12",
+  "Object_Size": 64,
+  "Value_Size": 21,
+  "Alignment": 8
+}
+,
+{
+  "name": "Boids.Comp",
+  "location": "boids.ads:21:12",
+  "Object_Size": 64,
+  "Value_Size": 26,
+  "Alignment": 8
+}
+,
+{
+  "name": "Boids.Vec",
+  "location": "boids.ads:23:9",
+  "Size": 128,
+  "Alignment": 8,
+  "record": [
+    {
+      "name": "X",
+      "Position": 0,
+      "First_Bit": 0,
+      "Size": 64
+    },
+    {
+      "name": "Y",
+      "Position": 8,
+      "First_Bit": 0,
+      "Size": 64
+    }
+  ]
+}
+,
+{
+  "name": "Boids.Zero",
+  "location": "boids.ads:27:4",
+  "Size": 128,
+  "Alignment": 8
+}
+,
+{
+  "name": "Boids.Limit_T",
+  "location": "boids.ads:41:12",
+  "Object_Size": 64,
+  "Value_Size": 21,
+  "Alignment": 8
+}
+]

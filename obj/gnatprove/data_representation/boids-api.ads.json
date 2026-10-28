@@ -1,0 +1,15 @@
+[
+{
+  "name": "Boids.Api.The_Flock",
+  "location": "boids-api.ads:8:4",
+  "Size": 768704,
+  "Alignment": 8
+}
+,
+{
+  "name": "Boids.Api.Rng",
+  "location": "boids-api.ads:9:4",
+  "Size": 32,
+  "Alignment": 4
+}
+]

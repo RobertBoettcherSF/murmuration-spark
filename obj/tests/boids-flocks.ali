@@ -1,0 +1,260 @@
+V "GNAT Lib v16"
+A -O2
+A -gnatA
+A -gnat2022
+A -gnato
+A -mtune=generic
+A -march=x86-64
+P ZX
+
+RN
+RV NO_DIRECT_BOOLEAN_OPERATORS
+RV NO_IMPLICIT_CONDITIONALS
+RV NO_DEFAULT_INITIALIZATION
+RV NO_IMPLEMENTATION_ASPECT_SPECIFICATIONS
+RV NO_IMPLEMENTATION_ATTRIBUTES
+RV NO_IMPLEMENTATION_PRAGMAS
+RV NO_IMPLICIT_LOOPS
+
+U boids.flocks%b	boids-flocks.adb	7dd6b997 NE OO PK
+W boids%s		boids.adb		boids.ali
+
+U boids.flocks%s	boids-flocks.ads	57ea50cb EE NE OO PK
+W boids%s		boids.adb		boids.ali
+
+D boids.ads		20261028191556 556b9d43 boids%s
+D boids-flocks.ads	20261028191523 0281cd88 boids.flocks%s
+D boids-flocks.adb	20261028191523 7f57741f boids.flocks%b
+D system.ads		20261023074739 e2b7c99d system%s
+G a e
+G c Z s s [valid_params boids__flocks 24 13 none]
+G c Z s s [in_world boids__flocks 43 13 none]
+G c Z s s [valid boids__flocks 46 13 none]
+G c Z s s [speeds_clamped boids__flocks 49 13 none]
+G c Z s s [dx boids__flocks 53 13 none]
+G c Z s s [dy boids__flocks 57 13 none]
+G c Z s s [dist2 boids__flocks 62 13 none]
+G c Z s s [is_neighbour boids__flocks 67 13 none]
+G c Z s b [find_neighbours boids__flocks 75 14 none]
+G c Z s s [cap boids__flocks 88 13 none]
+G c Z s b [separation boids__flocks 91 13 none]
+G c Z s b [alignment boids__flocks 97 13 none]
+G c Z s b [cohesion boids__flocks 103 13 none]
+G c Z s b [step boids__flocks 110 14 none]
+G c Z s s [paramsIP boids__flocks 14 9 none]
+G c Z s s [birdIP boids__flocks 27 9 none]
+G c Z s s [Tbird_arrayBIP boids__flocks 32 4 none]
+G c Z s s [Tvec_arrayBIP boids__flocks 33 4 none]
+G c Z s s [flockIP boids__flocks 35 9 none]
+G c Z s s [Tindex_listBIP boids__flocks 71 4 none]
+G r c none [speeds_clamped boids__flocks 49 13 none] [norm2 boids 29 13 none]
+G r c none [dx boids__flocks 53 13 none] [torus_delta boids 53 13 none]
+G r c none [dy boids__flocks 57 13 none] [torus_delta boids 53 13 none]
+G r c none [dist2 boids__flocks 62 13 none] [torus_delta boids 53 13 none]
+G r c none [is_neighbour boids__flocks 67 13 none] [torus_delta boids 53 13 none]
+G r c none [find_neighbours boids__flocks 75 14 none] [torus_delta boids 53 13 none]
+G r c none [separation boids__flocks 91 13 none] [torus_delta boids 53 13 none]
+G r c none [separation boids__flocks 91 13 none] [sat boids 32 13 none]
+G r c none [separation boids__flocks 91 13 none] [norm2 boids 29 13 none]
+G r c none [separation boids__flocks 91 13 none] [isqrt boids 36 13 none]
+G r c none [separation boids__flocks 91 13 none] [limit boids 44 13 none]
+G r c none [alignment boids__flocks 97 13 none] [sat boids 32 13 none]
+G r c none [alignment boids__flocks 97 13 none] [norm2 boids 29 13 none]
+G r c none [alignment boids__flocks 97 13 none] [isqrt boids 36 13 none]
+G r c none [alignment boids__flocks 97 13 none] [limit boids 44 13 none]
+G r c none [cohesion boids__flocks 103 13 none] [torus_delta boids 53 13 none]
+G r c none [cohesion boids__flocks 103 13 none] [sat boids 32 13 none]
+G r c none [cohesion boids__flocks 103 13 none] [norm2 boids 29 13 none]
+G r c none [cohesion boids__flocks 103 13 none] [isqrt boids 36 13 none]
+G r c none [cohesion boids__flocks 103 13 none] [limit boids 44 13 none]
+G r c none [step boids__flocks 110 14 none] [torus_delta boids 53 13 none]
+G r c none [step boids__flocks 110 14 none] [sat boids 32 13 none]
+G r c none [step boids__flocks 110 14 none] [norm2 boids 29 13 none]
+G r c none [step boids__flocks 110 14 none] [isqrt boids 36 13 none]
+G r c none [step boids__flocks 110 14 none] [limit boids 44 13 none]
+G r c none [step boids__flocks 110 14 none] [clamp_speed boids 48 13 none]
+G r c none [step boids__flocks 110 14 none] [wrap boids 59 13 none]
+G r s vec [Tvec_arrayBIP boids__flocks 33 4 none] [vecIP boids 23 9 none]
+G r s vec [flockIP boids__flocks 35 9 none] [vecIP boids 23 9 none]
+X 1 boids.ads
+5K9*Boids 63e10 2|2r9 115r5 3|1r14 137r5
+7N4*Sub 2|7r35 8r34 10r37 12r42 15r44 16r42 17r42 19r41 20r41 21r37
+8N4*Max_Birds 2|4r45 5r45
+10I9*Big<long_integer> 2|8r24 9r24 11r23 12r23 62r57 3|54r22 56r13
+14I12*World_Size{10I9} 2|15r23
+15I12*Coord{10I9} 2|28r14
+18I12*Delta_T{10I9} 2|53r54 57r54
+21I12*Comp{10I9}
+23R9*Vec 25e14 2|29r14 33r45 92r71 98r70 104r69 3|28r29 28r54 35r57 36r13
+. 40r57 41r13 43r20 44r20 52r71 55r13 72r70 74r13 87r69 89r13 104r17
+24i7*X{21I12} 3|30m13 30r25 44m35 44r47 44r61 47m22 47r34 61m21 61r35 80m18
+. 80r32 80r53 95m18 95r32 112m14 112r34 112r40 112r46 112r52 124r51
+24i10*Y{21I12} 3|31m13 31r25 45m35 45r47 45r61 47m48 47r60 62m21 62r35 81m18
+. 81r32 81r53 96m18 96r32 113m14 113r34 113r40 113r46 113r52 125r51
+27r4*Zero{23R9} 2|29r23 3|29r29 55r20 66r17 74r20 77r17 89r20 92r17
+29V13*Norm2{10I9} 2|51s9 95s19 101s19 107s19 3|29s10 30s41 31s41 38s19 65s10
+. 119s15 133s15
+32V13*Sat{21I12} 3|30s18 31s18 44s40 45s40 47s27 47s53 61s26 62s26 80s23
+. 81s23 95s23 96s23 112s19 113s19
+36V13*Isqrt{10I9} 3|30s34 31s34
+41I12*Limit_T{10I9} 2|88r51 3|28r38
+44V13*Limit{23R9} 3|44s27 47s14
+48V13*Clamp_Speed{23R9} 3|111s24
+53V13*Torus_Delta{18I12} 2|54s7 58s7
+59V13*Wrap{15I12} 3|124s23 125s23
+X 2 boids-flocks.ads
+2K15*Flocks 1|5k9 2|115l11 115e17 3|1b20 137l11 137t17
+4I12*Bird_Count{integer} 36r14 76r69 92r52 98r51 104r50 3|4r69 52r52 72r51
+. 87r50 103r15
+5I12*Bird_Index{integer} 32r30 33r30 53r35 57r35 62r38 67r45 71r30 71r45
+. 76r22 91r40 97r39 103r38 3|4r22 35r35 40r35 51r40 71r39 86r38
+7N4*Max_Radius 8r41
+8I12*Radius_T{1|10I9} 16r23 17r23
+9I12*Weight_T{1|10I9} 18r29 88r34 3|35r66 40r66
+10N4*Max_Speed_Lim 11r38
+11I12*Speed_T{1|10I9} 19r23 20r23
+12I12*Force_T{1|10I9} 21r23
+14R9*Params 22e14 24r31 37r14 88r22
+15i7*Width{1|14I12} 44r48 54r46 3|124r58 130r31
+15i14*Height{1|14I12} 44r74 58r46 3|125r58 130r57
+16i7*Radius{8I12} 25r56 68r45
+17i7*Sep_Radius{8I12} 25r40 3|54r33
+18i7*W_Sep{9I12} 95r62 3|68r36
+18i14*W_Ali{9I12} 101r61 3|83r36
+18i21*W_Coh{9I12} 107r60 3|98r36
+19i7*Min_Speed{11I12} 25r9 51r34 3|114r17 119r41 133r40
+20i7*Max_Speed{11I12} 25r24 51r56 3|43r52 114r32 119r63 133r62
+21i7*Max_Force{12I12} 89r9 3|45r70
+24V13*Valid_Params{boolean} 24b13 24>27 47s7
+24r27 P{14R9} 25r7 25r22 25r38 25r54
+27R9*Bird 30e14 32r45
+28i7*X{1|15I12} 44r40 54r28 54r39 3|124m18 124r37 130r23
+28i10*Y{1|15I12} 44r66 58r28 58r39 3|125m18 125r37 130r49
+29r7*V{1|23R9} 51r24 3|44r59 45r59 80r51 81r51 112r32 113r32 123m18 124r49
+. 125r49 133r30
+32A9*Bird_Array(27R9)<integer> 38r14
+33A9*Vec_Array(1|23R9)<integer> 39r14
+35R9*Flock 40e14 43r27 46r24 49r33 53r21 57r21 62r24 67r31 76r11 91r29 97r28
+. 103r27 110r31 3|4r11 35r24 40r24 51r29 71r28 86r27 101r31
+36i7*N{4I12} 44r27 50r27 55r39 55r52 59r39 59r52 64r39 64r52 69r39 69r52
+. 77r40 78r30 80r39 82r43 93r40 93r57 94r65 99r40 99r57 100r65 105r40 105r57
+. 106r65 113r25 113r31 3|9r23 37r40 106r23 115r35 115r41 122r23 126r35 126r41
+. 129r33
+37r7*P{14R9} 44r46 44r72 47r23 51r32 51r54 54r44 58r44 68r43 95r55 95r60
+. 101r54 101r59 107r53 107r58 113r43 113r49 3|38r50 43r50 45r68 48r28 54r31
+. 68r34 83r34 98r34 114r15 114r30 115r60 115r66 119r39 119r61 124r56 125r56
+. 126r60 126r66 130r29 130r55 133r38 133r60
+38a7*B{32A9} 44r34 44r60 51r18 54r22 54r33 58r22 58r33 3|44r53 45r53 80r38
+. 81r38 112r26 113r26 116r39 116r45 123m12 124m12 124r31 124r43 125m12 125r31
+. 125r43 130r17 130r43 133r24
+39a7*Next{33A9} 3|111m12 119r24 123r25 127r39 127r48
+43V13*In_World{boolean} 43b13 43>23 47s30
+43r23 F{35R9} 44r25 44r32 44r44 44r58 44r70
+44i15 I{integer} 44r37 44r63
+46V13*Valid{boolean} 46b13 46>20 55s18 59s18 64s18 69s18 77s19 93s19 99s19
+. 105s19 111s19 112s19 3|37s19
+46r20 F{35R9} 47r21 47r40
+49V13*Speeds_Clamped{boolean} 49b13 49>29 112s33
+49r29 F{35R9} 50r25 51r16 51r30 51r52
+50i15 I{integer} 51r21
+53V13*DX{1|18I12} 53b13 53>17 53>28 53>31 63s7 3|61s39 95s36
+53r17 F{35R9} 54r20 54r31 54r42 55r25 55r37 55r50
+53i28 I{5I12} 54r25 55r32
+53i31 J{5I12} 54r36 55r45
+57V13*DY{1|18I12} 57b13 57>17 57>28 57>31 63s27 3|62s39 96s36
+57r17 F{35R9} 58r20 58r31 58r42 59r25 59r37 59r50
+57i28 I{5I12} 58r25 59r32
+57i31 J{5I12} 58r36 59r45
+62V13*Dist2{1|10I9} 62b13 62>20 62>31 62>34 68s23 3|59s16
+62r20 F{35R9} 63r11 63r31 64r25 64r37 64r50
+62i31 I{5I12} 63r14 63r34 64r32
+62i34 J{5I12} 63r17 63r37 64r45
+67V13*Is_Neighbour{boolean} 67b13 67>27 67>38 67>41 80s50 83s29 3|10s13 17s38
+. 22s19
+67r27 F{35R9} 68r30 68r41 69r25 69r37 69r50
+67i38 I{5I12} 68r7 68r33 69r32
+67i41 J{5I12} 68r12 68r36 69r45
+71A9*Index_List(5I12)<integer> 76r45 92r32 98r31 104r30 3|4r45 52r32 72r31
+. 87r30 102r15
+75U14*Find_Neighbours 76>7 76>18 76<34 76<57 3|3b14 25l8 25t23 107s10
+76r7 F{35R9} 77r26 77r38 78r28 80r37 80r64 82r41 83r43 3|4b7 9r21 10r27 17r52
+. 22r33
+76i18 I{5I12} 77r33 80r67 83r46 3|4b18 10r30 17r55 22r36
+76a34 List{71A9} 80r25 80r70 81r54 81r65 84r57 3|4b34 7m7 12m13 17r15 17r58
+. 19r44 19r55 23r47
+76i57 Count{4I12} 78r19 79r41 81r41 84r48 3|4b57 8m7 11m13 11r22 12r19 14r33
+. 16r31 19r31 23r38
+79i31 K{integer} 80r31 80r76
+81i31 K{integer} 81r60 81r71
+82i31 J{integer} 83r49 84r68
+84i38 K{integer} 84r63
+88V13*Cap{1|41I12} 88b13 88>18 88>30 95s48 101s47 107s46 3|38s43 48s21
+88r18 P{14R9} 89r7
+88i30 W{9I12} 89r21
+91V13*Separation{1|23R9} 91>25 91>36 92>25 92>44 95r26 3|51b13 69l8 69t18
+. 108s15
+91r25 F{35R9} 93r26 93r38 93r55 94r63 95r53 95r58 3|51b25 54r29 59r23 61r43
+. 62r43 68r21 68r32
+91i36 I{5I12} 93r33 3|51b36 59r26 61r46 62r46 68r24
+92a25 List{71A9} 94r51 3|52b25 59r29 61r49 62r49
+92i44 Count{4I12} 93r46 94r42 3|52b44 58r21
+94i32 K{integer} 94r57
+97V13*Alignment{1|23R9} 97>24 97>35 98>24 98>43 101r26 3|71b13 84l8 84t17
+. 109s15
+97r24 F{35R9} 99r26 99r38 99r55 100r63 101r52 101r57 3|71b24 80r36 81r36
+. 83r21 83r32
+97i35 I{5I12} 99r33 3|71b35 83r24
+98a24 List{71A9} 100r51 3|72b24 80r41 81r41
+98i43 Count{4I12} 99r46 100r42 3|72b43 76r10 79r21
+100i32 K{integer} 100r57
+103V13*Cohesion{1|23R9} 103>23 103>34 104>23 104>42 107r26 3|86b13 99l8 99t16
+. 110s15
+103r23 F{35R9} 105r26 105r38 105r55 106r63 107r51 107r56 3|86b23 95r40 96r40
+. 98r21 98r32
+103i34 I{5I12} 105r33 3|86b34 95r43 96r43 98r24
+104a23 List{71A9} 106r51 3|87b23 95r46 96r46
+104i42 Count{4I12} 105r46 106r42 3|87b42 91r10 94r21
+106i32 K{integer} 106r57
+110U14*Step 110=20 3|101b14 135l8 135t12
+110r20 F{35R9} 111r26 112r26 112r49 113r23 113r29 113r41 113r47 3|101b20
+. 106r21 107r27 108r27 109r26 110r25 111m10 112r24 113r24 114r13 114r28 115r33
+. 115r39 115r58 115r64 116r37 116r43 119r22 119r37 119r59 122r21 123m10 123r23
+. 124m10 124r29 124r41 124r54 125m10 125r29 125r41 125r54 126r33 126r39 126r58
+. 126r64 127r37 127r46 129r31 130r15 130r27 130r41 130r53 133r22 133r36 133r58
+X 3 boids-flocks.adb
+9i11 J{integer} 10r33 12r29 14r42 17r27 21r31
+16i21 K{integer} 17r21 17r64
+19i21 K{integer} 19r50 19r61
+21i21 L{integer} 22r39 23r58
+23i28 K{integer} 23r53
+28V13 Set_Length{1|23R9} 28b13 28>25 28>34 43s27
+28r25 V{1|23R9} 29r17 30r23 30r48 31r23 31r48
+28i34 M{1|41I12} 30r29 31r29
+35V13 Steer{1|23R9} 35>20 35>31 35>47 35>62 38r26 40b13 49l8 49t13 68s14
+. 83s14 98s14
+35r20 F{2|35R9} 37r26 37r38 38r48 40b20 43r48 44r51 45r51 45r66 48r26
+35i31 I{2|5I12} 37r33 40b31 44r56 45r56
+35r47 Desired{1|23R9} 40b47 43r39
+35i62 W{2|9I12} 38r53 40b62 47r38 47r64 48r31
+43r7 D{1|23R9} 44r45 45r45
+44r7 S{1|23R9} 47r32 47r58
+54i7 R2{1|10I9} 60r18 61r62 61r73 62r62 62r73
+55r7 Sum{1|23R9} 61m13 61r31 62r31 65r17 68r27
+56i7 D2{1|10I9} 59m10 60r13 61r67 62r67
+58i11 K{integer} 59r35 61r55 62r55
+74r7 Sum{1|23R9} 80m10 80r28 81r28 83r27
+79i11 K{integer} 80r47 81r47
+89r7 Sum{1|23R9} 95m10 95r28 96r28 98r27
+94i11 K{integer} 95r52 96r52
+102a7 List{2|71A9} 107m33 108r33 109r32 110r31
+103i7 Count{2|4I12} 107m39 108r39 109r38 110r37
+104r7 A{1|23R9} 108m10 112r38 113r38
+104r10 B{1|23R9} 109m10 112r44 113r44
+104r13 C{1|23R9} 110m10 112r50 113r50
+106i11 I{integer} 107r30 108r30 109r29 110r28 111r18 112r29 113r29 118r31
+118i21 K{integer} 119r30
+122i11 I{integer} 123r15 123r31 124r15 124r34 124r46 125r15 125r34 125r46
+. 132r31
+129i21 K{integer} 130r20 130r46
+132i21 K{integer} 133r27
+

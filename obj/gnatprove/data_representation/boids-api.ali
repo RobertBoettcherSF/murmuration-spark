@@ -1,0 +1,65 @@
+V "GNAT Lib v16"
+A -O2
+A -gnatA
+A -gnat2012
+A -gnata
+A -gnatwa
+A -gnatR2js
+A -gnatws
+A -gnatx
+A -gnatis
+A -mtune=generic
+A -march=x86-64
+P ZX
+
+RN
+RV NO_DIRECT_BOOLEAN_OPERATORS
+RV NO_IMPLICIT_CONDITIONALS
+RV NO_DEFAULT_INITIALIZATION
+RV NO_DYNAMIC_SIZED_OBJECTS
+RV NO_IMPLEMENTATION_ASPECT_SPECIFICATIONS
+RV NO_IMPLEMENTATION_PRAGMAS
+RV NO_ELABORATION_CODE
+
+U boids.api%b		boids-api.adb		22eecd86 NE OO PK
+W boids%s		boids.adb		boids.ali
+Z boids.flocks%s	boids-flocks.adb	boids-flocks.ali  AD
+Z system.assertions%s	s-assert.adb		s-assert.ali
+
+U boids.api%s		boids-api.ads		c177a359 EE OO PK
+W boids%s		boids.adb		boids.ali
+W boids.flocks%s	boids-flocks.adb	boids-flocks.ali
+W interfaces%s		interfac.ads		interfac.ali
+
+D ada.ads		20261023074735 76789da1 ada%s
+D a-assert.ads		20261023074731 ba465f5c ada.assertions%s
+D a-unccon.ads		20261023074735 0e9b276f ada.unchecked_conversion%s
+D boids.ads		20261028191556 556b9d43 boids%s
+D boids-api.ads		20261028191804 078c0a53 boids.api%s
+D boids-api.adb		20261028191804 2562c7d5 boids.api%b
+D boids-flocks.ads	20261028191523 0281cd88 boids.flocks%s
+D interfac.ads		20261023074736 9111f9c1 interfaces%s
+D system.ads		20261023074739 e2b7c99d system%s
+D s-assert.ads		20261023074736 9c4520c7 system.assertions%s
+D s-exctab.ads		20261023074737 91bef6ef system.exception_table%s
+D s-stalib.ads		20261023074739 1c9580f6 system.standard_library%s
+G a e
+G c s s s [s boids__api 6 1 none]
+G c Z s b [set_param boids__api 14 14 none]
+G c Z s b [start boids__api 19 14 none]
+G c Z s b [tick boids__api 24 14 none]
+G c Z s b [count boids__api 29 13 none]
+G c Z s b [get_x boids__api 33 13 none]
+G c Z s b [get_y boids__api 35 13 none]
+G c Z s b [get_vx boids__api 37 13 none]
+G c Z s b [get_vy boids__api 39 13 none]
+G c Z b b [clamp boids__api 3 13 none]
+G c Z b b [next_random boids__api 7 14 none]
+G c Z b b [new_bird boids__api 17 14 none]
+G r s flock [s boids__api 6 1 none] [flockIP boids__flocks 35 9 none]
+G r c none [set_param boids__api 14 14 none] [valid boids__flocks 46 13 none]
+G r c none [start boids__api 19 14 none] [valid boids__flocks 46 13 none]
+G r c none [tick boids__api 24 14 none] [valid boids__flocks 46 13 none]
+G r c none [tick boids__api 24 14 none] [speeds_clamped boids__flocks 49 13 none]
+G r c none [new_bird boids__api 17 14 none] [valid boids__flocks 46 13 none]
+

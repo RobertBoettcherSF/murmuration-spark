@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<!-- Murmuration (SPARK). All simulation logic is Ada/SPARK (src/), proven with
+     GNATprove, compiled to WebAssembly and embedded below. This file only
+     draws, shows menus and logs. -->
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Murmuration in SPARK</title>
+<style>
+ body{margin:0;background:#0b1020;color:#ddd;font:14px sans-serif;overflow:hidden}
+ #bar{position:fixed;top:0;left:0;right:0;padding:6px;background:#000a;display:flex;gap:8px;align-items:center;flex-wrap:wrap;z-index:2}
+ #info{opacity:.7} canvas{display:block;width:100vw;height:100vh}
+ .panel{position:fixed;top:44px;left:8px;background:#222e;padding:10px;max-height:85vh;overflow:auto;border:1px solid #555;z-index:3}
+ .panel label{display:flex;justify-content:space-between;gap:8px;margin:4px 0} .panel input[type=range]{width:160px}
+ .panel output{width:44px;text-align:right}
+ #crash{background:#600e;left:auto;right:8px}
+ #badge{cursor:pointer;padding:2px 8px;border-radius:10px;font-weight:bold}
+ #proofPanel{left:auto;right:8px;max-width:520px} #proofPanel table{border-collapse:collapse;font-size:12px}
+ #proofPanel td,#proofPanel th{border:1px solid #555;padding:2px 6px;text-align:right} #proofPanel td:first-child{text-align:left}
+ .ok{color:#7f7} .no{color:#f77}
+ a{color:#9cf}
+</style></head><body>
+<div id="bar">
+ <select id="menu"></select>
+ <button id="setBtn">Settings</button>
+ <span id="badge" title="Click for the GNATprove summary"></span>
+ <span id="info"></span>
+ <span style="margin-left:auto;opacity:.5">Space = next preset &nbsp; F9 = feedback file &nbsp; <a href="https://github.com/RobertBoettcherSF/murmuration-spark">source</a></span>
+</div>
+<div id="setPanel" class="panel" hidden></div>
+<div id="proofPanel" class="panel" hidden></div>
+<div id="crash" class="panel" hidden>The last session did not end cleanly.
+ <button id="crashDl">Download crash report</button> <button onclick="this.parentNode.hidden=true">Dismiss</button></div>
+<canvas id="view"></canvas>
+<script>
+"use strict";
+const VERSION = "0.1.0", WASM = "__WASM_BASE64__", PROOF = __PROOF_JSON__, SUB = 256;
+
+// Sliders. idx = parameter index of Boids.API.Set_Param (Ada); scale converts to Ada units.
+const SLIDERS = [
+ {key: "sep",   name: "Separation weight %", idx: 5,  min: 0, max: 400, scale: 1},
+ {key: "ali",   name: "Alignment weight %",  idx: 6,  min: 0, max: 400, scale: 1},
+ {key: "coh",   name: "Cohesion weight %",   idx: 7,  min: 0, max: 400, scale: 1},
+ {key: "radius",name: "Neighbour radius px", idx: 3,  min: 2, max: 200, scale: 1},
+ {key: "sepR",  name: "Personal space px",   idx: 4,  min: 1, max: 100, scale: 1},
+ {key: "count", name: "Birds",               idx: 11, min: 1, max: 2000, scale: 1},
+ {key: "vmin",  name: "Min speed px/step",   idx: 8,  min: 0.25, max: 8, step: 0.25, scale: SUB},
+ {key: "vmax",  name: "Max speed px/step",   idx: 9,  min: 0.25, max: 16, step: 0.25, scale: SUB},
+ {key: "force", name: "Max force px/step²",  idx: 10, min: 0.02, max: 1, step: 0.01, scale: SUB},
+];
+const PRESETS = [
+ {name: "Starling swirl", sep: 150, ali: 100, coh: 100, radius: 50, sepR: 16, count: 1200, vmin: 2, vmax: 4, force: 0.12, trail: 0.25, color: "#e8e8ff"},
+ {name: "Fish school",    sep: 120, ali: 220, coh: 60,  radius: 70, sepR: 12, count: 700,  vmin: 1.5, vmax: 2.5, force: 0.06, trail: 0.35, color: "#7fd4ff"},
+ {name: "Chaos",          sep: 300, ali: 0,   coh: 30,  radius: 30, sepR: 25, count: 1500, vmin: 1, vmax: 6, force: 0.4, trail: 0.5, color: "#ffb070"},
+];
+
+// ---- event log, kept in localStorage so it survives a crash ----
+const LOG_MAX = 200, store = localStorage;
+let log = JSON.parse(store.getItem("mf.log") || "[]"), errors = [];
+function note(ev, data) {
+  log.push({t: new Date().toISOString(), ev, data});
+  if (log.length > LOG_MAX) log.shift();
+  store.setItem("mf.log", JSON.stringify(log));
+}
+function download(name, obj) {
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(new Blob([JSON.stringify(obj, null, 1)], {type: "application/json"}));
+  a.download = name; a.click();
+  note("download", name);
+}
+function stamp() { return new Date().toISOString().replace(/[:.]/g, "-"); }
+
+// Crash detection: "mf.clean" is set to 1 only when the page closes normally.
+const crashedBefore = store.getItem("mf.clean") === "0";
+const previousLog = log.slice();
+store.setItem("mf.clean", "0");
+note("start", {version: VERSION, crashedBefore, commit: PROOF.commit});
+let fatal = false;
+addEventListener("pagehide", () => { if (!fatal) { note("clean exit"); store.setItem("mf.clean", "1"); } });
+setInterval(() => store.setItem("mf.heartbeat", Date.now()), 2000);
+onerror = (msg, src, line) => { errors.push(msg + " @" + line); note("error", msg + " @" + line); };
+onunhandledrejection = e => { errors.push(String(e.reason)); note("rejection", String(e.reason)); };
+if (crashedBefore) {
+  crash.hidden = false;
+  crashDl.onclick = () => download("crash-report-" + stamp() + ".json", {version: VERSION, commit: PROOF.commit,
+    lastHeartbeat: new Date(+store.getItem("mf.heartbeat")).toISOString(),
+    browser: navigator.userAgent, eventsBeforeCrash: previousLog,
+    eventsAfterReload: log.slice(previousLog.length)});
+}
+
+// ---- proof badge (generated at build time from proof/gnatprove.out) ----
+const reached = PROOF.levels.filter(l => l[2]).map(l => l[0]);
+const topLevel = PROOF.levels.every(l => l[2]) ? "Gold" : (reached[reached.length - 1] || "none");
+badge.textContent = "SPARK " + topLevel + " ✓ " + PROOF.rows.Total.total + " checks";
+badge.style.background = topLevel === "Gold" ? "#b8860b" : "#555";
+proofPanel.innerHTML = "<b>GNATprove summary</b> (" + PROOF.gnatprove + ", commit " + PROOF.commit + ", built " + PROOF.built + ")<br><br>" +
+  PROOF.levels.map(l => `<div class=${l[2] ? "ok" : "no"}>${l[2] ? "✓" : "✗"} <b>${l[0]}</b>: ${l[1]}</div>`).join("") +
+  "<br><table><tr><th>Category</th><th>Total</th><th>Flow</th><th>Provers</th><th>Justified</th><th>Unproved</th></tr>" +
+  Object.entries(PROOF.rows).map(([k, r]) => `<tr><td>${k}</td><td>${r.total}</td><td>${r.flow}</td><td>${r.provers}</td><td>${r.justified}</td><td>${r.unproved}</td></tr>`).join("") +
+  "</table><br>No pragma Annotate, no pragma Assume, no suppressed warnings in src/. " +
+  "<a href='https://github.com/RobertBoettcherSF/murmuration-spark/blob/main/proof/gnatprove.out'>Full report</a>";
+badge.onclick = () => proofPanel.hidden = !proofPanel.hidden;
+
+// ---- settings ----
+let ada, current = 0, values = {}, fps = 0, frames = 0, trail = 0.25, color = "#fff";
+const saved = JSON.parse(store.getItem("mf.settings") || "null");
+PRESETS.forEach((p, i) => menu.add(new Option(p.name, i)));
+menu.add(new Option("Custom (Settings)", -1));
+setPanel.innerHTML = SLIDERS.map(s =>
+  `<label>${s.name}<input type=range min=${s.min} max=${s.max} step=${s.step || 1} data-k=${s.key}><output></output></label>`).join("") +
+  "<button id=resetBtn>Back to preset</button>";
+setBtn.onclick = () => setPanel.hidden = !setPanel.hidden;
+
+function send(key, v) {
+  const s = SLIDERS.find(s => s.key === key);
+  values[key] = v;
+  ada.mf_set_param(s.idx, Math.round(v * s.scale));
+}
+function syncSliders() {
+  setPanel.querySelectorAll("input").forEach(e => { e.value = values[e.dataset.k]; e.nextSibling.textContent = values[e.dataset.k]; });
+}
+setPanel.addEventListener("input", e => {
+  if (!e.target.dataset.k) return;
+  send(e.target.dataset.k, +e.target.value);
+  e.target.nextSibling.textContent = e.target.value;
+  menu.value = -1;
+  store.setItem("mf.settings", JSON.stringify(values));
+});
+setPanel.addEventListener("change", () => note("settings", values));
+resetBtn.onclick = () => { store.removeItem("mf.settings"); runPreset(current); };
+
+function resize() {
+  view.width = innerWidth; view.height = innerHeight;
+  if (ada) { ada.mf_set_param(1, Math.min(4096, Math.max(64, innerWidth))); ada.mf_set_param(2, Math.min(4096, Math.max(64, innerHeight))); }
+}
+addEventListener("resize", () => { resize(); note("resize", [innerWidth, innerHeight]); });
+
+function apply(vals) {
+  // order matters for the Ada consistency rules: max before min, radius before personal space
+  ["vmax", "vmin", "radius", "sepR", "sep", "ali", "coh", "force", "count"].forEach(k => send(k, vals[k]));
+  syncSliders();
+}
+function runPreset(i) {
+  current = i; const p = PRESETS[i];
+  trail = p.trail; color = p.color;
+  ada.mf_set_param(11, 0);                 // fresh flock
+  apply(p);
+  ada.mf_start((Math.random() * 2 ** 32) >>> 0);
+  menu.value = i;
+  info.textContent = p.name;
+  note("preset", p.name);
+}
+menu.onchange = () => { if (+menu.value >= 0) runPreset(+menu.value); else setPanel.hidden = false; };
+
+// ---- drawing ----
+const ctx = view.getContext("2d");
+function frame() {
+  if (fatal) return;
+  try {
+    ada.mf_tick();
+    ctx.fillStyle = `rgba(11,16,32,${1 - trail})`;
+    ctx.fillRect(0, 0, view.width, view.height);
+    ctx.fillStyle = color;
+    ctx.beginPath();
+    const n = ada.mf_count();
+    for (let i = 1; i <= n; i++) {
+      const x = ada.mf_x(i) / SUB, y = ada.mf_y(i) / SUB, vx = ada.mf_vx(i), vy = ada.mf_vy(i);
+      const l = Math.hypot(vx, vy) || 1, ux = vx / l, uy = vy / l;
+      ctx.moveTo(x + ux * 5, y + uy * 5);
+      ctx.lineTo(x - ux * 3 - uy * 2, y - uy * 3 + ux * 2);
+      ctx.lineTo(x - ux * 3 + uy * 2, y - uy * 3 - ux * 2);
+    }
+    ctx.fill();
+    frames++;
+  } catch (e) {               // a WebAssembly trap ends up here
+    fatal = true; errors.push(String(e)); note("wasm trap", String(e));
+    crash.hidden = false; crash.firstChild.textContent = "The simulation crashed: " + e + ". ";
+    crashDl.onclick = () => download("crash-report-" + stamp() + ".json",
+      {version: VERSION, commit: PROOF.commit, browser: navigator.userAgent, values, events: log});
+    return;
+  }
+  requestAnimationFrame(frame);
+}
+setInterval(() => { fps = frames; frames = 0; info.textContent = (+menu.value >= 0 ? PRESETS[current].name : "Custom") + " · " + ada.mf_count() + " birds · " + fps + " fps"; }, 1000);
+
+// ---- keys: Space = next preset, F9 = feedback file ----
+addEventListener("keydown", e => {
+  if (e.key === " " && !["INPUT", "SELECT", "BUTTON"].includes(e.target.tagName)) {
+    e.preventDefault(); note("space");
+    runPreset((current + 1) % PRESETS.length);
+  } else if (e.key === "F9") {
+    e.preventDefault();
+    const n = ada.mf_count(), sample = [];
+    for (let i = 1; i <= Math.min(n, 50); i++) sample.push([ada.mf_x(i), ada.mf_y(i), ada.mf_vx(i), ada.mf_vy(i)]);
+    let sx = 0, sy = 0;
+    for (let i = 1; i <= n; i++) { const vx = ada.mf_vx(i), vy = ada.mf_vy(i), l = Math.hypot(vx, vy) || 1; sx += vx / l; sy += vy / l; }
+    download("feedback-" + stamp() + ".json", {version: VERSION, commit: PROOF.commit, time: new Date().toISOString(),
+      browser: navigator.userAgent, screen: [innerWidth, innerHeight, devicePixelRatio],
+      preset: +menu.value >= 0 ? PRESETS[current].name : "custom", values, fps, birds: n,
+      alignment: n ? Math.hypot(sx, sy) / n : 0, firstBirds_units_1_256px: sample,
+      proof: PROOF, errors, events: log});
+  }
+});
+
+WebAssembly.instantiate(Uint8Array.from(atob(WASM), c => c.charCodeAt(0))).then(r => {
+  ada = r.instance.exports;
+  note("wasm loaded");
+  resize();
+  runPreset(0);
+  if (saved) { apply(saved); menu.value = -1; }
+  requestAnimationFrame(frame);
+});
+</script></body></html>

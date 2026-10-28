@@ -1,0 +1,46 @@
+V "GNAT Lib v16"
+A -O2
+A -gnatA
+A -gnat2012
+A -gnata
+A -gnatwa
+A -gnatR2js
+A -gnatws
+A -gnatx
+A -gnatis
+A -mtune=generic
+A -march=x86-64
+P ZX
+
+RN
+RV NO_DIRECT_BOOLEAN_OPERATORS
+RV NO_IMPLICIT_CONDITIONALS
+RV NO_DEFAULT_INITIALIZATION
+RV NO_IMPLEMENTATION_ASPECT_SPECIFICATIONS
+RV NO_IMPLEMENTATION_PRAGMAS
+
+U boids%b		boids.adb		75e78a50 NE OO PK
+Z system.assertions%s	s-assert.adb		s-assert.ali
+
+U boids%s		boids.ads		556b9d43 EE NE OO PK
+
+D ada.ads		20261023074735 76789da1 ada%s
+D a-assert.ads		20261023074731 ba465f5c ada.assertions%s
+D a-unccon.ads		20261023074735 0e9b276f ada.unchecked_conversion%s
+D boids.ads		20261028191556 556b9d43 boids%s
+D boids.adb		20261028191804 208c1713 boids%b
+D system.ads		20261023074739 e2b7c99d system%s
+D s-assert.ads		20261023074736 9c4520c7 system.assertions%s
+D s-exctab.ads		20261023074737 91bef6ef system.exception_table%s
+D s-stalib.ads		20261023074739 1c9580f6 system.standard_library%s
+G a e
+G c Z s s [vecIP boids 23 9 none]
+G c Z s s [norm2 boids 29 13 none]
+G c Z s s [sat boids 32 13 none]
+G c Z s b [isqrt boids 36 13 none]
+G c Z s b [limit boids 44 13 none]
+G c Z s b [clamp_speed boids 48 13 none]
+G c Z s b [torus_delta boids 53 13 none]
+G c Z s b [wrap boids 59 13 none]
+G c Z b b [scale boids 21 13 none]
+

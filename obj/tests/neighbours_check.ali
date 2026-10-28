@@ -1,0 +1,152 @@
+V "GNAT Lib v16"
+M P W=b
+A -O2
+A -gnatA
+A -gnat2022
+A -gnato
+A -mtune=generic
+A -march=x86-64
+P SS ZX
+
+RN
+RV NO_DIRECT_BOOLEAN_OPERATORS
+RV NO_EXCEPTIONS
+RV NO_FLOATING_POINT
+RV NO_IO
+RV NO_IMPLICIT_CONDITIONALS
+RV NO_STANDARD_STORAGE_POOLS
+RV NO_DEFAULT_INITIALIZATION
+RV NO_DYNAMIC_SIZED_OBJECTS
+RV NO_IMPLEMENTATION_ASPECT_SPECIFICATIONS
+RV NO_IMPLEMENTATION_PRAGMAS
+
+U neighbours_check%b	neighbours_check.adb	c63dd4a1 NE OO SU
+W ada%s			ada.ads			ada.ali
+W ada.numerics%s	a-numeri.ads		a-numeri.ali
+W ada.numerics.discrete_random%s
+Z ada.strings.text_buffers%s  a-sttebu.adb	a-sttebu.ali
+W ada.text_io%s		a-textio.adb		a-textio.ali
+W boids%s		boids.adb		boids.ali
+W boids.flocks%s	boids-flocks.adb	boids-flocks.ali
+W system%s		system.ads		system.ali
+Z system.img_int%s	s-imgint.ads		s-imgint.ali
+Z system.random_numbers%s  s-rannum.adb		s-rannum.ali
+
+D ada.ads		20261023074735 76789da1 ada%s
+D a-except.ads		20261023074733 8699d7ff ada.exceptions%s
+D a-ioexce.ads		20261023074734 40018c65 ada.io_exceptions%s
+D a-numeri.ads		20261023074733 84bea7a3 ada.numerics%s
+D a-nudira.ads		20261023074733 b8afcc59 ada.numerics.discrete_random%s
+D a-nudira.adb		20261023074733 0bfd6ec4 ada.numerics.discrete_random%b
+D a-stream.ads		20261023074734 cb01a8f8 ada.streams%s
+D a-string.ads		20261023074735 90ac6797 ada.strings%s
+D a-sttebu.ads		20261023074734 f1ad67a2 ada.strings.text_buffers%s
+D a-stuten.ads		20261023074734 c6ced0ae ada.strings.utf_encoding%s
+D a-tags.ads		20261023074734 2dbf449c ada.tags%s
+D a-textio.ads		20261023074734 34ef47de ada.text_io%s
+D a-unccon.ads		20261023074735 0e9b276f ada.unchecked_conversion%s
+D boids.ads		20261028191556 556b9d43 boids%s
+D boids-flocks.ads	20261028191523 0281cd88 boids.flocks%s
+D interfac.ads		20261023074736 9111f9c1 interfaces%s
+D i-cstrea.ads		20261023074736 ffd01b9d interfaces.c_streams%s
+D neighbours_check.adb	20261028191843 1d970fed neighbours_check%b
+D system.ads		20261023074739 e2b7c99d system%s
+D s-crtl.ads		20261023074736 823b6536 system.crtl%s
+D s-exctab.ads		20261023074737 91bef6ef system.exception_table%s
+D s-ficobl.ads		20261023074737 dc5161d4 system.file_control_block%s
+D s-imagei.ads		20261023074737 11a376a2 system.image_i%s
+D s-imageu.ads		20261023074737 95851461 system.image_u%s
+D s-imgint.ads		20261023074737 86836590 system.img_int%s
+D s-imguns.ads		20261023074737 34f2a7d6 system.img_uns%s
+D s-parame.ads		20261023074739 a1aeab5c system.parameters%s
+D s-putima.ads		20261023074739 1b989439 system.put_images%s
+D s-rannum.ads		20261023074739 95815eca system.random_numbers%s
+D s-rannum.adb		20261023074739 0f2dcb9a system.random_numbers%b
+D s-ransee.ads		20261023074739 01a57b33 system.random_seed%s
+D s-secsta.ads		20261023074739 578279f5 system.secondary_stack%s
+D s-soflin.ads		20261023074739 5d88fdea system.soft_links%s
+D s-stache.ads		20261023074739 0b81c1fe system.stack_checking%s
+D s-stalib.ads		20261023074739 1c9580f6 system.standard_library%s
+D s-stoele.ads		20261023074739 ccded4e8 system.storage_elements%s
+D s-traent.ads		20261023074739 c81cbf8c system.traceback_entries%s
+D s-unstyp.ads		20261023074739 fa2a7f59 system.unsigned_types%s
+D s-valuns.ads		20261023074739 c639d3c7 system.val_uns%s
+D s-valueu.ads		20261023074739 099f68d2 system.value_u%s
+D s-wchcon.ads		20261023074739 d9032363 system.wch_con%s
+G a e
+G c Z b b [neighbours_check standard 9 11 none]
+G r s flock [neighbours_check standard 9 11 none] [flockIP boids__flocks 35 9 none]
+G r c none [neighbours_check standard 9 11 none] [find_neighbours boids__flocks 75 14 none]
+X 1 ada.ads
+18K9*Ada 22e8 18|4r6 4r23 5r6 11r23
+X 4 a-numeri.ads
+20K13*Numerics 36e17 18|5r10 11r27
+X 5 a-nudira.ads
+46k22*Discrete_Random 105e33 18|5w19 11r36
+53R9 Generator<29|65R9> 18|12r12[11]
+55V13 Random{integer} 18|26s35[11] 27s35[11] 28s34[11] 29s32[11] 31s22[11]
+. 33s32[11] 34s32[11]
+70U14 Reset<29|109p14> 18|24s8[11]
+X 6 a-nudira.adb
+53V16 Random[29|86]{integer} 30|402b13[18|11]
+65V16 Random[29|86]{integer} 30|402b13[18|11]
+X 12 a-textio.ads
+58K13*Text_IO 785e16 18|4w10 4r27
+565U14*Put_Line 18|63s7 66s7
+X 14 boids.ads
+5K9*Boids 63e10 18|6w6 6r17 7r6 7r24
+7N4*Sub 18|26r58 27r58 28r56 29r47 30r25
+8N4*Max_Birds 18|31r57 39r35
+10I9*Big<long_integer> 18|26r21 27r21 28r21 29r23 33r23 34r23
+14I12*World_Size{10I9}
+15I12*Coord{10I9}
+X 15 boids-flocks.ads
+2K15*Flocks 115e17 18|7w12 7r30
+4I12*Bird_Count{integer} 18|15r12
+5I12*Bird_Index{integer}
+8I12*Radius_T{14|10I9}
+15i7*Width{14|14I12} 18|26m11 33r52 47r61
+15i14*Height{14|14I12} 18|27m11 34r52 49r61
+16i7*Radius{8I12} 18|28m11 51r68
+17i7*Sep_Radius{8I12} 18|30m11
+28i7*X{14|15I12} 18|33m18 46r73 47r41
+28i10*Y{14|15I12} 18|34m18 48r73 49r41
+32A9*Bird_Array(27R9)<integer>
+35R9*Flock 40e14 18|13r8
+36i7*N{4I12} 18|31m9 32r23 36r23 44r29
+37r7*P{14R9} 18|26m9 27m9 28m9 30m9 33r50 34r50 47r59 49r59 51r66
+38a7*B{32A9} 18|33m12 34m12 46r67 47r35 48r67 49r35
+71A9*Index_List(5I12)<integer> 18|14r11
+75U14*Find_Neighbours 18|37s10
+X 16 interfac.ads
+92M9*Unsigned_32
+95M9*Unsigned_64
+X 18 neighbours_check.adb
+9U11*Neighbours_Check 9b11 69l5 69t21
+10I12 R{integer} 11r53
+11K12 Rnd[5|46] 12r8 24r4 26r31 27r31 28r30 29r28 31r18 33r28 34r28
+12r4 G{5|53R9[11]} 24r15 26r43 27r43 28r42 29r40 31r30 33r40 34r40
+13r4 F{15|35R9} 26m7 27m7 28m7 30m7 31m7 32r21 33m10 33r48 34m10 34r48 36r21
+. 37r27 44r27 46r65 47r33 47r57 48r65 49r33 49r57 51r64
+14a4 List{15|71A9} 37m33 42r25
+15i4 Count{15|4I12} 37m39 41r27
+16i4 Mismatch{natural} 55m22 55r34 62r7 66r38
+16i14 Pairs{natural} 53m19 53r28 63r56
+18V13 Ring{long_float} 18b13 18>19 18>22 18>25 22l8 22t12 46s47 48s47
+18f19 A{long_float} 19r39
+18f22 B{long_float} 19r43
+18f25 Size{long_float} 21r33
+19f7 D{long_float} 21r30 21r40
+25i8 Trial{integer} 31r41
+32i11 I{integer} 33r15 34r15
+36i11 I{integer} 37r30 46r70 48r70 51r21
+39a13 In_List(boolean) 42m16 54r32
+41i17 K{integer} 42r31
+44i17 J{integer} 47r38 49r38 51r26 54r41
+46f19 DX{long_float} 51r32 51r37
+48f19 DY{long_float} 51r42 51r47
+50b19 Expect{boolean} 54r22
+X 29 s-rannum.ads
+77V13*Random{16|92M9} 30|224i21
+78V13*Random{16|95M9} 30|224i21
+

@@ -1,0 +1,82 @@
+V "GNAT Lib v16"
+A -O2
+A -gnatA
+A -gnat2012
+A -gnata
+A -gnatwa
+A -gnatR2js
+A -gnatws
+A -gnatx
+A -gnatis
+A -mtune=generic
+A -march=x86-64
+P ZX
+
+RN
+RV NO_DIRECT_BOOLEAN_OPERATORS
+RV NO_IMPLICIT_CONDITIONALS
+RV NO_DEFAULT_INITIALIZATION
+RV NO_DYNAMIC_SIZED_OBJECTS
+RV NO_IMPLEMENTATION_ASPECT_SPECIFICATIONS
+RV NO_IMPLEMENTATION_ATTRIBUTES
+RV NO_IMPLEMENTATION_PRAGMAS
+RV NO_IMPLICIT_LOOPS
+
+U boids.flocks%b	boids-flocks.adb	7dd6b997 NE OO PK
+W boids%s		boids.adb		boids.ali
+Z system.assertions%s	s-assert.adb		s-assert.ali
+
+U boids.flocks%s	boids-flocks.ads	57ea50cb EE NE OO PK
+W boids%s		boids.adb		boids.ali
+Z system.assertions%s	s-assert.adb		s-assert.ali
+
+D ada.ads		20261023074735 76789da1 ada%s
+D a-assert.ads		20261023074731 ba465f5c ada.assertions%s
+D a-unccon.ads		20261023074735 0e9b276f ada.unchecked_conversion%s
+D boids.ads		20261028191556 556b9d43 boids%s
+D boids-flocks.ads	20261028191523 0281cd88 boids.flocks%s
+D boids-flocks.adb	20261028191523 7f57741f boids.flocks%b
+D system.ads		20261023074739 e2b7c99d system%s
+D s-assert.ads		20261023074736 9c4520c7 system.assertions%s
+D s-exctab.ads		20261023074737 91bef6ef system.exception_table%s
+D s-stalib.ads		20261023074739 1c9580f6 system.standard_library%s
+G a e
+G c Z s s [valid_params boids__flocks 24 13 none]
+G c Z s s [in_world boids__flocks 43 13 none]
+G c Z s s [valid boids__flocks 46 13 none]
+G c Z s s [speeds_clamped boids__flocks 49 13 none]
+G c Z s s [dx boids__flocks 53 13 none]
+G c Z s s [dy boids__flocks 57 13 none]
+G c Z s s [dist2 boids__flocks 62 13 none]
+G c Z s s [is_neighbour boids__flocks 67 13 none]
+G c Z s b [find_neighbours boids__flocks 75 14 none]
+G c Z s s [cap boids__flocks 88 13 none]
+G c Z s b [separation boids__flocks 91 13 none]
+G c Z s b [alignment boids__flocks 97 13 none]
+G c Z s b [cohesion boids__flocks 103 13 none]
+G c Z s b [step boids__flocks 110 14 none]
+G c Z s s [paramsIP boids__flocks 14 9 none]
+G c Z s s [birdIP boids__flocks 27 9 none]
+G c Z s s [Tbird_arrayBIP boids__flocks 32 4 none]
+G c Z s s [Tvec_arrayBIP boids__flocks 33 4 none]
+G c Z s s [flockIP boids__flocks 35 9 none]
+G c Z s s [Tindex_listBIP boids__flocks 71 4 none]
+G c Z b b [set_length boids__flocks 28 13 none]
+G c Z b b [steer boids__flocks 35 13 none]
+G r c none [speeds_clamped boids__flocks 49 13 none] [norm2 boids 29 13 none]
+G r c none [dx boids__flocks 53 13 none] [torus_delta boids 53 13 none]
+G r c none [dy boids__flocks 57 13 none] [torus_delta boids 53 13 none]
+G r c none [dist2 boids__flocks 62 13 none] [torus_delta boids 53 13 none]
+G r c none [is_neighbour boids__flocks 67 13 none] [torus_delta boids 53 13 none]
+G r c none [find_neighbours boids__flocks 75 14 none] [torus_delta boids 53 13 none]
+G r c none [separation boids__flocks 91 13 none] [norm2 boids 29 13 none]
+G r c none [alignment boids__flocks 97 13 none] [norm2 boids 29 13 none]
+G r c none [cohesion boids__flocks 103 13 none] [norm2 boids 29 13 none]
+G r c none [step boids__flocks 110 14 none] [norm2 boids 29 13 none]
+G r s vec [Tvec_arrayBIP boids__flocks 33 4 none] [vecIP boids 23 9 none]
+G r s vec [flockIP boids__flocks 35 9 none] [vecIP boids 23 9 none]
+G r c none [set_length boids__flocks 28 13 none] [norm2 boids 29 13 none]
+G r c none [set_length boids__flocks 28 13 none] [isqrt boids 36 13 none]
+G r c none [set_length boids__flocks 28 13 none] [sat boids 32 13 none]
+G r c none [steer boids__flocks 35 13 none] [norm2 boids 29 13 none]
+
