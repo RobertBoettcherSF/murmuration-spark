@@ -103,6 +103,29 @@ Honest notes on what the proofs do **not** say:
 | 1200 | 13.4 ms/step | 2.2 ms/step |
 | 2000 | 33.0 ms/step | 5.2 ms/step |
 
+## Flock metrics (v0.2.1)
+
+The top bar shows, once per second, **alignment** (length of the mean unit
+heading: 1 = everyone flies the same way) and the number of **clusters**
+(connected groups of ≥ 5 birds, linked when closer than 50 px, with
+wrap-around). Both are also in the F9 feedback file, with the last two minutes
+of history. They are computed in JavaScript for display only.
+
+Starling swirl was retuned in v0.2.1 (radius 50 → 110 px, personal space
+16 → 40 px, separation 150 → 300 %, alignment and cohesion 100 → 250 %,
+min speed 2 → 2.5 px, max force 0.12 → 0.23). 1200 birds, after 2000 steps,
+seeds 5 / 9 / 11, native:
+
+| World | Clusters before | Clusters after | Largest after | Alignment before (mean of last 200 steps) | after |
+|---|---|---|---|---|---|
+| 2560 × 1440 | 12 / 12 / 14 | 3 / 4 / 2 | 754 / 857 / 1046 | 0.83 / 0.39 / 0.90 | 0.89 / 0.92 / 0.71 |
+| 1920 × 1080 | 7 / 7 / 10 | 2 / 1 / 2 | 1157 / 1200 / 710 | 0.80 / 0.91 / 0.87 | 0.91 / 0.99 / 0.92 |
+| 1280 × 720 | 5 / 5 / 4 | 1 / 1 / 1 | 1199 / 1200 / 1200 | 0.85 / 0.91 / 0.93 | 0.98 / 0.95 / 0.97 |
+
+The merged clouds are dense, so a step costs more (native 2.5–8.6 ms instead
+of 1.4–2.8 ms; WebAssembly in node 3–10 ms) — still inside a 60 fps frame on a
+desktop. Fish school and Chaos are unchanged.
+
 ## Commit badge
 
 The badge shows "built from <commit>": the source commit the page was built
