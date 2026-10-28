@@ -28,7 +28,7 @@ logs; every bird is moved by the proven Ada code.
 * Numbers: integers, 1 px = 256 units (fixed point). No floating point, so
   every bound is exact.
 * Neighbours of bird *i*: every other bird *j* with torus distance² < radius².
-  Search is all-pairs (O(n²)), `Max_Birds = 2000`.
+  Neighbour search uses a uniform grid (proven to return exactly the all-pairs set), `Max_Birds = 2000`.
 * Each rule computes a desired direction, scales it to max speed, subtracts the
   current velocity, limits it to `Max_Force` and multiplies by its weight
   (0–400 %, capped at `Max_Force × weight / 100`).
@@ -40,7 +40,7 @@ logs; every bird is moved by the proven Ada code.
 | File | Contents |
 |---|---|
 | `src/boids.ads/.adb` | bounded vectors, `Limit`, `Clamp_Speed`, `Torus_Delta`, `Wrap`, `Isqrt` |
-| `src/boids-flocks.ads/.adb` | flock, neighbour definition, `Find_Neighbours`, the three rules, `Step` |
+| `src/boids-flocks.ads/.adb` | flock, neighbour definition, `Find_Neighbours` (all-pairs) and the uniform grid, the three rules, `Step` |
 | `src/boids-api.ads/.adb` | WebAssembly exports (`mf_*`), parameter clamping, random start; also SPARK |
 | `web/template.html` | the page; `build.sh` fills in the WASM and the proof summary |
 | `tests/` | smoke test and neighbour brute-force check |
@@ -48,47 +48,68 @@ logs; every bird is moved by the proven Ada code.
 
 ## Proof status
 
-GNATprove FSF 16.1.0, `--mode=all --level=2`, all three units in SPARK
-(including the WebAssembly export layer). **254 checks, 254 proved,
+GNATprove FSF 16.1.0, `--mode=all --level=2 --timeout=60`, all three units in
+SPARK (including the WebAssembly export layer). **810 checks, 810 proved,
 0 justified, 0 unproved.** No `pragma Annotate`, no `pragma Assume`, no
 suppressed warnings, no `pragma Unreferenced` anywhere in `src/`.
 
 | Level | What | Status |
 |---|---|---|
 | Stone | valid SPARK | ✓ 3 units |
-| Bronze | flow analysis (initialization, data dependencies) | ✓ 18 checks |
-| Silver | no run-time errors: overflow, range, index, division by zero; loops terminate | ✓ 107 run-time checks + 29 termination |
-| Gold | functional contracts | ✓ 70 contracts + 30 assertions/loop invariants |
+| Bronze | flow analysis (initialization, data dependencies, aliasing) | ✓ 41 checks |
+| Silver | no run-time errors: overflow, range, index, division by zero; loops terminate | ✓ 416 run-time checks + 42 termination |
+| Gold | functional contracts | ✓ 165 contracts + 146 assertions/loop invariants |
 
 Gold properties (postconditions):
 
-* `Limit`: `Norm2 (Result) <= M²`.
-* `Separation`, `Alignment`, `Cohesion`: `Norm2 (Result) <= Cap (P, W)²`,
-  with `Cap = Max_Force × weight / 100` (at weight 100 %: ≤ `Max_Force`).
-* `Clamp_Speed`: `Min_Speed² <= Norm2 (Result) <= Max_Speed²`.
-* `Wrap`: result in `[0, Size)` and congruent to the input mod `Size`.
-* `Torus_Delta`: `|Result| <= Size/2`, and it differs from `B − A` by 0 or ±Size.
-* `Find_Neighbours`: the list is **exactly** the neighbour set: every entry is a
-  neighbour (distance² < radius², not itself), entries are strictly increasing
-  (no duplicates), and every neighbour is in the list.
-* `Step`: all birds stay in the world, every speed is clamped, count and
-  parameters unchanged.
+* `Rescale (V, T)` (V ≠ 0): `(T−2)² ≤ |Result|² ≤ T² + T` — the integer
+  square-root scaling is analysed exactly, not checked after the fact.
+* `Limit (V, M)`: `|Result|² ≤ M²`; unchanged if already short enough.
+  There is **no fallback**: the old "check, else return zero" branch is gone;
+  only `M = 0` returns zero, which is the only vector of length 0.
+* `Clamp_Speed (V, Lo, Hi)` (needs `Hi ≥ Lo + 3`): `Lo² ≤ |Result|² ≤ Hi²`;
+  unchanged if already in range. The only special case is the zero vector,
+  which has no direction and becomes `(Lo, 0)` — not a fallback for rounding.
+  The API keeps `Max_Speed ≥ Min_Speed + 3` (in 1/256 px).
+* `Separation`, `Alignment`, `Cohesion`: `|Result|² ≤ Cap²` and each component
+  `≤ Cap`, with `Cap = Max_Force × weight / 100`. Neighbour sums are now plain
+  integer sums: the proof bounds them by `count × (largest term)` from the
+  declared limits (positions < 4096 px, speeds ≤ 16 px, ≤ 2000 birds) and then
+  averages. The `Sat` saturation of v0.1 is removed.
+* `Wrap`, `Torus_Delta`: as before (result in `[0, Size)`; `|Δ| ≤ Size/2`).
+* `Find_Neighbours` (all-pairs, reference): exactly the neighbour set, sorted.
+* `Build_Grid` + `Find_Neighbours_Grid` (uniform grid, cells ≥ radius,
+  ≤ 64 × 64 cells, wrap-around): the result is **exactly the same set** as
+  `Find_Neighbours` — no duplicates, every entry a neighbour, every neighbour
+  present. Proven via: the cell chains are correct (`Chains_OK`), and any
+  neighbour is in the same or an adjacent cell on each axis, including across
+  the wrap seam (`Lemma_All_Near`, a ghost procedure erased from the binary).
+* `Step` uses the grid; all birds stay in the world, every speed is clamped,
+  velocity components stay bounded, count and parameters unchanged.
 * API: every exported procedure keeps the flock valid, whatever values the page sends.
 
 Honest notes on what the proofs do **not** say:
 
-* `Limit` and `Clamp_Speed` scale with an integer square root and then check
-  the result; if rounding ever left the result outside the bound they fall back
-  to a safe vector (zero, or `(Min_Speed, 0)`). The bound is proven
-  unconditionally; that the fallback is never taken is *not* proven (it is
-  just expected from the arithmetic).
-* Sums of neighbour vectors saturate at ±2²⁴ units (`Sat`). With the declared
-  limits they cannot reach it, but that is not proven either; saturating
-  keeps overflow impossible.
 * Nothing is proven about the *look* of the flock — that's what the page is for.
+* The grid proof is about the set; that the grid is *faster* is measured, not proven.
 * The WebAssembly is compiled with `-gnatp` (no run-time checks in the
   binary), which is justified by the Silver proof above; the JavaScript side
-  is not verified.
+  is not verified, and neither is the compiler.
+
+## Speed (native, `-O2`, 1280 × 720, radius 50 px, after 100 warm-up steps, mean of 200 steps)
+
+| Birds | v0.1 all-pairs | v0.2 grid |
+|---|---|---|
+| 1200 | 13.4 ms/step | 2.2 ms/step |
+| 2000 | 33.0 ms/step | 5.2 ms/step |
+
+## Commit badge
+
+The badge shows "built from <commit>": the source commit the page was built
+from (a file cannot contain the hash of the commit that contains it). The page
+then asks the GitHub API which commit last changed `docs/index.html` — the
+commit actually served — and shows it, with ✓ if its parent is the source
+commit. Deploys are therefore two commits: sources, then `docs/index.html`.
 
 ## Build, prove, test
 
@@ -111,15 +132,15 @@ Then open `docs/index.html` in a browser (no server needed).
 
 * `smoke`: 600 birds, 1280 × 720 world, seed 42, 500 steps; checks every
   bird every step: inside the world and speed in range.
-* `neighbours_check`: 40 random flocks (3 with up to 2000 birds, random world
-  sizes and radii), compares `Find_Neighbours` with a naive floating-point
-  all-pairs computation for every bird.
+* `neighbours_check`: 200 random flocks (3 with up to 2000 birds, random world
+  sizes, radii up to 400 px so 1-, 2- and 3-cell grids and the wrap seam are
+  hit), for every bird: `Find_Neighbours` vs a naive floating-point all-pairs
+  computation, and `Find_Neighbours_Grid` vs `Find_Neighbours` (same multiset).
 
 ## Roadmap
 
-* Grid-based neighbour search for speed, checked against the all-pairs
-  version (which is proven).
-* Remove the `Sat` / fallback gaps above by proving the tighter arithmetic.
+* Prove the grid's cost bound (each bird scans at most 9 cells) as a contract.
+* Interactive predator / obstacles.
 
 ## License
 

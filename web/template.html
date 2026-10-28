@@ -32,7 +32,7 @@
 <canvas id="view"></canvas>
 <script>
 "use strict";
-const VERSION = "0.1.0", WASM = "__WASM_BASE64__", PROOF = __PROOF_JSON__, SUB = 256;
+const VERSION = "0.2.0", WASM = "__WASM_BASE64__", PROOF = __PROOF_JSON__, SUB = 256;
 
 // Sliders. idx = parameter index of Boids.API.Set_Param (Ada); scale converts to Ada units.
 const SLIDERS = [
@@ -89,7 +89,23 @@ if (crashedBefore) {
 // ---- proof badge (generated at build time from proof/gnatprove.out) ----
 const reached = PROOF.levels.filter(l => l[2]).map(l => l[0]);
 const topLevel = PROOF.levels.every(l => l[2]) ? "Gold" : (reached[reached.length - 1] || "none");
-badge.textContent = "SPARK " + topLevel + " ✓ " + PROOF.rows.Total.total + " checks";
+badge.textContent = "SPARK " + topLevel + " ✓ " + PROOF.rows.Total.total + " checks · built from " + PROOF.commit;
+// The page cannot contain the hash of the commit that contains the page, so
+// it asks GitHub which commit last changed docs/index.html (the file being
+// served) and checks that this commit's parent is the source commit above.
+const servedEl = document.createElement("span");
+servedEl.style.marginLeft = "6px";
+badge.after(servedEl);
+fetch("https://api.github.com/repos/RobertBoettcherSF/murmuration-spark/commits?path=docs/index.html&per_page=1")
+  .then(r => r.ok ? r.json() : Promise.reject(r.status))
+  .then(cs => {
+    const c = cs[0], served = c.sha.slice(0, 7);
+    const ok = c.parents.some(p => p.sha.startsWith(PROOF.commit));
+    servedEl.innerHTML = `served: <a href="https://github.com/RobertBoettcherSF/murmuration-spark/commit/${c.sha}">${served}</a>` +
+      (ok ? " ✓ (parent = " + PROOF.commit + ")" : " ⚠ parent is not " + PROOF.commit);
+    PROOF.served = served;
+  })
+  .catch(e => { servedEl.textContent = "served commit: unknown (GitHub API: " + e + ")"; });
 badge.style.background = topLevel === "Gold" ? "#b8860b" : "#555";
 proofPanel.innerHTML = "<b>GNATprove summary</b> (" + PROOF.gnatprove + ", commit " + PROOF.commit + ", built " + PROOF.built + ")<br><br>" +
   PROOF.levels.map(l => `<div class=${l[2] ? "ok" : "no"}>${l[2] ? "✓" : "✗"} <b>${l[0]}</b>: ${l[1]}</div>`).join("") +

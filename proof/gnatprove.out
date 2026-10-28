@@ -2,24 +2,24 @@
 Summary of SPARK analysis
 =========================
 
-----------------------------------------------------------------------------------------------------------------------
-SPARK Analysis results        Total        Flow                                         Provers   Justified   Unproved
-----------------------------------------------------------------------------------------------------------------------
-Data Dependencies                 2           2                                               .           .          .
-Flow Dependencies                 .           .                                               .           .          .
-Initialization                   16          16                                               .           .          .
-Non-Aliasing                      .           .                                               .           .          .
-Run-time Checks                 107           .              107 (CVC5 90%, Z3 10%, altergo 0%)           .          .
-Assertions                       30           .               30 (CVC5 79%, Trivial 3%, Z3 18%)           .          .
-Functional Contracts             70           .    70 (CVC5 90%, Trivial 1%, Z3 9%, altergo 1%)           .          .
-LSP Verification                  .           .                                               .           .          .
-Termination                      29          28                                        1 (CVC5)           .          .
-Concurrency                       .           .                                               .           .          .
-----------------------------------------------------------------------------------------------------------------------
-Total                           254    46 (18%)                                       208 (82%)           .          .
+-----------------------------------------------------------------------------------------------------------------------
+SPARK Analysis results        Total        Flow                                          Provers   Justified   Unproved
+-----------------------------------------------------------------------------------------------------------------------
+Data Dependencies                 2           2                                                .           .          .
+Flow Dependencies                 .           .                                                .           .          .
+Initialization                   37          37                                                .           .          .
+Non-Aliasing                      2           2                                                .           .          .
+Run-time Checks                 416           .               416 (CVC5 89%, Z3 10%, altergo 1%)           .          .
+Assertions                      147           .    147 (CVC5 84%, Trivial 6%, Z3 9%, altergo 1%)           .          .
+Functional Contracts            164           .                164 (CVC5 94%, Trivial 1%, Z3 5%)           .          .
+LSP Verification                  .           .                                                .           .          .
+Termination                      42          38                                         4 (CVC5)           .          .
+Concurrency                       .           .                                                .           .          .
+-----------------------------------------------------------------------------------------------------------------------
+Total                           810    79 (10%)                                        731 (90%)           .          .
 
 
-max steps used for successful proof: 10268
+max steps used for successful proof: 86495
 
 ============================
 Most difficult proved checks
@@ -32,16 +32,28 @@ Detailed analysis report
 ========================
 
 Analyzed 3 units
-in unit boids, 9 subprograms and packages out of 9 analyzed
+in unit boids, 21 subprograms and packages out of 21 analyzed
   Boids at boids.ads:5 flow analyzed (0 errors, 0 checks, 0 warnings and 0 pragma Assume statements) and proved (0 checks)
-  Boids.Clamp_Speed at boids.ads:48 flow analyzed (0 errors, 0 checks, 0 warnings and 0 pragma Assume statements) and proved (6 checks)
-  Boids.Isqrt at boids.ads:36 flow analyzed (0 errors, 0 checks, 0 warnings and 0 pragma Assume statements) and proved (10 checks)
-  Boids.Limit at boids.ads:44 flow analyzed (0 errors, 0 checks, 0 warnings and 0 pragma Assume statements) and proved (4 checks)
+  Boids.Clamp_Speed at boids.ads:79 flow analyzed (0 errors, 0 checks, 0 warnings and 0 pragma Assume statements) and proved (10 checks)
+  Boids.Isqrt at boids.ads:59 flow analyzed (0 errors, 0 checks, 0 warnings and 0 pragma Assume statements) and proved (17 checks)
+  Boids.Lemma_Avg at boids.ads:53 flow analyzed (0 errors, 0 checks, 0 warnings and 0 pragma Assume statements) and proved (11 checks)
+  Boids.Lemma_Cancel at boids.adb:129 flow analyzed (0 errors, 0 checks, 0 warnings and 0 pragma Assume statements) and proved (2 checks)
+  Boids.Lemma_Comp_Bound at boids.ads:37 flow analyzed (0 errors, 0 checks, 0 warnings and 0 pragma Assume statements) and proved (3 checks)
+  Boids.Lemma_Div at boids.adb:149 flow analyzed (0 errors, 0 checks, 0 warnings and 0 pragma Assume statements) and proved (8 checks)
+  Boids.Lemma_Frac at boids.ads:48 flow analyzed (0 errors, 0 checks, 0 warnings and 0 pragma Assume statements) and proved (24 checks)
+  Boids.Lemma_Mul_Le at boids.adb:110 flow analyzed (0 errors, 0 checks, 0 warnings and 0 pragma Assume statements) and proved (1 checks)
+  Boids.Lemma_Mul_Le_B at boids.adb:118 flow analyzed (0 errors, 0 checks, 0 warnings and 0 pragma Assume statements) and proved (1 checks)
+  Boids.Lemma_Mul_Lt_B at boids.adb:122 flow analyzed (0 errors, 0 checks, 0 warnings and 0 pragma Assume statements) and proved (1 checks)
+  Boids.Lemma_Sq_Mono at boids.adb:72 flow analyzed (0 errors, 0 checks, 0 warnings and 0 pragma Assume statements) and proved (3 checks)
+  Boids.Lemma_Sq_Rev at boids.ads:44 flow analyzed (0 errors, 0 checks, 0 warnings and 0 pragma Assume statements) and proved (2 checks)
+  Boids.Lemma_Sq_Strict at boids.adb:80 flow analyzed (0 errors, 0 checks, 0 warnings and 0 pragma Assume statements) and proved (3 checks)
+  Boids.Lemma_Sum_Sq at boids.adb:139 flow analyzed (0 errors, 0 checks, 0 warnings and 0 pragma Assume statements) and proved (4 checks)
+  Boids.Limit at boids.ads:73 flow analyzed (0 errors, 0 checks, 0 warnings and 0 pragma Assume statements) and proved (5 checks)
   Boids.Norm2 at boids.ads:29 flow analyzed (0 errors, 0 checks, 0 warnings and 0 pragma Assume statements) and proved (0 checks)
-  Boids.Sat at boids.ads:32 flow analyzed (0 errors, 0 checks, 0 warnings and 0 pragma Assume statements) and proved (1 checks)
-  Boids.Scale at boids.adb:21 flow analyzed (0 errors, 0 checks, 0 warnings and 0 pragma Assume statements) and proved (8 checks)
-  Boids.Torus_Delta at boids.ads:53 flow analyzed (0 errors, 0 checks, 0 warnings and 0 pragma Assume statements) and proved (8 checks)
-  Boids.Wrap at boids.ads:59 flow analyzed (0 errors, 0 checks, 0 warnings and 0 pragma Assume statements) and proved (3 checks)
+  Boids.Normalise at boids.adb:40 flow analyzed (0 errors, 0 checks, 0 warnings and 0 pragma Assume statements) and proved (17 checks)
+  Boids.Rescale at boids.ads:67 flow analyzed (0 errors, 0 checks, 0 warnings and 0 pragma Assume statements) and proved (152 checks)
+  Boids.Torus_Delta at boids.ads:86 flow analyzed (0 errors, 0 checks, 0 warnings and 0 pragma Assume statements) and proved (8 checks)
+  Boids.Wrap at boids.ads:92 flow analyzed (0 errors, 0 checks, 0 warnings and 0 pragma Assume statements) and proved (3 checks)
 in unit boids-api, 12 subprograms and packages out of 12 analyzed
   Boids.API at boids-api.ads:6 flow analyzed (0 errors, 0 checks, 0 warnings and 0 pragma Assume statements) and proved (0 checks)
   Boids.API.Clamp at boids-api.adb:3 flow analyzed (0 errors, 0 checks, 0 warnings and 0 pragma Assume statements) and proved (1 checks)
@@ -52,24 +64,43 @@ in unit boids-api, 12 subprograms and packages out of 12 analyzed
   Boids.API.Get_Y at boids-api.ads:35 flow analyzed (0 errors, 0 checks, 0 warnings and 0 pragma Assume statements) and proved (1 checks)
   Boids.API.New_Bird at boids-api.adb:17 flow analyzed (0 errors, 0 checks, 0 warnings and 0 pragma Assume statements) and proved (17 checks)
   Boids.API.Next_Random at boids-api.adb:7 flow analyzed (0 errors, 0 checks, 0 warnings and 0 pragma Assume statements) and proved (2 checks)
-  Boids.API.Set_Param at boids-api.ads:14 flow analyzed (0 errors, 0 checks, 0 warnings and 0 pragma Assume statements) and proved (43 checks)
+  Boids.API.Set_Param at boids-api.ads:14 flow analyzed (0 errors, 0 checks, 0 warnings and 0 pragma Assume statements) and proved (49 checks)
   Boids.API.Start at boids-api.ads:19 flow analyzed (0 errors, 0 checks, 0 warnings and 0 pragma Assume statements) and proved (4 checks)
   Boids.API.Tick at boids-api.ads:24 flow analyzed (0 errors, 0 checks, 0 warnings and 0 pragma Assume statements) and proved (2 checks)
-in unit boids-flocks, 17 subprograms and packages out of 17 analyzed
-  Boids.Flocks at boids-flocks.ads:2 flow analyzed (0 errors, 0 checks, 0 warnings and 0 pragma Assume statements) and proved (0 checks)
-  Boids.Flocks.Alignment at boids-flocks.ads:97 flow analyzed (0 errors, 0 checks, 0 warnings and 0 pragma Assume statements) and proved (3 checks)
-  Boids.Flocks.Cap at boids-flocks.ads:88 flow analyzed (0 errors, 0 checks, 0 warnings and 0 pragma Assume statements) and proved (1 checks)
-  Boids.Flocks.Cohesion at boids-flocks.ads:103 flow analyzed (0 errors, 0 checks, 0 warnings and 0 pragma Assume statements) and proved (5 checks)
-  Boids.Flocks.DX at boids-flocks.ads:53 flow analyzed (0 errors, 0 checks, 0 warnings and 0 pragma Assume statements) and proved (1 checks)
-  Boids.Flocks.DY at boids-flocks.ads:57 flow analyzed (0 errors, 0 checks, 0 warnings and 0 pragma Assume statements) and proved (1 checks)
-  Boids.Flocks.Dist2 at boids-flocks.ads:62 flow analyzed (0 errors, 0 checks, 0 warnings and 0 pragma Assume statements) and proved (2 checks)
-  Boids.Flocks.Find_Neighbours at boids-flocks.ads:75 flow analyzed (0 errors, 0 checks, 0 warnings and 0 pragma Assume statements) and proved (30 checks)
-  Boids.Flocks.In_World at boids-flocks.ads:43 flow analyzed (0 errors, 0 checks, 0 warnings and 0 pragma Assume statements) and proved (2 checks)
-  Boids.Flocks.Is_Neighbour at boids-flocks.ads:67 flow analyzed (0 errors, 0 checks, 0 warnings and 0 pragma Assume statements) and proved (1 checks)
-  Boids.Flocks.Separation at boids-flocks.ads:91 flow analyzed (0 errors, 0 checks, 0 warnings and 0 pragma Assume statements) and proved (19 checks)
-  Boids.Flocks.Set_Length at boids-flocks.adb:28 flow analyzed (0 errors, 0 checks, 0 warnings and 0 pragma Assume statements) and proved (4 checks)
-  Boids.Flocks.Speeds_Clamped at boids-flocks.ads:49 flow analyzed (0 errors, 0 checks, 0 warnings and 0 pragma Assume statements) and proved (1 checks)
-  Boids.Flocks.Steer at boids-flocks.adb:35 flow analyzed (0 errors, 0 checks, 0 warnings and 0 pragma Assume statements) and proved (3 checks)
-  Boids.Flocks.Step at boids-flocks.ads:110 flow analyzed (0 errors, 0 checks, 0 warnings and 0 pragma Assume statements) and proved (22 checks)
-  Boids.Flocks.Valid at boids-flocks.ads:46 flow analyzed (0 errors, 0 checks, 0 warnings and 0 pragma Assume statements) and proved (0 checks)
-  Boids.Flocks.Valid_Params at boids-flocks.ads:24 flow analyzed (0 errors, 0 checks, 0 warnings and 0 pragma Assume statements) and proved (0 checks)
+in unit boids-flocks, 36 subprograms and packages out of 36 analyzed
+  Boids.Flocks at boids-flocks.ads:4 flow analyzed (0 errors, 0 checks, 0 warnings and 0 pragma Assume statements) and proved (0 checks)
+  Boids.Flocks.Alignment at boids-flocks.ads:194 flow analyzed (0 errors, 0 checks, 0 warnings and 0 pragma Assume statements) and proved (12 checks)
+  Boids.Flocks.Axis at boids-flocks.adb:37 flow analyzed (0 errors, 0 checks, 0 warnings and 0 pragma Assume statements) and proved (9 checks)
+  Boids.Flocks.Build_Grid at boids-flocks.ads:162 flow analyzed (0 errors, 0 checks, 0 warnings and 0 pragma Assume statements) and proved (22 checks)
+  Boids.Flocks.Cap at boids-flocks.ads:180 flow analyzed (0 errors, 0 checks, 0 warnings and 0 pragma Assume statements) and proved (1 checks)
+  Boids.Flocks.Cell_X at boids-flocks.ads:136 flow analyzed (0 errors, 0 checks, 0 warnings and 0 pragma Assume statements) and proved (2 checks)
+  Boids.Flocks.Cell_Y at boids-flocks.ads:138 flow analyzed (0 errors, 0 checks, 0 warnings and 0 pragma Assume statements) and proved (2 checks)
+  Boids.Flocks.Chains_OK at boids-flocks.ads:144 flow analyzed (0 errors, 0 checks, 0 warnings and 0 pragma Assume statements) and proved (10 checks)
+  Boids.Flocks.Cohesion at boids-flocks.ads:201 flow analyzed (0 errors, 0 checks, 0 warnings and 0 pragma Assume statements) and proved (14 checks)
+  Boids.Flocks.DX at boids-flocks.ads:62 flow analyzed (0 errors, 0 checks, 0 warnings and 0 pragma Assume statements) and proved (1 checks)
+  Boids.Flocks.DY at boids-flocks.ads:66 flow analyzed (0 errors, 0 checks, 0 warnings and 0 pragma Assume statements) and proved (1 checks)
+  Boids.Flocks.Dist2 at boids-flocks.ads:71 flow analyzed (0 errors, 0 checks, 0 warnings and 0 pragma Assume statements) and proved (2 checks)
+  Boids.Flocks.Exact_Set at boids-flocks.ads:86 flow analyzed (0 errors, 0 checks, 0 warnings and 0 pragma Assume statements) and proved (9 checks)
+  Boids.Flocks.Find_Neighbours at boids-flocks.ads:99 flow analyzed (0 errors, 0 checks, 0 warnings and 0 pragma Assume statements) and proved (30 checks)
+  Boids.Flocks.Find_Neighbours_Grid at boids-flocks.ads:172 flow analyzed (0 errors, 0 checks, 0 warnings and 0 pragma Assume statements) and proved (51 checks)
+  Boids.Flocks.Geometry_OK at boids-flocks.ads:131 flow analyzed (0 errors, 0 checks, 0 warnings and 0 pragma Assume statements) and proved (0 checks)
+  Boids.Flocks.Grid_OK at boids-flocks.ads:158 flow analyzed (0 errors, 0 checks, 0 warnings and 0 pragma Assume statements) and proved (1 checks)
+  Boids.Flocks.In_World at boids-flocks.ads:48 flow analyzed (0 errors, 0 checks, 0 warnings and 0 pragma Assume statements) and proved (2 checks)
+  Boids.Flocks.Inv at boids-flocks.adb:157 flow analyzed (0 errors, 0 checks, 0 warnings and 0 pragma Assume statements) and proved (8 checks)
+  Boids.Flocks.Is_Neighbour at boids-flocks.ads:76 flow analyzed (0 errors, 0 checks, 0 warnings and 0 pragma Assume statements) and proved (1 checks)
+  Boids.Flocks.Key at boids-flocks.ads:141 flow analyzed (0 errors, 0 checks, 0 warnings and 0 pragma Assume statements) and proved (3 checks)
+  Boids.Flocks.Lemma_All_Near at boids-flocks.adb:212 flow analyzed (0 errors, 0 checks, 0 warnings and 0 pragma Assume statements) and proved (19 checks)
+  Boids.Flocks.Lemma_Axis_Near at boids-flocks.adb:98 flow analyzed (0 errors, 0 checks, 0 warnings and 0 pragma Assume statements) and proved (26 checks)
+  Boids.Flocks.Lemma_Div_Close at boids-flocks.adb:81 flow analyzed (0 errors, 0 checks, 0 warnings and 0 pragma Assume statements) and proved (15 checks)
+  Boids.Flocks.Lemma_Neighbour_Close at boids-flocks.adb:138 flow analyzed (0 errors, 0 checks, 0 warnings and 0 pragma Assume statements) and proved (18 checks)
+  Boids.Flocks.List_OK at boids-flocks.ads:183 flow analyzed (0 errors, 0 checks, 0 warnings and 0 pragma Assume statements) and proved (1 checks)
+  Boids.Flocks.Near at boids-flocks.adb:94 flow analyzed (0 errors, 0 checks, 0 warnings and 0 pragma Assume statements) and proved (6 checks)
+  Boids.Flocks.No_Marks at boids-flocks.ads:166 flow analyzed (0 errors, 0 checks, 0 warnings and 0 pragma Assume statements) and proved (0 checks)
+  Boids.Flocks.Scan_Cell at boids-flocks.adb:170 flow analyzed (0 errors, 0 checks, 0 warnings and 0 pragma Assume statements) and proved (32 checks)
+  Boids.Flocks.Separation at boids-flocks.ads:187 flow analyzed (0 errors, 0 checks, 0 warnings and 0 pragma Assume statements) and proved (36 checks)
+  Boids.Flocks.Speeds_Clamped at boids-flocks.ads:58 flow analyzed (0 errors, 0 checks, 0 warnings and 0 pragma Assume statements) and proved (1 checks)
+  Boids.Flocks.Steer at boids-flocks.adb:305 flow analyzed (0 errors, 0 checks, 0 warnings and 0 pragma Assume statements) and proved (9 checks)
+  Boids.Flocks.Step at boids-flocks.ads:209 flow analyzed (0 errors, 0 checks, 0 warnings and 0 pragma Assume statements) and proved (31 checks)
+  Boids.Flocks.Valid at boids-flocks.ads:55 flow analyzed (0 errors, 0 checks, 0 warnings and 0 pragma Assume statements) and proved (0 checks)
+  Boids.Flocks.Valid_Params at boids-flocks.ads:29 flow analyzed (0 errors, 0 checks, 0 warnings and 0 pragma Assume statements) and proved (0 checks)
+  Boids.Flocks.Vel_Bounded at boids-flocks.ads:51 flow analyzed (0 errors, 0 checks, 0 warnings and 0 pragma Assume statements) and proved (2 checks)

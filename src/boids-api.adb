@@ -21,6 +21,8 @@ package body Boids.API with SPARK_Mode is
                   and The_Flock.P = The_Flock.P'Old
                   and The_Flock.B (I).X < The_Flock.P.Width
                   and The_Flock.B (I).Y < The_Flock.P.Height
+                  and The_Flock.B (I).V.X in Vel_Comp
+                  and The_Flock.B (I).V.Y in Vel_Comp
                   and (for all K in Bird_Index =>
                          (if K /= I then The_Flock.B (K) = The_Flock.B'Old (K)));
 
@@ -55,11 +57,13 @@ package body Boids.API with SPARK_Mode is
          when others => null;
       end case;
       --  keep the parameters consistent
-      if P.Min_Speed > P.Max_Speed then
+      if P.Min_Speed + 3 > P.Max_Speed then
          if Index = 8 then
-            P.Max_Speed := P.Min_Speed;
+            P.Min_Speed := Big'Min (P.Min_Speed, Max_Speed_Lim - 3);
+            P.Max_Speed := P.Min_Speed + 3;
          else
-            P.Min_Speed := P.Max_Speed;
+            P.Max_Speed := Big'Max (P.Max_Speed, 4);
+            P.Min_Speed := P.Max_Speed - 3;
          end if;
       end if;
       if P.Sep_Radius > P.Radius then
@@ -74,6 +78,9 @@ package body Boids.API with SPARK_Mode is
          The_Flock.B (I).X := Wrap (The_Flock.B (I).X, P.Width);
          The_Flock.B (I).Y := Wrap (The_Flock.B (I).Y, P.Height);
          pragma Loop_Invariant (The_Flock.N = Old_N);
+         pragma Loop_Invariant
+           (for all K in Bird_Index =>
+              The_Flock.B (K).V = The_Flock.B'Loop_Entry (K).V);
          pragma Loop_Invariant
            (for all K in 1 .. I =>
               The_Flock.B (K).X < P.Width and The_Flock.B (K).Y < P.Height);
@@ -90,7 +97,9 @@ package body Boids.API with SPARK_Mode is
                                       and The_Flock.P = P);
                pragma Loop_Invariant
                  (for all K in Old_N + 1 .. I =>
-                    The_Flock.B (K).X < P.Width and The_Flock.B (K).Y < P.Height);
+                    The_Flock.B (K).X < P.Width and The_Flock.B (K).Y < P.Height
+                    and The_Flock.B (K).V.X in Vel_Comp
+                    and The_Flock.B (K).V.Y in Vel_Comp);
             end loop;
             The_Flock.N := New_N;
          end;

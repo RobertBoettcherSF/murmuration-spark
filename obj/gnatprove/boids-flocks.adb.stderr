@@ -1,9 +1,0 @@
- info: cannot unroll loop (too many loop iterations) [info-unrolling-inlining]
---> boids-flocks.adb:58:27
-
- info: cannot unroll loop (too many loop iterations) [info-unrolling-inlining]
---> boids-flocks.adb:79:27
-
- info: cannot unroll loop (too many loop iterations) [info-unrolling-inlining]
---> boids-flocks.adb:94:27
-

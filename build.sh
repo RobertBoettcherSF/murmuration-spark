@@ -21,7 +21,7 @@ done
 ar x "$T/lib/rts-native/adalib/libgnat.a" s-memcop.o s-memmov.o s-memset.o
 "$LD" --no-entry --strip-all --export=mf_set_param --export=mf_start \
   --export=mf_tick --export=mf_count --export=mf_x --export=mf_y \
-  --export=mf_vx --export=mf_vy --initial-memory=16777216 -o mf.wasm *.o
+  --export=mf_vx --export=mf_vy -z stack-size=2097152 --initial-memory=16777216 -o mf.wasm *.o
 cd ../..
 python3 tools/embed.py obj/wasm/mf.wasm proof/gnatprove.out web/template.html docs/index.html
 echo "Built docs/index.html ($(wc -c < obj/wasm/mf.wasm) bytes of WebAssembly)"
