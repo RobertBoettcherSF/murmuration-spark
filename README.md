@@ -13,7 +13,7 @@ each version and what is still open. Then read the specs in `src/` in the
 order it suggests.
 For a deep, step-by-step study of one real GNATprove failure and the ghost
 lemma that fixed it, jump to
-[Deep study: one failed proof in Rescale](docs/HOW_WE_GOT_HERE.md#10-deep-study-one-failed-proof-in-rescale).
+[Deep study: one failed proof in Rescale](docs/HOW_WE_GOT_HERE.md#10-deep-study-one-failed-proof-in-rescale). The grid is drawn in [Deep study: the neighbour grid in pictures](docs/HOW_WE_GOT_HERE.md#11-deep-study-the-neighbour-grid-in-pictures).
 
 The page (`docs/index.html`, one self-contained file) embeds the WebAssembly
 module as base64. JavaScript only draws the birds, shows menus and writes

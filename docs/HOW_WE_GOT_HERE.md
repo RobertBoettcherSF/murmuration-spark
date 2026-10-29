@@ -314,6 +314,136 @@ The general recipe used throughout this repository:
 3. Call it right before the assertion, with arguments that match the
    assertion's terms.
 
+## 11. Deep study: the neighbour grid in pictures
+
+This section draws the three shapes the grid proofs talk about. Under each picture you get the contract clauses that say the same thing. Names are from `src/boids-flocks.ads` / `.adb`. Coordinates are fixed point (`Sub` = 256 units per pixel), but the pictures use small whole numbers.
+
+### 11.1 Cells and the wider last cell (`Axis`, `Geometry_OK`)
+
+Per axis, `Axis` picks a cell size `Cs = max(R, Size/Max_G + 1)` and a count `G = max(1, Size/Cs)`. A bird's cell is `Cell_X = min(X / Csx, Gx - 1)`. Because `G` rounds down, `G*Cs <= Size`, and whatever is left over goes into the **last** cell:
+
+```
+ Size = 23, R = 5  ->  Cs = 5, G = 4   (4*5 = 20 <= 23)
+
+ x:  0    5    10   15        23 (= 0, wraps)
+     |----|----|----|-------|
+     | 0  | 1  | 2  |   3    |     cell 3 is 8 wide: [15, 23)
+     |----|----|----|-------|
+                    ^ min(X/Cs, G-1) clamps x = 20..22 into cell 3
+```
+
+Contract link: `Geometry_OK` keeps exactly two facts. `Cs >= Radius` means no cell is narrower than the radius. `G = 1 or G*Cs <= Size` means the remainder is non-negative, so the last cell is **at least** `Cs` wide, never narrower. Nothing says the last cell is *exactly* `Cs`. The proofs never need that, because a wider cell only makes "same or adjacent cell" easier to reach.
+
+### 11.2 Cell chains (`Build_Grid`, `Chains_OK`)
+
+`Key(J) = Cell_Y*Gx + Cell_X`. `Build_Grid` walks `J = 1..N` and pushes each bird onto the front of its cell's list:
+
+```
+   C := Key(J);  Next(J) := Head(C);  Head(C) := J;
+```
+
+Worked example, `Gx = Gy = 4` (16 cells), six birds:
+
+```
+ bird J :  1   2   3   4   5   6
+ Key(J) :  5   9   5   0   5   9
+
+ after the loop:
+
+ Head(0) = 4 --> 4 --> 0(end)
+ Head(5) = 5 --> 5 --> 3 --> 1 --> 0
+ Head(9) = 6 --> 6 --> 2 --> 0
+ Head(other) = 0
+
+ Next:  J    1  2  3  4  5  6
+        Next 0  0  1  0  3  2      (always Next(J) < J)
+```
+
+Each chain runs in **decreasing** index order, and it has no gaps: between two links of a chain there is no bird with the same key. That no-gap property is exactly what `Chains_OK (F, G, Upto)` states. It is also `Build_Grid`'s loop invariant, with `Upto = J`:
+
+| Picture fact | Clause of `Chains_OK` |
+|---|---|
+| `Head(C)` is the newest bird seen so far | `Head(C) <= Upto` |
+| the head really lives in cell C | `Head(C) /= 0 -> Key(Head(C)) = C` |
+| nobody newer than the head is in C | no `J in Head(C)+1 .. Upto` with `Key(J) = C` |
+| arrows point to older birds | `Next(J) < J` (so walks terminate; 0 = end) |
+| an arrow stays in the cell | `Next(J) /= 0 -> Key(Next(J)) = Key(J)` |
+| an arrow skips no same-cell bird | no `J2 in Next(J)+1 .. J-1` with `Key(J2) = Key(J)` |
+
+Why the invariant is preserved: the step for bird J only changes `Head(Key(J))` and `Next(J)`. The old head becomes `Next(J)`, and the "no newer bird" clause for the old head turns into the "skips nothing" clause for J. Every other cell is untouched. At the end, `Grid_OK = Geometry_OK and Chains_OK (F, G, F.N)`.
+
+The payoff: walking a chain from `Head(C)` along `Next` visits **every** bird with `Key = C`, each once, in decreasing order. That is the fact `Scan_Cell` relies on.
+
+### 11.3 Scanning one chain (`Scan_Cell`)
+
+```
+ Head(5) = 5 --> 3 --> 1 --> 0
+                 ^Cur
+ already decided: birds > Cur in cell 5     still to visit: Cur, then older
+```
+
+`Scan_Cell`'s loop invariant is the picture: for every bird J,
+`Marks(J) = Marks'Entry(J) or (J > Cur and Key(J) = C and Is_Neighbour(F, I, J))`.
+Because of the no-gap clauses, "J > Cur and Key(J) = C" is exactly "already walked past". When `Cur` reaches 0, that becomes "every bird in C", which is the post:
+
+```
+ Marks(J) = Marks'Old(J) or (Key(J) = C and Is_Neighbour(F, I, J))
+```
+
+`Inv` holds throughout: every list entry is a neighbour, marked and distinct, and every marked bird is in the list. A bird is appended only if it is an unmarked neighbour, and it is marked at once.
+
+### 11.4 The 9-cell scan and the seam (`Find_Neighbours_Grid`, `Lemma_Axis_Near`)
+
+Around bird I in cell `(CX, CY)`:
+
+```
+ Xs = ((CX+Gx-1) mod Gx, CX, (CX+1) mod Gx)     Ys likewise
+ Cells((A-1)*3 + B) = Ys(A)*Gx + Xs(B)
+
+            Xs(1)   Xs(2)   Xs(3)
+          +-------+-------+-------+
+   Ys(1)  |   1   |   2   |   3   |
+          +-------+-------+-------+
+   Ys(2)  |   4   | I : 5 |   6   |
+          +-------+-------+-------+
+   Ys(3)  |   7   |   8   |   9   |
+          +-------+-------+-------+
+```
+
+At the edge, the `mod` wraps the scan across the seam. With bird I in cell 0 of the 4-cell axis above:
+
+```
+ x:  0    5    10   15        23|0
+     | 0  | 1  | 2  |   3    |
+       I    +1             -1      Xs = (3, 0, 1)
+       ^--- a neighbour at x = 21 is 2 px away across the seam
+```
+
+**Why nine cells are enough** is the ghost `Lemma_All_Near`. For each neighbour J it uses `Lemma_Neighbour_Close` (via `Lemma_Sq_Rev`) to get `|DX| < R` and `|DY| < R` on the wrapped torus distance. Then `Lemma_Axis_Near` turns "closer than R <= Cs" into "same or adjacent cell (mod G)". It has three cases:
+
+1. **No wrap.** The birds are within `Cs` of each other on the plane, so their `X/Cs` values differ by at most 1 (`Lemma_Div_Close`). The `min(..., G-1)` clamp only merges values into the last cell, so it cannot push them apart.
+2. **Wrap, I on the left.** `X1 < Cs` gives `X1/Cs = 0`, so I is in cell 0. The other bird has `X2 >= Size - Cs >= (G-1)*Cs` (this is where `G*Cs <= Size` from 11.1 is used), so it is in cell `G-1`, and `0 = (G-1)+1 mod G`.
+3. **Wrap, mirrored.** The same argument with the roles swapped.
+
+The wider last cell is harmless for the same reason: it only makes "`X2` is in cell `G-1`" easier to satisfy.
+
+**Duplicates.** When `G < 3` on an axis, `Xs` repeats a cell (for `G = 1` all three are cell 0; for `G = 2`, -1 and +1 are the same cell). The same chain is then scanned twice. The marks from 11.3 keep the list duplicate-free: a marked bird is never appended again. Afterwards the marks of the listed birds are cleared, which gives `No_Marks`.
+
+**Putting it together into `Exact_Set`:**
+
+| `Exact_Set` clause | Where it comes from |
+|---|---|
+| every `List(K)` is a neighbour, `<= F.N` | `Inv`, kept by every `Scan_Cell` |
+| no two entries equal | `Inv` + marks (11.3, duplicates paragraph) |
+| every neighbour J appears | `Lemma_All_Near` puts `Key(J)` among the 9 `Cells`. That cell's `Scan_Cell` post marks J, and `Inv` says marked birds are in the list |
+
+`List_Max = 9 * Max_Birds` is the size bound: each of the 9 scans adds at most `F.N` entries (`Count <= Count'Old + F.N`).
+
+### 11.5 What this section does not show
+
+- The arithmetic inside `Lemma_Div_Close` and `Lemma_Sq_Rev`. Read those bodies directly.
+- How the prover is steered through the `Chains_OK` preservation step. That step is proved without extra lemmas, so there is nothing more to draw.
+
 ## Where to start changing things
 
 * New rule or parameter: `Params` and the rules in `boids-flocks.ads`, then
