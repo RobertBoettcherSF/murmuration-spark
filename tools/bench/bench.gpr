@@ -1,0 +1,19 @@
+--  SRC defaults to the current sources; point it at an old checkout
+--  (e.g. a git worktree of v0.1) to time that version with the same harness.
+--  CHECKS=on keeps run-time checks; default off (-gnatp), like the WASM build.
+project Bench is
+   type On_Off is ("on", "off");
+   Checks : On_Off := external ("CHECKS", "off");
+   Src := external ("SRC", "../../src");
+   Out_Dir := "../../obj/bench/" & external ("TAG", "cur") & "-" & Checks;
+   for Source_Dirs use (Src, ".");
+   for Object_Dir use Out_Dir;
+   for Exec_Dir use Out_Dir;
+   for Main use ("metrics.adb", "steptime.adb");
+   package Compiler is
+      case Checks is
+         when "on"  => for Default_Switches ("Ada") use ("-gnat2022", "-O2");
+         when "off" => for Default_Switches ("Ada") use ("-gnat2022", "-O2", "-gnatp");
+      end case;
+   end Compiler;
+end Bench;

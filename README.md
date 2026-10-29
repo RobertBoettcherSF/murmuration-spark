@@ -13,7 +13,7 @@ each version and what is still open. Then read the specs in `src/` in the
 order it suggests.
 For a deep, step-by-step study of one real GNATprove failure and the ghost
 lemma that fixed it, jump to
-[Deep study: one failed proof in Rescale](docs/HOW_WE_GOT_HERE.md#10-deep-study-one-failed-proof-in-rescale). The grid is drawn in [Deep study: the neighbour grid in pictures](docs/HOW_WE_GOT_HERE.md#11-deep-study-the-neighbour-grid-in-pictures).
+[Deep study: one failed proof in Rescale](docs/HOW_WE_GOT_HERE.md#10-deep-study-one-failed-proof-in-rescale). The grid is drawn in [Deep study: the neighbour grid in pictures](docs/HOW_WE_GOT_HERE.md#11-deep-study-the-neighbour-grid-in-pictures). To re-measure the speed and flock-metric tables below, see [tools/README.md](tools/README.md).
 
 The page (`docs/index.html`, one self-contained file) embeds the WebAssembly
 module as base64. JavaScript only draws the birds, shows menus and writes
@@ -134,6 +134,7 @@ seeds 5 / 9 / 11, native:
 The merged clouds are dense, so a step costs more (native 2.5–8.6 ms instead
 of 1.4–2.8 ms; WebAssembly in node 3–10 ms) — still inside a 60 fps frame on a
 desktop. Fish school and Chaos are unchanged.
+Reproduce these numbers with [tools/README.md](tools/README.md).
 
 ## Commit badge
 

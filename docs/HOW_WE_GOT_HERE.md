@@ -444,6 +444,10 @@ The wider last cell is harmless for the same reason: it only makes "`X2` is in c
 - The arithmetic inside `Lemma_Div_Close` and `Lemma_Sq_Rev`. Read those bodies directly.
 - How the prover is steered through the `Chains_OK` preservation step. That step is proved without extra lemmas, so there is nothing more to draw.
 
+## 12. Measuring instead of proving
+
+The proofs say nothing about speed or about how the flock looks (see the honest notes in the README). Those numbers are measured with the programs in [`tools/bench/`](../tools/README.md). It has one-command recipes for the README tables, reproduced on 29 Oct 2026, and it notes where they drift.
+
 ## Where to start changing things
 
 * New rule or parameter: `Params` and the rules in `boids-flocks.ads`, then
