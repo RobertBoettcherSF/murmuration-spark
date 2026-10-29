@@ -11,6 +11,9 @@ browser.
 rules, the fixed-point arithmetic, how the proofs are built, what changed in
 each version and what is still open. Then read the specs in `src/` in the
 order it suggests.
+For a deep, step-by-step study of one real GNATprove failure and the ghost
+lemma that fixed it, jump to
+[Deep study: one failed proof in Rescale](docs/HOW_WE_GOT_HERE.md#10-deep-study-one-failed-proof-in-rescale).
 
 The page (`docs/index.html`, one self-contained file) embeds the WebAssembly
 module as base64. JavaScript only draws the birds, shows menus and writes

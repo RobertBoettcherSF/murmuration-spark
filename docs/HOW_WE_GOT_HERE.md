@@ -155,6 +155,165 @@ personal space 40, separation 300 %, alignment and cohesion 250 %, min speed
   natural next step, needing new proofs.
 * Not yet proven: the grid's cost bound (at most 9 cells per bird).
 
+## 10. Deep study: one failed proof in Rescale
+
+This walks through one real GNATprove failure, step by step: the obligation,
+the prover's message, what was missing and the ghost lemma that closes it.
+
+**Where the failure comes from.** While v0.2 was being developed,
+non-linear assertions in `Rescale` timed out repeatedly until each fact got
+its own ghost lemma. Those intermediate logs were not kept, so this failure
+is **reproduced**. I took the committed `src/boids.adb` (v0.2.1, all 810
+checks proved), replaced one ghost call with `null;` in a scratch copy and
+re-ran GNATprove FSF 16.1.0 on `Rescale` alone:
+
+```sh
+gnatprove -P murmuration.gpr -j0 --mode=all --level=2 --timeout=60 \
+  --report=fail -u boids.adb --limit-subp=boids.ads:91
+```
+
+The repository itself was never changed. To reproduce it, make the same
+one-line edit at `src/boids.adb:196` in a copy and run the command above.
+
+### The code around it
+
+`Rescale (V, T)` returns `V` scaled to length `T`. After normalising `V`
+to `(WX, WY)` with `N = WX² + WY²` and `S = Isqrt (N)`, each component is
+
+```ada
+RX := WX * T / S;      --  integer division, truncates toward zero
+RY := WY * T / S;
+```
+
+The upper half of the postcondition, `|R|² ≤ T² + T`, is proven by a chain
+of assertions. Its first link is "each component squared, times S², is at
+most the exact value squared":
+
+```ada
+A  : constant Big := abs RX;     B  : constant Big := abs RY;
+PX : constant Big := abs WX * T; PY : constant Big := abs WY * T;
+T2 : constant Big := T * T;      S2 : constant Big := S * S;
+...
+Lemma_Sq_Mono (A * S, PX);
+Lemma_Sq_Mono (B * S, PY);                          -- line 196
+pragma Assert (A * A * S2 <= WX * WX * T2);
+pragma Assert (B * B * S2 <= WY * WY * T2);         -- line 198
+pragma Assert (Q * S2 <= N * T2);
+```
+
+### The failure
+
+With line 196 replaced by `null;`, the result is:
+
+```
+ medium: assertion might fail
+--> boids.adb:198:25
+  198 |             pragma Assert (B * B * S2 <= WY * WY * T2);
+      |                            ^~~~~~~~~~~~~~~~~~~~~~~~~~
+      + possible fix: precondition of subprogram at boids.ads:91 should mention T
+      --> boids.ads:91:04
+   91 |       function Rescale (V : Vec; T : Len_T) return Vec
+      |       ^
+      + provers reached time limit before completing the proof
+```
+
+How to read it:
+
+* **`medium`** means the property may well be true, but no prover found a
+  proof in time. "Provers reached time limit" confirms that: this is a
+  timeout, not a counterexample.
+* **The "possible fix" is a red herring.** GNATprove saw that the assertion
+  depends on `T` and that `Rescale` has no precondition on `T`. But `T` is
+  already bounded by its subtype `Len_T` (0 .. 2¹³), and no extra
+  precondition would help. The real problem is that the solver cannot find
+  the non-linear reasoning step. Read hints like this as guesses, not
+  diagnoses.
+* The X line (197) still proves, because its lemma call is still there.
+  The two lines are symmetric, which makes this a clean experiment.
+
+### What was missing
+
+What the provers already know at line 198:
+
+1. From `Lemma_Div (WY, T, S, RY)` (called earlier):
+   `|RY| * S ≤ |WY| * T`, that is `B * S ≤ PY`. Lemma_Div is a `null`
+   procedure: its postcondition follows directly from the definition of
+   truncating division, which the solvers handle.
+2. Both sides are non-negative and small: `PY ≤ 2²⁹` (|WY| ≤ 2¹⁶,
+   T ≤ 2¹³), so `B * S ≤ 2²⁹` as well.
+
+What line 198 needs is the **squared** form,
+`(B * S)² ≤ (|WY| * T)²`, rearranged as `B·B·S·S ≤ WY·WY·T·T`.
+The rearranging (commutativity, associativity, `|WY|² = WY²`) is easy for
+the solvers. The hard part is **"0 ≤ x ≤ y implies x² ≤ y²"** when x and y
+are themselves products of four variables. That is non-linear integer
+arithmetic, which is undecidable in general. The SMT solvers (CVC5, Z3,
+Alt-Ergo) use heuristics, and with all of `Rescale`'s context in view they
+do not find the monotonicity step within 60 s.
+
+### The lemma that closes it
+
+```ada
+subtype Nat30 is Big range 0 .. 2 ** 30;
+
+procedure Lemma_Sq_Mono (X, Y : Nat30)
+  with Ghost, Pre => X <= Y, Post => X * X <= Y * Y;
+
+procedure Lemma_Sq_Mono (X, Y : Nat30) is
+begin
+   pragma Assert (X * X <= X * Y);
+   pragma Assert (X * Y <= Y * Y);
+end Lemma_Sq_Mono;
+```
+
+It is called as `Lemma_Sq_Mono (A * S, PX)` / `(B * S, PY)`. At the call,
+GNATprove must show the precondition: both arguments in `Nat30` (fact 2
+above) and `B * S ≤ PY` (fact 1). After the call it may assume the
+postcondition `(B*S) * (B*S) ≤ PY * PY`. Line 198 is then only a
+rearrangement of that fact.
+
+### Why that lemma is enough
+
+The lemma splits one hard step into two that solvers handle reliably, and
+it does so in an empty context. Inside the lemma the solver sees only
+`X`, `Y`, their bounds and `X ≤ Y`, not the forty-odd facts of `Rescale`.
+Each assertion multiplies a known inequality by a single non-negative
+variable: `X ≤ Y` times `X` gives `X·X ≤ X·Y`, and times `Y` gives
+`X·Y ≤ Y·Y`. Transitivity then gives the postcondition. The `Nat30`
+subtype supplies the non-negativity that makes multiplying an inequality
+sound, and keeps every product below 2⁶⁰ so no overflow check gets in the
+way. Back in `Rescale`, the call turns a non-linear goal into a linear one:
+the solver no longer has to *discover* monotonicity of squaring, only to
+*match* the lemma's postcondition against the assertion. That matching is
+syntactic rearrangement, which solvers do well. The ghost call is erased
+from the WebAssembly, so the extra proof structure costs nothing at run time.
+
+### Things noticed while experimenting
+
+I also removed each of the other 13 ghost calls in `Rescale` one at a time.
+
+* Six removals still proved everything: both `Lemma_Div` calls,
+  `Lemma_Sq_Mono (A * S, PX)`, both `Lemma_Cancel` calls and
+  `Lemma_Comp_Bound`. With 16.1 and the surrounding asserts, those steps
+  are within the solvers' reach. Some of these lemmas were added under
+  older, less helpful assertion chains and are now partly redundant. They
+  are kept because they make each step explicit and keep the proof robust
+  across prover versions.
+* The other removals each left one or more assertions unproved (timeouts).
+  In a few cases the first failure reported was an assertion *before* the
+  removed call; for example, removing line 200 reported line 198. Asserts
+  near the solver time limit are sensitive to the whole verification
+  condition, not just the lines above them, so treat the exact line as a
+  hint.
+
+The general recipe used throughout this repository:
+
+1. When an assertion with products times out, write the single
+   non-linear fact it needs as a ghost lemma with narrow subtypes.
+2. Prove the lemma in its own small context; split it further if needed.
+3. Call it right before the assertion, with arguments that match the
+   assertion's terms.
+
 ## Where to start changing things
 
 * New rule or parameter: `Params` and the rules in `boids-flocks.ads`, then
