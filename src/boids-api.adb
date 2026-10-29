@@ -1,9 +1,14 @@
+--  Inputs from JavaScript are clamped into their subtypes first; then
+--  Set_Param repairs cross-parameter rules (Max_Speed >= Min_Speed + 3,
+--  Sep_Radius <= Radius) and re-wraps birds if the world shrank.
 package body Boids.API with SPARK_Mode is
 
    function Clamp (V : Integer; Lo, Hi : Big) return Big is
      (if Big (V) < Lo then Lo elsif Big (V) > Hi then Hi else Big (V))
      with Pre => Lo <= Hi, Post => Clamp'Result in Lo .. Hi;
 
+   --  Linear congruential generator (Numerical Recipes constants);
+   --  good enough for starting positions, not for anything else.
    procedure Next_Random (Lim : Big; R : out Big)
      with Global => (In_Out => Rng), Pre => Lim >= 1,
           Post => R in 0 .. Lim - 1;

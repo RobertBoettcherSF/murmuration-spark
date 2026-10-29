@@ -3,6 +3,10 @@
 --  grid (used by Step), both proven to return exactly the neighbour set.
 package Boids.Flocks with SPARK_Mode is
 
+   ------------------------------------------------------------------
+   --  Parameters (all in units, 1 px = Sub = 256 units)
+   ------------------------------------------------------------------
+
    subtype Bird_Count is Integer range 0 .. Max_Birds;
    subtype Bird_Index is Integer range 1 .. Max_Birds;
 
@@ -28,6 +32,12 @@ package Boids.Flocks with SPARK_Mode is
    --  integer rounding of Clamp_Speed.
    function Valid_Params (P : Params) return Boolean is
      (P.Min_Speed + 3 <= P.Max_Speed and P.Sep_Radius <= P.Radius);
+
+   ------------------------------------------------------------------
+   --  The flock and its invariant. Valid (F) is the precondition and
+   --  postcondition of almost everything: parameters consistent, birds
+   --  inside the world, velocities bounded.
+   ------------------------------------------------------------------
 
    type Bird is record
       X, Y : Coord := 0;
@@ -59,6 +69,11 @@ package Boids.Flocks with SPARK_Mode is
      (for all I in 1 .. F.N =>
         Norm2 (F.B (I).V) in F.P.Min_Speed ** 2 .. F.P.Max_Speed ** 2);
 
+   ------------------------------------------------------------------
+   --  Geometry and the neighbour relation (the specification that both
+   --  searches are proven against).
+   ------------------------------------------------------------------
+
    function DX (F : Flock; I, J : Bird_Index) return Delta_T is
      (Torus_Delta (F.B (I).X, F.B (J).X, F.P.Width))
      with Pre => Valid (F) and I <= F.N and J <= F.N;
@@ -76,6 +91,11 @@ package Boids.Flocks with SPARK_Mode is
    function Is_Neighbour (F : Flock; I, J : Bird_Index) return Boolean is
      (I /= J and then Dist2 (F, I, J) < F.P.Radius ** 2)
      with Pre => Valid (F) and I <= F.N and J <= F.N;
+
+   ------------------------------------------------------------------
+   --  Neighbour lists. Exact_Set is the Gold property: the list holds
+   --  every neighbour of I, only neighbours, and none twice.
+   ------------------------------------------------------------------
 
    --  A grid search may visit up to 9 cells; with fewer than 3 cells per
    --  axis some are visited twice (duplicates are filtered by marks).
@@ -108,7 +128,11 @@ package Boids.Flocks with SPARK_Mode is
                            (for some K in 1 .. Count => List (K) = J)));
 
    ------------------------------------------------------------------
-   --  Uniform grid: cells at least Radius wide, at most 64 x 64 cells.
+   --  Uniform grid. Why: all-pairs costs N^2 distance tests per step
+   --  (2000 birds: 4 million). With cells at least Radius wide, every
+   --  neighbour lies in the bird's own cell or one of the 8 around it,
+   --  so only those 9 cells are scanned (6x faster at 1200-2000 birds).
+   --  Cells at least Radius wide, at most 64 x 64 cells.
    --  Each cell holds a chain of its birds in decreasing index order:
    --  Head (C) is the highest bird in cell C, Next (J) the next lower
    --  bird in the same cell as J (0 = end).
@@ -141,6 +165,9 @@ package Boids.Flocks with SPARK_Mode is
    function Key (F : Flock; G : Grid; J : Bird_Index) return Cell_Id is
      (Cell_Y (G, F.B (J).Y) * G.Gx + Cell_X (G, F.B (J).X));
 
+   --  Chains_OK: the chains built from birds 1 .. Upto are complete and
+   --  correct: walking Head/Next of cell C visits exactly the birds whose
+   --  Key is C (no bird skipped between two links).
    function Chains_OK (F : Flock; G : Grid; Upto : Bird_Count) return Boolean is
      ((for all C in Cell_Id =>
          G.Head (C) <= Upto
@@ -176,6 +203,17 @@ package Boids.Flocks with SPARK_Mode is
                   and then No_Marks (Marks),
           Post => Exact_Set (F, I, List, Count) and then No_Marks (Marks);
 
+   ------------------------------------------------------------------
+   --  The three Reynolds rules. Each averages over the neighbour list,
+   --  turns the average into a desired velocity of length Max_Speed,
+   --  and returns the steering force (desired - current), capped.
+   --    Separation: away from neighbours inside Sep_Radius, weighted
+   --                by closeness.
+   --    Alignment:  towards the neighbours' mean velocity.
+   --    Cohesion:   towards the neighbours' centre.
+   --  A zero average (no neighbours, or pushes cancelling) gives Zero.
+   ------------------------------------------------------------------
+
    --  Force cap of a rule with weight W (percent): Max_Force * W / 100.
    function Cap (P : Params; W : Weight_T) return Len_T is
      (P.Max_Force * W / 100);
@@ -206,6 +244,8 @@ package Boids.Flocks with SPARK_Mode is
                   and abs Cohesion'Result.Y <= Cap (F.P, F.P.W_Coh);
 
    --  One simulation step for the whole flock (uses the grid search).
+   --  All new velocities are computed from the old state first, then
+   --  every bird moves and wraps (so bird order does not matter).
    procedure Step (F : in out Flock)
      with Pre  => Valid (F),
           Post => Valid (F) and Speeds_Clamped (F)

@@ -1,3 +1,6 @@
+--  Bodies of the vector maths. Most lines in Rescale are proof steps
+--  (pragma Assert and ghost lemma calls); they cost nothing at run time
+--  and spell out, step by step, why integer rescaling stays in bounds.
 package body Boids with SPARK_Mode is
 
    procedure Lemma_Comp_Bound (V : Vec; L : Bound_T) is
@@ -154,6 +157,13 @@ package body Boids with SPARK_Mode is
                   and then abs R <= 2 ** 14;
    procedure Lemma_Div (W, T, S, R : Big) is null;
 
+   ---------------------------------------------------------------
+   --  Rescale: R = W * T / Isqrt(|W|^2), where W is V normalised.
+   --  Each truncation loses less than one unit per component; the
+   --  proof bounds the total error to the window (T-2)^2 .. T^2+T.
+   --  This exact analysis replaced v0.1's "compute, check, fall back".
+   ---------------------------------------------------------------
+
    function Rescale (V : Vec; T : Len_T) return Vec is
       WX, WY : Norm_Comp;
       N, S, RX, RY : Big;
@@ -224,6 +234,8 @@ package body Boids with SPARK_Mode is
       return (X => RX, Y => RY);
    end Rescale;
 
+   --  Limit aims at M - 1 so that the rounding allowance (+T) of
+   --  Rescale still lands inside M^2.
    function Limit (V : Vec; M : Len_T) return Vec is
       R : Vec;
    begin
@@ -239,6 +251,9 @@ package body Boids with SPARK_Mode is
       return R;
    end Limit;
 
+   --  Clamp_Speed aims at Hi - 1 (too fast) or Lo + 2 (too slow); the
+   --  rounding window of Rescale then fits in Lo .. Hi, which is why
+   --  Valid_Params demands Hi >= Lo + 3.
    function Clamp_Speed (V : Vec; Lo, Hi : Len_T) return Vec is
       R : Vec;
    begin

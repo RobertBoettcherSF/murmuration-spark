@@ -1,3 +1,5 @@
+--  Loop invariants carry the proofs here: each one states what has been
+--  established for the birds/cells handled so far.
 package body Boids.Flocks with SPARK_Mode is
 
    ------------------------------------------------------------------
@@ -76,6 +78,11 @@ package body Boids.Flocks with SPARK_Mode is
          pragma Loop_Invariant (Chains_OK (F, G, J));
       end loop;
    end Build_Grid;
+
+   --  Ghost lemmas for the grid. Together they prove the key fact:
+   --  a neighbour (distance < Radius <= cell size) is at most one cell
+   --  away on each axis, also across the wrap-around seam, where the
+   --  last cell may be wider (it absorbs the remainder of Size / Cs).
 
    --  Close coordinates on a ring lie in the same or an adjacent cell.
    procedure Lemma_Div_Close (X1, X2 : Coord; C : Cell_Size)
@@ -166,6 +173,8 @@ package body Boids.Flocks with SPARK_Mode is
                      and then (for some K in 1 .. Count => List (K) = J))))
      with Ghost, Pre => Valid (F) and I <= F.N;
 
+   --  Marks (one Boolean per bird) filter duplicates when fewer than 3
+   --  cells per axis make some of the 9 cells coincide.
    --  Walk the chain of cell C and add its unmarked neighbours of I.
    procedure Scan_Cell
      (F : Flock; G : Grid; I : Bird_Index; C : Cell_Id;
@@ -299,6 +308,10 @@ package body Boids.Flocks with SPARK_Mode is
    ------------------------------------------------------------------
    --  The three rules
    ------------------------------------------------------------------
+
+   --  Sums below are plain integers: the loop invariants bound them by
+   --  count * (largest term), which the declared limits keep far from
+   --  overflow; v0.1 needed saturating adds (Sat) here instead.
 
    --  Reynolds steering: desired direction at Max_Speed minus the current
    --  velocity, limited to Max_Force, then weighted.

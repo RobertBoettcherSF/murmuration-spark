@@ -7,6 +7,11 @@ browser.
 
 **Live page:** https://robertboettchersf.github.io/murmuration-spark/
 
+**New here? Start with [docs/HOW_WE_GOT_HERE.md](docs/HOW_WE_GOT_HERE.md)**: the
+rules, the fixed-point arithmetic, how the proofs are built, what changed in
+each version and what is still open. Then read the specs in `src/` in the
+order it suggests.
+
 The page (`docs/index.html`, one self-contained file) embeds the WebAssembly
 module as base64. JavaScript only draws the birds, shows menus and writes
 logs; every bird is moved by the proven Ada code.
@@ -44,6 +49,7 @@ logs; every bird is moved by the proven Ada code.
 | `src/boids-api.ads/.adb` | WebAssembly exports (`mf_*`), parameter clamping, random start; also SPARK |
 | `web/template.html` | the page; `build.sh` fills in the WASM and the proof summary |
 | `tests/` | smoke test and neighbour brute-force check |
+| `docs/HOW_WE_GOT_HERE.md` | guide for new readers: design, proof approach, history, open limits |
 | `proof/gnatprove.out` | the GNATprove summary of the current sources |
 
 ## Proof status

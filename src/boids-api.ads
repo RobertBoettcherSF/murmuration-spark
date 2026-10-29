@@ -5,6 +5,9 @@ with Boids.Flocks; use Boids.Flocks;
 
 package Boids.API with SPARK_Mode is
 
+   --  The single flock lives here; JavaScript only sees it through the
+   --  functions below. Every exported procedure has Pre and Post
+   --  Valid (The_Flock), so no input from the page can break it.
    The_Flock : Flock;
    Rng       : Unsigned_32 := 1;
 

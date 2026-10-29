@@ -2,21 +2,34 @@
 --  All quantities are integers in "units"; one screen pixel = Sub units.
 --  Integer (fixed-point) arithmetic is used instead of Float so that every
 --  bound below is exact and provable without floating-point rounding.
+--
+--  Reading order for newcomers: this file (vector maths), then
+--  boids-flocks.ads (flock, rules, neighbour searches), then boids-api.ads
+--  (what the browser calls). docs/HOW_WE_GOT_HERE.md tells the story.
 package Boids with SPARK_Mode is
+
+   ---------------------------------------------------------------
+   --  Units and ranges. Every subtype is a proof obligation: the
+   --  provers show that no value ever leaves its range.
+   ---------------------------------------------------------------
 
    Sub       : constant := 256;            --  units per pixel
    Max_Birds : constant := 2000;
 
+   --  All arithmetic is done in Big; the ranges below keep every
+   --  product far from overflow (Silver: no run-time errors).
    type Big is range -2 ** 62 .. 2 ** 62 - 1;
 
    Max_World : constant := 4096 * Sub;      --  largest world side (units)
    Min_World : constant := 64 * Sub;
    subtype World_Size is Big range Min_World .. Max_World;
-   subtype Coord is Big range 0 .. Max_World - 1;
+   subtype Coord is Big range 0 .. Max_World - 1;   --  a position
 
    Half_World : constant := Max_World / 2;
-   subtype Delta_T is Big range -Half_World .. Half_World;
+   subtype Delta_T is Big range -Half_World .. Half_World;  --  offset on the torus
 
+   --  Vector components (velocities, forces, sums) stay below 2**20, so
+   --  squared norms stay below 2**41.
    Comp_Max : constant := 2 ** 20;
    subtype Comp is Big range -Comp_Max .. Comp_Max;
 
@@ -31,6 +44,12 @@ package Boids with SPARK_Mode is
    --  Largest length the vector functions are asked for (16 px = 4096).
    Max_Len : constant := 2 ** 13;
    subtype Len_T is Big range 0 .. Max_Len;
+
+   ---------------------------------------------------------------
+   --  Ghost lemmas used by other units. Ghost code is checked by the
+   --  provers and erased from the binary; each lemma states one
+   --  non-linear fact that SMT solvers cannot find on their own.
+   ---------------------------------------------------------------
 
    --  If |V| <= L then each component is at most L.
    subtype Bound_T is Big range 0 .. 2 ** 14;
@@ -54,6 +73,11 @@ package Boids with SPARK_Mode is
      with Ghost, Pre => C in 1 .. 2 ** 16 and then H in 0 .. 2 ** 24
                         and then abs S <= C * H,
           Post => abs (S / C) <= H;
+
+   ---------------------------------------------------------------
+   --  Vector operations. Lengths are Euclidean, compared squared
+   --  (Norm2) so no square root is needed in any contract.
+   ---------------------------------------------------------------
 
    --  Integer square root (floor).
    function Isqrt (N : Big) return Big
@@ -81,6 +105,10 @@ package Boids with SPARK_Mode is
           Post => Norm2 (Clamp_Speed'Result) in Lo * Lo .. Hi * Hi
                   and then abs Clamp_Speed'Result.X <= Hi
                   and then abs Clamp_Speed'Result.Y <= Hi;
+
+   ---------------------------------------------------------------
+   --  The world is a torus: leaving one edge re-enters at the other.
+   ---------------------------------------------------------------
 
    --  Shortest signed offset from A to B on a ring of the given size.
    function Torus_Delta (A, B : Coord; Size : World_Size) return Delta_T
