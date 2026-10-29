@@ -448,6 +448,210 @@ The wider last cell is harmless for the same reason: it only makes "`X2` is in c
 
 The proofs say nothing about speed or about how the flock looks (see the honest notes in the README). Those numbers are measured with the programs in [`tools/bench/`](../tools/README.md). It has one-command recipes for the README tables, reproduced on 29 Oct 2026, and it notes where they drift.
 
+## 13. Deep study: the Rescale rounding window
+
+`Rescale (V, T)` returns `V` scaled to length about `T`, using integers only. Its contract (`src/boids.ads`) is
+
+```
+Norm2 (R) <= T*T + T                         -- upper
+if T >= 2 then Norm2 (R) >= (T - 2)**2       -- lower
+```
+
+This section derives both inequalities step by step, in the same order as the `pragma Assert`s in `src/boids.adb`. It then shows why aiming at `T - 1` / `T - 2` makes the v0.1 "compute, check, fall back" code unnecessary. Section 10 looked at one failing step of this proof; this one walks through all of it.
+
+### 13.1 Names and the two facts everything rests on
+
+| Name | Meaning in the code | Range |
+|---|---|---|
+| `WX, WY` | `V` after `Normalise`, i.e. doubled or halved into a fixed window | `\|WX\|, \|WY\| <= 2**16` |
+| `N` | `WX*WX + WY*WY` | `2**30 <= N <= 2**33` |
+| `S` | `Isqrt (N)` | `2**15 <= S < 2**17` |
+| `T` | target length (`Len_T`) | `0 <= T <= 2**13` |
+| `RX, RY` | `WX*T/S`, `WY*T/S` (Ada `/` truncates toward 0) | |
+| `A, B` | `abs RX`, `abs RY` | |
+| `PX, PY` | `abs WX * T`, `abs WY * T` | |
+| `Q` | `A*A + B*B` = `Norm2 (R)` | |
+| `T2, S2` | `T*T`, `S*S` | |
+
+**Fact 1, the square root** (post of `Isqrt`):
+
+```
+S*S <= N < (S+1)*(S+1)                                   (I)
+```
+
+**Fact 2, the division**, once per component (post of `Lemma_Div`). Truncation of `PX / S` gives `A`, so
+
+```
+A*S <= PX < (A+1)*S          B*S <= PY < (B+1)*S        (D)
+```
+
+`Normalise` exists only to make the ranges above true. It guarantees `S >= 2**15`, and since `T <= 2**13` this gives
+
+```
+S >= 2*T + 1   and   S >= T                              (W)
+```
+
+All the products also stay far below `2**62`, so no step can overflow. `T = 0` is handled first: then `RX = RY = 0` and both bounds hold trivially (`0 <= 0`).
+
+Intuition: each component of `R` is the exact value `WX*T/sqrt(N)` minus two small errors. One comes from the floor in `Isqrt`, the other from the truncating `/`. Each error is below one unit per component. The proof turns "below one unit" into a statement about squared lengths without taking any square root.
+
+### 13.2 Upper bound: `Q <= T*T + T`
+
+**Step U1, square (D).** Both sides of `A*S <= PX` are non-negative, so squaring keeps the order (`Lemma_Sq_Mono (A*S, PX)`):
+
+```
+A*A*S2 <= WX*WX*T2         B*B*S2 <= WY*WY*T2
+```
+
+**Step U2, add.**
+
+```
+Q*S2 = (A*A + B*B)*S2 <= (WX*WX + WY*WY)*T2 = N*T2
+```
+
+**Step U3, use the square root from above.** `N < (S+1)^2` from (I), times `T2 > 0` (`Lemma_Mul_Lt_B`):
+
+```
+N*T2 < (S+1)*(S+1)*T2
+```
+
+**Step U4, bound `(S+1)^2*T2` by a multiple of `S2`.** We want
+
+```
+(S+1)^2 * T2 <= (T2 + T + 1) * S2
+<=> (S2 + 2S + 1)*T2 <= T2*S2 + T*S2 + S2
+<=>        2S*T2 + T2 <= T*S2 + S2                       (*)
+```
+
+From (W), `2T + 1 <= S`. Multiplying by `T*S >= 0` (`Lemma_Mul_Le (2*T+1, S, T*S)`) gives
+
+```
+(2T+1)*T*S <= S*T*S   i.e.   2S*T2 + T*S <= T*S2
+```
+
+`S >= T` gives `T*S >= T2`, so
+
+```
+2S*T2 + T2 <= 2S*T2 + T*S <= T*S2 <= T*S2 + S2
+```
+
+which is (*). These are the asserts `T*S2 >= 2*S*T2 + T*S`, `T*S >= T2` and `(S+1)*(S+1)*T2 <= (T2+T+1)*S2`.
+
+**Step U5, chain and cancel.**
+
+```
+Q*S2 <= N*T2 < (S+1)^2*T2 <= (T2+T+1)*S2
+=>  Q*S2 < (T2+T+1)*S2
+=>  Q < T2 + T + 1          (Lemma_Cancel, S2 > 0)
+=>  Q <= T2 + T             (integers)
+```
+
+The `+ T` slack is there because `S` is the floor of the square root, so dividing by `S` slightly *enlarges* the result. The size of that enlargement is `(S+1)^2/S^2`, which (W) keeps below `1 + 1/T`. Truncating the division can only make `A` and `B` smaller, so it does not contribute here.
+
+`Lemma_Comp_Bound (R, T + 1)` then turns `Q <= T2 + T < (T+1)^2` into `|RX|, |RY| <= T + 1`.
+
+### 13.3 Lower bound: `Q >= (T-2)^2` when `T >= 2`
+
+**Step L1, square the other half of (D)** (`Lemma_Sq_Strict (PX, (A+1)*S)`):
+
+```
+WX*WX*T2 < (A+1)^2*S2       WY*WY*T2 < (B+1)^2*S2
+```
+
+**Step L2, add.**
+
+```
+N*T2 < ((A+1)^2 + (B+1)^2) * S2
+```
+
+**Step L3, use the square root from below.** `S2 <= N` from (I), times `T2` (`Lemma_Mul_Le_B`):
+
+```
+S2*T2 <= N*T2 < ((A+1)^2 + (B+1)^2) * S2
+```
+
+**Step L4, cancel `S2`** (`Lemma_Cancel`):
+
+```
+T2 < (A+1)^2 + (B+1)^2 = Q + 2(A+B) + 2                 (L)
+```
+
+Read (L) as: the true length `T` is less than the length you get by adding one unit back to each component.
+
+**Step L5, bound `A+B` by `Q`** (`Lemma_Sum_Sq`, from `(A-B)^2 >= 0`):
+
+```
+(A+B)^2 <= 2*(A*A + B*B) = 2Q
+```
+
+**Step L6, proof by contradiction.** Assume `Q < (T-2)^2`. If `T = 2` this says `Q < 0`, which is impossible. So `T >= 3` and `(T-2)^2 > 0`, and:
+
+```
+(2(A+B))^2 = 4(A+B)^2 <= 8Q < 8(T-2)^2 < 9(T-2)^2 = (3(T-2))^2
+=>  2(A+B) < 3(T-2)            (Lemma_Sq_Rev: squares ordered => bases ordered)
+```
+
+Using the assumption once more:
+
+```
+Q + 2(A+B) + 2  <  (T-2)^2 + 3(T-2) + 2
+                 = T2 - 4T + 4 + 3T - 6 + 2
+                 = T2 - T
+                 <= T2
+```
+
+This contradicts (L). In the code, the `if Q < (T - 2) * (T - 2)` branch asserts exactly these two lines and ends in `pragma Assert (False)`, so the prover sees that the branch is dead. Hence `Q >= (T-2)^2`.
+
+The window is lopsided, `-2` below and `+T/T` above, for this reason. The upper side loses only the square-root floor, while the lower side has to absorb a full unit of truncation in *each* component. The `2(A+B) <= 3(T-2)` estimate is coarse, using 8 < 9 and `sqrt 2 < 3/2`. A tighter constant than 2 would need a sharper version of L5/L6. The `-2` is what the integer argument above can carry without real numbers.
+
+### 13.4 Why aiming at `T - 1` / `T - 2` removes the fallback
+
+v0.1 called the rescaler and then *checked* the result. If rounding had pushed it outside the allowed range, it fell back to a safe value. That fallback was correct, but the proof had to cover a branch that never ran, and its "why" was a run-time test. v0.2 knows the window in advance, so each caller simply picks a target whose whole window fits:
+
+**`Limit (V, M)`** wants `Norm2 <= M*M`. It aims at `T = M - 1`:
+
+```
+Norm2 (R) <= (M-1)^2 + (M-1) = M*M - M <= M*M
+```
+
+This is the assert in `Limit`. `M = 0` is handled separately: the result is `Zero`.
+
+**`Clamp_Speed (V, Lo, Hi)`** wants `Lo*Lo <= Norm2 <= Hi*Hi`. Its precondition is `1 <= Lo` and `Lo + 3 <= Hi`.
+
+- Too fast: it aims at `T = Hi - 1`, and `T >= 2` holds because `Hi >= 4`.
+  ```
+  upper: (Hi-1)^2 + (Hi-1) = Hi*Hi - Hi <= Hi*Hi
+  lower: (Hi-3)^2 >= Lo*Lo                because Lo <= Hi - 3   (Lemma_Sq_Mono (Lo, Hi - 3))
+  ```
+- Too slow: it aims at `T = Lo + 2`, and `T >= 3` holds.
+  ```
+  lower: (Lo+2-2)^2 = Lo*Lo
+  upper: (Lo+2)^2 + (Lo+2) = Lo*Lo + 5Lo + 6 <= Lo*Lo + 6Lo + 9 = (Lo+3)^2 <= Hi*Hi
+                                          (the assert, then Lemma_Sq_Mono (Lo + 3, Hi))
+  ```
+- A zero vector has no direction, so it becomes `(Lo, 0)`.
+
+Both cases need `Hi - Lo >= 3`. The window `T-2 .. T+½` is about 2½ units wide, and both ends must fit between `Lo` and `Hi`. That is the reason `Valid_Params` and `Boids.API.Set_Param` keep `Max_Speed >= Min_Speed + 3` (3 units = 3/256 px, which nobody sees).
+
+### 13.5 Map: step to code
+
+| Step | Fact | Where in `src/boids.adb` |
+|---|---|---|
+| (I) | `S*S <= N < (S+1)^2` | `Isqrt` post |
+| (D) | `A*S <= PX < (A+1)*S` | `Lemma_Div (WX, T, S, RX)`, same for Y |
+| (W) | `S >= 2T+1` | `Normalise` window + `pragma Assert (S >= Small)` |
+| U1–U2 | `Q*S2 <= N*T2` | `Lemma_Sq_Mono (A*S, PX)` and the three asserts after it |
+| U3 | `N*T2 < (S+1)^2*T2` | `Lemma_Mul_Lt_B` |
+| U4 | `(S+1)^2*T2 <= (T2+T+1)*S2` | `Lemma_Mul_Le (2*T+1, S, T*S)` and three asserts |
+| U5 | `Q <= T2+T` | `Lemma_Cancel (Q, T2+T+1, S2)` |
+| L1–L2 | `N*T2 < ((A+1)^2+(B+1)^2)*S2` | `Lemma_Sq_Strict` ×2 and asserts |
+| L3–L4 | `T2 < Q + 2(A+B) + 2` | `Lemma_Mul_Le_B (S2, N, T2)`, `Lemma_Cancel (T2, ..., S2)` |
+| L5 | `(A+B)^2 <= 2Q` | `Lemma_Sum_Sq (A, B)` |
+| L6 | contradiction | `Lemma_Sq_Rev (2*(A+B), 3*(T-2))`, `pragma Assert (False)` |
+| 13.4 | targets `M-1`, `Hi-1`, `Lo+2` | `Limit`, `Clamp_Speed` |
+
+Section 10 shows what happens when one of these lemma calls (U1's `Lemma_Sq_Mono`) is removed.
+
 ## Where to start changing things
 
 * New rule or parameter: `Params` and the rules in `boids-flocks.ads`, then
