@@ -112,6 +112,8 @@ Honest notes on what the proofs do **not** say:
 | 1200 | 13.4 ms/step | 2.2 ms/step |
 | 2000 | 33.0 ms/step | 5.2 ms/step |
 
+For other Ada→browser app threads (item → plan → Go): [Workflow for other threads](docs/WORKFLOW_FOR_OTHER_THREADS.md).
+
 ## Flock metrics (v0.2.1)
 
 The top bar shows, once per second, **alignment** (length of the mean unit
